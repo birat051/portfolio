@@ -1,0 +1,29 @@
+[
+  {
+    "id": "problems",
+    "headingId": "problems-heading",
+    "title": "What problems I solve",
+    "content": [
+      "Hi, I am Birat Bhattacharjee, a Senior Software Engineer with 6 years of experience building scalable, high-performance web applications using React, TypeScript, Node.js, and Go. I specialise in designing and implementing scalable frontend architecture, real-time systems, and performance optimisation, working with technologies such as WebRTC, WebSockets, and Server-Sent Events.",
+      "I've led large frontend initiatives, built reusable UI platforms and component libraries, worked with monitoring tools like Sentry, Kibana, CubeAPM and developed backend micro-services that support thousands of users. My focus is on writing clean, scalable code through well-structured architectures, reusable abstractions, and solid test coverage, while collaborating closely with cross-functional teams, mentoring engineers through code reviews and design discussions, and driving reliable releases via strong CI/CD practices."
+    ]
+  },
+  {
+    "id": "case-studies",
+    "headingId": "case-studies-heading",
+    "title": "Engineering case studies",
+    "content": null
+  },
+  {
+    "id": "demos",
+    "headingId": "demos-heading",
+    "title": "Demos",
+    "content": null
+  },
+  {
+    "id": "ai",
+    "headingId": "ai-heading",
+    "title": "AI",
+    "content": null
+  }
+]

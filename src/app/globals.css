@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------------------
+   Theme: primary, secondary, tertiary — light and dark (prefers-color-scheme).
+   Inspiration: minimal dark navy/slate + teal accent (e.g. brittanychiang.com),
+   soothing contrast, accessible.
+--------------------------------------------------------------------------- */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary: main background and primary content */
+  --primary: #f8fafc;
+  --primary-foreground: #0f172a;
+  /* Secondary: surfaces, cards, borders, secondary text */
+  --secondary: #e2e8f0;
+  --secondary-foreground: #334155;
+  /* Tertiary: accent (links, highlights, CTAs) */
+  --tertiary: #0d9488;
+  --tertiary-foreground: #f0fdfa;
+  /* Legacy aliases for body */
+  --background: var(--primary);
+  --foreground: var(--primary-foreground);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #0f172a;
+    --primary-foreground: #f1f5f9;
+    --secondary: #1e293b;
+    --secondary-foreground: #cbd5e1;
+    --tertiary: #5eead4;
+    --tertiary-foreground: #0f172a;
+    --background: var(--primary);
+    --foreground: var(--primary-foreground);
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-foreground: var(--tertiary-foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: light dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
