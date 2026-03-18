@@ -89,7 +89,7 @@ Use this list to track progress. Mark items with `[x]` when done.
   - [x] 17.1 On mobile devices and ipad, hide the profile photo in the hero.
   - [x] 17.2 On mobile devices and ipad, hide the hero interaction.
 
-- [ ] **Task 18: CV-driven Experience timeline**
+- [x] **Task 18: CV-driven Experience timeline**
   - [x] 18.1 Review `src/assets/documents/Birat_Bhattacharjee_CV.pdf` and extract experience timeline entries (role, company, dates, summary/description).
   - [x] 18.2 For each experience entry, extract technologies/skills to display as tiles.
   - [x] 18.3 Update `src/data/sections.json` to add a new `experience` section (`id`, `headingId`, `title`) and the timeline payload (experiences + skills) **after the “What problems I solve” section**.
@@ -97,111 +97,29 @@ Use this list to track progress. Mark items with `[x]` when done.
   - [x] 18.5 Create `src/components/experience-timeline.tsx` to render a timeline UI and skill tiles beneath each experience (server component; integrate with existing theme + `ScrollReveal`).
   - [x] 18.6 Ensure accessibility for the timeline and tiles (semantic structure, keyboard/screen-reader friendly).
   - [x] 18.7 Ensure the “section switcher” includes `Experience` and anchor scrolling works for the new `experience` section.
-  - [ ] 18.8 Run `npm run lint` and `npm run build` to confirm no regressions.
+  - [x] 18.8 Run `npm run lint` and `npm run build` to confirm no regressions.
+  - [x] 18.9 Redesign the experience section into a **vertical timeline UI** similar to [Material UI Timeline](https://mui.com/material-ui/react-timeline/): a vertical axis with a node per item, connector line between nodes, and main content (role, company, dates, highlights, skills) beside the axis.
+  - [x] 18.10 At each timeline node (where each company/entry starts), display the **company logo** from `src/assets/images/` — e.g. Healthplix: `healthplix_logo.jpeg`, MPSC: `mpsc_logo.png`, Hitachi Vantara: `hitachi_vantara.jpeg`. Follow the [MUI Timeline customization](https://mui.com/material-ui/react-timeline/#customization) pattern: logo in the separator/dot position (where the timeline node is), company heading and content in the content area.
+  - [x] 18.11 Map each timeline entry to its logo asset (by company name or id), use `next/image` for logos with appropriate `alt` (company name), and keep layout responsive (e.g. stacked or smaller axis on mobile).
+  - [x] 18.12 Ensure the new timeline layout remains accessible (semantic list/items, focus order, screen-reader friendly) and run `npm run lint` and `npm run build` to confirm no regressions.
 
----
+- [x] **Task 19: Language switcher (English / Swedish)**
+  - [x] 19.1 Add a UI control at the top of the page (above main content) to switch language between English and Swedish.
+  - [x] 19.2 Show British flag icon and the word "English" for the English option; Swedish flag icon and the word "Svenska" for the Swedish option.
+  - [x] 19.3 When the user switches to Swedish, all homepage content (hero, section headings, body copy, experience timeline, footer, nav labels) is displayed in Swedish translation.
+  - [x] 19.4 Persist language choice (e.g. URL param, cookie, or localStorage) so the selected language is retained on reload/navigation.
+  - [x] 19.5 Ensure the language switcher is keyboard accessible and screen-reader friendly (e.g. `aria-label`, current language announced).
+  - [x] 19.6 Run `npm run lint` and `npm run build` to confirm no regressions.
 
-## Task 1: SEO and document structure
+- [x] **Task 20: Theme switcher (light / dark mode)**
+  - [x] 20.1 Add or confirm Tailwind color schemes for **light theme** (ensure light mode variables are defined and used consistently in `globals.css`).
+  - [x] 20.2 Create a **theme switcher UI** with **night** (moon) and **day** (sun) icons to switch between light and dark mode.
+  - [x] 20.3 Place the theme switcher in the **left-hand corner** of the header bar, **opposite** the language switcher (language switcher remains on the right).
+  - [x] 20.4 Persist the theme choice (e.g. localStorage or cookie) so the selected mode is retained on reload/navigation.
+  - [ ] 20.5 Ensure the theme switcher is keyboard accessible and screen-reader friendly (e.g. `aria-label`, current theme announced).
+  - [x] 20.6 Run `npm run lint` and `npm run build` to confirm no regressions.
+  - [x] 20.7 Show the light and dark mode options in a **toggle button** with a **switching animation**.
 
-| #   | Subtask                                                                                                                                                    | Done |
-| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- |
-| 1.1 | Set page metadata: `<title>` and `<meta name="description">` including “Birat Bhattacharjee” and “Senior Software Engineer” / “real-time web experiences”. |      |
-| 1.2 | Use a single `<main>` and one `<h1>` (name) on the page; each section has a logical `<h2>`.                                                                |      |
-| 1.3 | Use semantic HTML only for main structure (no div soup).                                                                                                   |      |
-
----
-
-## Task 2: Accessibility
-
-| #   | Subtask                                                                                                                                   | Done |
-| --- | ----------------------------------------------------------------------------------------------------------------------------------------- | ---- |
-| 2.1 | Add a skip link at the top (“Skip to main content”), first focusable element, linking to `#main-content`.                                 |      |
-| 2.2 | Use landmarks: `<header>`, `<main id="main-content">`, `<footer>`, `<nav>` with an accessible name (e.g. `aria-label="Main navigation"`). |      |
-| 2.3 | Ensure heading hierarchy: one h1, then h2 per section; no skipped levels.                                                                 |      |
-| 2.4 | Apply visible focus styles (e.g. theme tertiary) on all interactive elements.                                                             |      |
-| 2.5 | Ensure full keyboard flow: skip link → nav → main → footer; no focus traps.                                                               |      |
-| 2.6 | Keep structure screen-reader friendly: semantic HTML, no misleading or missing labels.                                                    |      |
-
----
-
-## Task 3: Header and navigation
-
-| #   | Subtask                                                                                            | Done |
-| --- | -------------------------------------------------------------------------------------------------- | ---- |
-| 3.1 | Add a header with site identity (e.g. “Birat Bhattacharjee” or logo text).                         |      |
-| 3.2 | Add a nav with in-page links to Hero, What problems I solve, and each main section (anchor links). |      |
-| 3.3 | Use a static nav (no dropdowns); ensure it’s keyboard accessible and has visible focus.            |      |
-
----
-
-## Task 4: Hero (short intro)
-
-| #   | Subtask                                                                                                                                                                                                                                                                                                                               | Done |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- |
-| 4.1 | Hero section: name as `<h1>`, tagline “Real-time web experiences that scale”, one short intro line (e.g. Senior Software Engineer).                                                                                                                                                                                                   |      |
-| 4.2 | **Include profile photo on the homepage in LinkedIn fashion:** professional, clear, well-framed (e.g. head/shoulders or upper body). Use `public/photo_op.jpeg`; if moving the image into `src` (e.g. `src/assets/images/`) improves asset delivery (e.g. with `next/image` and build-time optimization), move it and use from there. |      |
-| 4.3 | Use theme colours (primary, secondary, tertiary) and existing typography; keep layout responsive.                                                                                                                                                                                                                                     |      |
-| 4.4 | Add GitHub and LinkedIn logos below profile photo, linking to https://github.com/birat051 and https://www.linkedin.com/in/biratbhattacharjee/                                                                                                                                                                                         |      |
-
----
-
-## Task 5: “What problems I solve” section
-
-| #   | Subtask                                                                                         | Done |
-| --- | ----------------------------------------------------------------------------------------------- | ---- |
-| 5.1 | Add a section with a clear `<h2>` (e.g. “What problems I solve”).                               |      |
-| 5.2 | Use placeholder content only (e.g. “Content coming soon” or empty list) until copy is provided. |      |
-
----
-
-## Task 6: Main sections (placeholders)
-
-| #   | Subtask                                                                                                                             | Done |
-| --- | ----------------------------------------------------------------------------------------------------------------------------------- | ---- |
-| 6.1 | Add one block per main section: Engineering case studies, Systems I designed, OSS/Experiments, Small tools, Demos, Playgrounds, AI. |      |
-| 6.2 | Each block: semantic `<section>`, `<h2>`, and empty or “Content coming soon” placeholder.                                           |      |
-| 6.3 | Ensure nav links target each section via `id` (e.g. `#case-studies`, `#systems`, etc.).                                             |      |
-| 6.4 | Replace placeholders with actual content (when copy/items are provided).                                                            |      |
-
----
-
-## Task 7: Scroll animations
-
-| #   | Subtask                                                                                                                                            | Done |
-| --- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---- |
-| 7.1 | Introduce a single client component (e.g. scroll-reveal wrapper) that applies “reveal on scroll” (fade/slide up) when sections enter the viewport. |      |
-| 7.2 | Use it only for section reveal; keep all content as server-rendered and static.                                                                    |      |
-| 7.3 | Keep animations subtle and non-distracting (per guidelines).                                                                                       |      |
-
----
-
-## Task 8: Footer
-
-| #   | Subtask                                               | Done |
-| --- | ----------------------------------------------------- | ---- |
-| 8.1 | Add a minimal footer (e.g. name, current year).       |      |
-| 8.2 | Use `<footer>` landmark and theme-consistent styling. |      |
-
----
-
-## Task 9: Theme, layout, and components
-
-| #   | Subtask                                                                                                                                                                    | Done |
-| --- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- |
-| 9.1 | Use only existing Tailwind theme tokens (primary, secondary, tertiary) for background, text, and accents.                                                                  |      |
-| 9.2 | Responsive layout: comfortable max-width and stacking on small screens.                                                                                                    |      |
-| 9.3 | Create only the components needed: skip-link, header, hero (with photo), section-value-prop, section-placeholder, scroll-reveal (client), footer; homepage assembles them. |      |
-| 9.4 | Default to Server Components; client only for scroll-reveal (and any future interactive nav if added).                                                                     |      |
-
----
-
-## Task 10: Quality and guidelines
-
-| #    | Subtask                                                                                             | Done |
-| ---- | --------------------------------------------------------------------------------------------------- | ---- |
-| 10.1 | Run ESLint and fix any violations.                                                                  |      |
-| 10.2 | Confirm no extra features or code beyond this plan.                                                 |      |
-| 10.3 | Confirm existing behaviour (e.g. layout, globals) is unchanged except as required for the homepage. |      |
 
 ---
 

@@ -137,3 +137,18 @@ Rules and conventions for building and maintaining this portfolio.
 
 - For non-prop types (data shapes, domain models, helper types), define them in a single `types.ts` file within the same module/folder and **export** them.
 - Exclude **props types**: prop types for components may remain in the component file.
+
+---
+
+## 21. Bilingual content (English and Swedish)
+
+- All content added to the project must support **two languages: English and Swedish**.
+- Use the existing locale context and translations pattern (e.g. `src/data/translations.ts`, `getTranslations(locale)`) so new copy, section titles, and UI strings are available in both languages.
+- When adding new sections, pages, or copy, provide both English and Swedish entries in the translation data (or equivalent) so the language switcher can display the correct language.
+
+---
+
+## 22. Mark tasks done when all subtasks are done
+
+- When working from a plan with tasks and subtasks (e.g. `HOMEPAGE_PLAN.md`), **mark the parent task as done** once **all** of its subtasks are completed.
+- Keep the checklist accurate so progress is clear and nothing is left partially checked.

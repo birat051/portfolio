@@ -5,9 +5,18 @@ import { SectionSwitcher } from "@/components/section-switcher";
 
 type HeroProps = Readonly<{
   sectionItems: readonly { id: string; label: string }[];
+  tagline?: string;
+  intro?: string;
 }>;
 
-export function Hero({ sectionItems }: HeroProps) {
+const DEFAULT_TAGLINE = "Real-time web experiences that scale.";
+const DEFAULT_INTRO = "Full-stack developer";
+
+export function Hero({
+  sectionItems,
+  tagline = DEFAULT_TAGLINE,
+  intro = DEFAULT_INTRO,
+}: HeroProps) {
   return (
     <section
       id="hero"
@@ -32,12 +41,8 @@ export function Hero({ sectionItems }: HeroProps) {
           >
             Birat Bhattacharjee
           </h1>
-          <p className="mt-2 text-lg text-tertiary">
-            Real-time web experiences that scale.
-          </p>
-          <p className="mt-1 text-secondary-foreground">
-            Senior Software Engineer
-          </p>
+          <p className="mt-2 text-lg text-tertiary">{tagline}</p>
+          <p className="mt-1 text-secondary-foreground">{intro}</p>
         </div>
         <div className="hidden w-full lg:block">
           <SectionSwitcher items={sectionItems} />
@@ -88,4 +93,3 @@ export function Hero({ sectionItems }: HeroProps) {
     </section>
   );
 }
-

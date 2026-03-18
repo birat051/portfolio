@@ -9,6 +9,7 @@ type ContentSectionProps = Readonly<{
   headingId: string;
   title: string;
   content: string[] | null;
+  placeholderText?: string;
 }>;
 
 export function ContentSection({
@@ -16,6 +17,7 @@ export function ContentSection({
   headingId,
   title,
   content,
+  placeholderText = "Content coming soon.",
 }: ContentSectionProps) {
   return (
     <section id={id} aria-labelledby={headingId} className={sectionClass}>
@@ -31,7 +33,7 @@ export function ContentSection({
           </div>
         ) : (
           <p className="mt-3 break-words text-secondary-foreground">
-            Content coming soon.
+            {placeholderText}
           </p>
         )}
       </ScrollReveal>

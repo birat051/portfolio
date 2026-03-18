@@ -1,7 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 
-import { Footer } from "@/components/footer";
-import { SkipLink } from "@/components/skip-link";
+import { LayoutWithLocale } from "@/components/layout-with-locale";
 
 import "./globals.css";
 
@@ -29,13 +28,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} min-w-0 antialiased overflow-x-hidden`}
       >
-        <SkipLink />
-        {children}
-        <Footer />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var t=localStorage.getItem("theme");if(t==="dark"||t==="light"){document.documentElement.classList.add(t);}})();`,
+          }}
+        />
+        <LayoutWithLocale>{children}</LayoutWithLocale>
       </body>
     </html>
   );
