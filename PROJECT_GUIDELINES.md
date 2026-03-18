@@ -123,3 +123,17 @@ Rules and conventions for building and maintaining this portfolio.
 
 - Avoid repeating the same UI structure across multiple sections/components.
 - Prefer small, reusable components or mapping over data structures where it improves clarity and reduces duplication (without adding unnecessary abstraction).
+
+---
+
+## 19. One component per file
+
+- Do not define multiple React components in a single file.
+- A file should export at most one component (or one primary component + non-component utilities/types).
+
+---
+
+## 20. Type definitions live in type files
+
+- For non-prop types (data shapes, domain models, helper types), define them in a single `types.ts` file within the same module/folder and **export** them.
+- Exclude **props types**: prop types for components may remain in the component file.

@@ -75,18 +75,29 @@ Use this list to track progress. Mark items with `[x]` when done.
   - [x] 14.2 Keep motion subtle, accessible, and respect reduced-motion settings.
   - [ ] 14.3 Ensure this does not break static content/SEO (content still renders as HTML).
 
-- [ ] **Task 15: Fixed social links at bottom**
-  - [ ] 15.1 Move GitHub + LinkedIn links to the bottom of the hero area and keep them **fixed at the bottom of the page**.
-  - [ ] 15.2 Ensure they remain keyboard accessible, do not overlap content, and are responsive.
+- [x] **Task 15: Fixed social links at bottom**
+  - [x] 15.1 Move GitHub + LinkedIn links to the bottom of the hero area and keep them **fixed at the bottom of the page**.
+  - [x] 15.3 Fix GitHub + LinkedIn icons to the bottom of the **hero section only** (not the overall page layout).
+  - [x] 15.2 Ensure they remain keyboard accessible, do not overlap content, and are responsive.
 
-- [ ] **Task 16: Responsive margins and padding (new spacing system)**
-  - [ ] 16.1 Desktop/tablet: keep only **page margins** at **3rem** while keeping **padding** at **2rem** for internal containers.
-  - [ ] 16.2 Mobile: reduce **page margins** to **1rem** and **padding** to **0.75rem**.
-  - [ ] 16.3 Apply consistently across hero, content sections, and footer; ensure no horizontal scroll.
+- [x] **Task 16: Responsive margins and padding (new spacing system)**
+  - [x] 16.1 Desktop/tablet: keep only **page margins** at **3rem** while keeping **padding** at **2rem** for internal containers.
+  - [x] 16.2 Mobile: reduce **page margins** to **1rem** and **padding** to **0.75rem**.
+  - [x] 16.3 Apply consistently across hero, content sections, and footer; ensure no horizontal scroll.
 
-- [ ] **Task 17: Mobile refactor**
-  - [ ] 17.1 On mobile devices, hide the profile photo in the hero.
-  - [ ] 17.2 On mobile devices, hide the hero interaction.
+- [x] **Task 17: Mobile refactor**
+  - [x] 17.1 On mobile devices and ipad, hide the profile photo in the hero.
+  - [x] 17.2 On mobile devices and ipad, hide the hero interaction.
+
+- [ ] **Task 18: CV-driven Experience timeline**
+  - [x] 18.1 Review `src/assets/documents/Birat_Bhattacharjee_CV.pdf` and extract experience timeline entries (role, company, dates, summary/description).
+  - [x] 18.2 For each experience entry, extract technologies/skills to display as tiles.
+  - [x] 18.3 Update `src/data/sections.json` to add a new `experience` section (`id`, `headingId`, `title`) and the timeline payload (experiences + skills) **after the “What problems I solve” section**.
+  - [x] 18.4 Extend the homepage rendering to support an `experience` section type (render timeline + skill tiles instead of paragraph placeholders).
+  - [x] 18.5 Create `src/components/experience-timeline.tsx` to render a timeline UI and skill tiles beneath each experience (server component; integrate with existing theme + `ScrollReveal`).
+  - [x] 18.6 Ensure accessibility for the timeline and tiles (semantic structure, keyboard/screen-reader friendly).
+  - [x] 18.7 Ensure the “section switcher” includes `Experience` and anchor scrolling works for the new `experience` section.
+  - [ ] 18.8 Run `npm run lint` and `npm run build` to confirm no regressions.
 
 ---
 

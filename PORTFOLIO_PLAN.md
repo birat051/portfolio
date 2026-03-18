@@ -6,14 +6,7 @@ A living document for the structure and goals of this Next.js portfolio.
 
 ---
 
-## Homepage
-
-1. **Short intro** — Concise introduction (who you are, what you do).
-2. **What problems do I solve?** — Clear value proposition: the kinds of problems you tackle and for whom.
-
----
-
-## About (copy for site)
+## 1. What problems I solve
 
 Hi, I am Birat Bhattacharjee, a Senior Software Engineer with 6 years of experience building scalable, high-performance web applications using React, TypeScript, Node.js, and Go. I specialise in designing and implementing scalable frontend architecture, real-time systems, and performance optimisation, working with technologies such as WebRTC, WebSockets, and Server-Sent Events.
 
@@ -21,21 +14,34 @@ I've led large frontend initiatives, built reusable UI platforms and component l
 
 ---
 
-## Main Sections
+## 2. Experience
 
-| Section | Description |
-|--------|-------------|
-| **Engineering case studies** | Deep dives into real projects: context, approach, outcomes. |
-| **Systems I designed** | Overview of systems/architecture you’ve designed (diagrams, tech, tradeoffs). |
-| **OSS / Experiments** | Open-source work and side experiments (repos, write-ups, learnings). |
-| **Small tools** | Utility apps, scripts, or small products you’ve built. |
-| **Demos** | Live or recorded demos of your work. |
-| **Playgrounds** | Interactive experiments, prototypes, or sandbox projects. |
-| **AI** | Thoughts and journey with AI-driven development in frontend; caveats such as navigating security, avoiding hallucinations, and avoiding unwanted complexity. |
+- Healthplix Technologies (Bengaluru) — March 2024 to January 2026
+- MPSC Inc. (Remote) — March 2022 to February 2024
+- Hitachi Vantara (Bengaluru) — June 2019 to September 2021
+
+Experience will be rendered as a timeline, with highlights and technology/skill tiles pulled from your CV.
+
+---
+
+## 3. Engineering Case Studies
+
+Deep dives into selected projects, each covering: problem context, approach/architecture, implementation highlights, and measurable outcomes.
+
+---
+
+## 4. Demos
+
+Live or recorded demos of selected work, with links and short context.
+
+---
+
+## 5. AI
+
+Thoughts and journey with AI-driven development in frontend, including practical caveats like security considerations, avoiding hallucinations, and preventing unwanted complexity.
 
 ---
 
 ## Notes
 
-- Add details, links, and copy under each section as we build.
-- Order and naming of sections can be refined as the site takes shape.
+- Add details, links, and final copy under each section as we build.

@@ -14,8 +14,8 @@ export function Hero({ sectionItems }: HeroProps) {
       aria-labelledby="hero-heading"
       className="py-16 md:py-20"
     >
-      <div className="flex flex-col items-center gap-8 md:items-start">
-        <div className="flex shrink-0 flex-col items-center gap-3">
+      <div className="flex flex-col items-center gap-8 md:items-start lg:h-full">
+        <div className="hidden shrink-0 flex-col items-center gap-3 md:flex">
           <Image
             src={heroPhoto}
             alt="Birat Bhattacharjee"
@@ -24,6 +24,25 @@ export function Hero({ sectionItems }: HeroProps) {
             priority
             className="h-48 w-48 rounded-full object-cover"
           />
+        </div>
+        <div className="min-w-0 text-center md:text-left">
+          <h1
+            id="hero-heading"
+            className="text-3xl font-semibold tracking-tight text-primary-foreground sm:text-4xl"
+          >
+            Birat Bhattacharjee
+          </h1>
+          <p className="mt-2 text-lg text-tertiary">
+            Real-time web experiences that scale.
+          </p>
+          <p className="mt-1 text-secondary-foreground">
+            Senior Software Engineer
+          </p>
+        </div>
+        <div className="hidden w-full lg:block">
+          <SectionSwitcher items={sectionItems} />
+        </div>
+        <div className="hidden w-full md:block md:pt-6 lg:mt-auto">
           <div className="flex items-center gap-4" aria-label="Social links">
             <a
               href="https://github.com/birat051"
@@ -64,23 +83,6 @@ export function Hero({ sectionItems }: HeroProps) {
               </svg>
             </a>
           </div>
-        </div>
-        <div className="min-w-0 text-center md:text-left">
-          <h1
-            id="hero-heading"
-            className="text-3xl font-semibold tracking-tight text-primary-foreground sm:text-4xl"
-          >
-            Birat Bhattacharjee
-          </h1>
-          <p className="mt-2 text-lg text-tertiary">
-            Real-time web experiences that scale.
-          </p>
-          <p className="mt-1 text-secondary-foreground">
-            Senior Software Engineer
-          </p>
-        </div>
-        <div className="hidden w-full md:block">
-          <SectionSwitcher items={sectionItems} />
         </div>
       </div>
     </section>

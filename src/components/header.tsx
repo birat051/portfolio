@@ -18,7 +18,7 @@ const linkClass =
 export function Header() {
   return (
     <header className="border-b border-secondary bg-primary">
-      <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-12 py-4 sm:gap-6">
+      <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-3 py-4 md:px-8 sm:gap-6">
         <Link
           href="/"
           className="font-semibold text-primary-foreground outline-none focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 focus-visible:ring-offset-primary rounded"

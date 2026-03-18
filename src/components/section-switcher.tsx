@@ -2,10 +2,10 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-type Item = Readonly<{ id: string; label: string }>;
+import type { SectionSwitcherItem } from "@/components/types";
 
 type SectionSwitcherProps = Readonly<{
-  items: readonly Item[];
+  items: readonly SectionSwitcherItem[];
   className?: string;
 }>;
 
@@ -14,13 +14,17 @@ export function SectionSwitcher({ items, className }: SectionSwitcherProps) {
   const [activeId, setActiveId] = useState<string>(items[0]?.id ?? "");
 
   useEffect(() => {
-    if (!ids.length) return;
+    if (!ids.length) {
+      return;
+    }
 
     const elements = ids
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[];
 
-    if (!elements.length) return;
+    if (!elements.length) {
+      return;
+    }
 
     const ratios = new Map<string, number>();
 
@@ -40,7 +44,9 @@ export function SectionSwitcher({ items, className }: SectionSwitcherProps) {
             bestId = id;
           }
         }
-        if (bestId && bestId !== activeId) setActiveId(bestId);
+        if (bestId && bestId !== activeId) {
+          setActiveId(bestId);
+        }
       },
       {
         threshold: [0, 0.1, 0.25, 0.4, 0.6, 0.8, 1],
@@ -48,7 +54,9 @@ export function SectionSwitcher({ items, className }: SectionSwitcherProps) {
       },
     );
 
-    for (const el of elements) observer.observe(el);
+    for (const el of elements) {
+      observer.observe(el);
+    }
     return () => observer.disconnect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ids.join("|")]);
