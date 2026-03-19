@@ -2,6 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 
+import { motion, useReducedMotion } from "@/lib/motion";
+
 import type { SectionSwitcherItem } from "@/components/types";
 
 type SectionSwitcherProps = Readonly<{
@@ -12,6 +14,8 @@ type SectionSwitcherProps = Readonly<{
 export function SectionSwitcher({ items, className }: SectionSwitcherProps) {
   const ids = useMemo(() => items.map((i) => i.id), [items]);
   const [activeId, setActiveId] = useState<string>(items[0]?.id ?? "");
+  const reduceMotion = useReducedMotion();
+  const hoverOff = reduceMotion === true;
 
   useEffect(() => {
     if (!ids.length) {
@@ -68,7 +72,7 @@ export function SectionSwitcher({ items, className }: SectionSwitcherProps) {
           const isActive = item.id === activeId;
           return (
             <li key={item.id}>
-              <a
+              <motion.a
                 href={`#${item.id}`}
                 aria-current={isActive ? "location" : undefined}
                 className={[
@@ -78,6 +82,9 @@ export function SectionSwitcher({ items, className }: SectionSwitcherProps) {
                     ? "text-tertiary"
                     : "text-secondary-foreground hover:text-primary-foreground",
                 ].join(" ")}
+                whileHover={hoverOff ? undefined : { x: 4 }}
+                whileTap={hoverOff ? undefined : { scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 28 }}
               >
                 <span
                   aria-hidden
@@ -90,7 +97,7 @@ export function SectionSwitcher({ items, className }: SectionSwitcherProps) {
                 <span className={["text-sm", isActive ? "font-medium" : ""].join(" ")}>
                   {item.label}
                 </span>
-              </a>
+              </motion.a>
             </li>
           );
         })}

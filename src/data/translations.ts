@@ -1,10 +1,24 @@
 import type { ExperienceTimelineItem } from "@/components/types";
 
 export type Translations = {
-  hero: { tagline: string; intro: string };
+  hero: {
+    tagline: string;
+    intro: string;
+    /**
+     * Task 22.6 — screen-reader-only context after the plain name in `<h1>` (decorative CLI
+     * is `aria-hidden`); avoids `aria-live` spam from per-character typing.
+     */
+    nameHeadingSrNote: string;
+  };
   sectionTitles: Record<string, string>;
   problemsContent: string[];
   experienceTimeline: ExperienceTimelineItem[];
+  experienceUi: {
+    /** Accessible name when details are collapsed (expand action). */
+    expandJobDetails: string;
+    /** Accessible name when details are expanded (collapse action). */
+    collapseJobDetails: string;
+  };
   comingSoon: string;
   footer: string;
 };
@@ -12,7 +26,9 @@ export type Translations = {
 const en: Translations = {
   hero: {
     tagline: "Real-time web experiences that scale.",
-    intro: "Full stack developer",
+    intro: "Full-stack developer",
+    nameHeadingSrNote:
+      " Decorative terminal: the animated name cycles through English, Swedish, Hindi, Assamese, and Bengali once, then stays in English. Hover pauses; moving the pointer away replays. With reduced motion, only a static name is shown.",
   },
   sectionTitles: {
     problems: "What problems I solve",
@@ -95,7 +111,7 @@ const en: Translations = {
     {
       role: "Consultant II / Consultant I",
       company: "Hitachi Vantara",
-      location: "Bengaluru",
+      location: "Hyderabad",
       dateRange: "June 2019 – September 2021",
       highlights: [
         "Developed new features and enhanced existing functionality in a Java-based engine that processed Change Orders between two PLM enterprise applications.",
@@ -117,6 +133,10 @@ const en: Translations = {
       ],
     },
   ],
+  experienceUi: {
+    expandJobDetails: "Expand job details",
+    collapseJobDetails: "Collapse job details",
+  },
   comingSoon: "Content coming soon.",
   footer: "Birat Bhattacharjee © ",
 };
@@ -125,6 +145,8 @@ const sv: Translations = {
   hero: {
     tagline: "Realtidswebbupplevelser som skalar.",
     intro: "Fullstackutvecklare",
+    nameHeadingSrNote:
+      " Dekorativ terminal: det animerade namnet visas på engelska, svenska, hindi, assamesiska och bengali en gång och stannar sedan på engelska. Hovring pausar; när pekaren lämnar rutan spelas animationen om. Vid nedsatt rörelse visas bara ett statiskt namn.",
   },
   sectionTitles: {
     problems: "Vilka problem jag löser",
@@ -207,7 +229,7 @@ const sv: Translations = {
     {
       role: "Consultant II / Consultant I",
       company: "Hitachi Vantara",
-      location: "Bengaluru",
+      location: "Hyderabad",
       dateRange: "juni 2019 – september 2021",
       highlights: [
         "Utvecklade nya funktioner och förbättrade befintlig funktionalitet i en Java-baserad motor som processade Change Orders mellan två PLM-företagsapplikationer.",
@@ -229,6 +251,10 @@ const sv: Translations = {
       ],
     },
   ],
+  experienceUi: {
+    expandJobDetails: "Visa jobbdetaljer",
+    collapseJobDetails: "Dölj jobbdetaljer",
+  },
   comingSoon: "Innehåll kommer snart.",
   footer: "Birat Bhattacharjee © ",
 };

@@ -83,3 +83,46 @@ body {
   color: var(--primary-foreground);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
+
+/*
+ * Task 22.7 — Hero CLI multilingual line: Geist Mono has no Indic glyphs.
+ * `next/font` loads Noto Sans Devanagari + Noto Sans Bengali (variables on `<body>`).
+ * System fonts are last-resort fallbacks if CSS vars fail.
+ */
+.font-hero-cli {
+  font-family:
+    var(--font-geist-mono),
+    var(--font-noto-devanagari),
+    var(--font-noto-bengali),
+    ui-monospace,
+    "Noto Sans Devanagari",
+    "Noto Sans Bengali",
+    "Nirmala UI",
+    "Kohinoor Devanagari",
+    "Bangla MN",
+    "Bangla Sangam MN",
+    monospace;
+}
+
+/* Hero CLI terminal caret blink (`_` in markup — Task 22 / 22.12); respects reduced motion */
+@keyframes cli-cursor-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.cli-cursor-blink {
+  animation: cli-cursor-blink 1.05s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cli-cursor-blink {
+    animation: none;
+    opacity: 1;
+  }
+}

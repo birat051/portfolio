@@ -1,4 +1,9 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Noto_Sans_Bengali,
+  Noto_Sans_Devanagari,
+} from "next/font/google";
 
 import { LayoutWithLocale } from "@/components/layout-with-locale";
 
@@ -16,6 +21,22 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+/** Task 22.7 — Hindi (Devanagari); subset keeps payload small vs full Noto Sans. */
+const notoSansDevanagari = Noto_Sans_Devanagari({
+  variable: "--font-noto-devanagari",
+  subsets: ["devanagari"],
+  weight: ["400", "600"],
+  display: "swap",
+});
+
+/** Task 22.7 — Bengali + Assamese (Bengali script); paired with Devanagari for hero CLI. */
+const notoSansBengali = Noto_Sans_Bengali({
+  variable: "--font-noto-bengali",
+  subsets: ["bengali"],
+  weight: ["400", "600"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Birat Bhattacharjee | Senior Software Engineer",
   description:
@@ -30,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-w-0 antialiased overflow-x-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} ${notoSansDevanagari.variable} ${notoSansBengali.variable} min-w-0 antialiased overflow-x-hidden`}
       >
         <script
           dangerouslySetInnerHTML={{

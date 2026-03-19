@@ -120,6 +120,32 @@ Use this list to track progress. Mark items with `[x]` when done.
   - [x] 20.6 Run `npm run lint` and `npm run build` to confirm no regressions.
   - [x] 20.7 Show the light and dark mode options in a **toggle button** with a **switching animation**.
 
+- [x] **Task 21: Framer Motion (homepage interactions)**
+  - [x] 21.1 Add the **Framer Motion** library (`motion` / `framer-motion`) to the project and wire it for use in Next.js (App Router) where needed.
+  - [x] 21.2 Build **interactive scroll-based animations** on the homepage (e.g. scroll-linked or in-view motion) while keeping content discoverable and aligned with `PROJECT_GUIDELINES.md` (e.g. respect `prefers-reduced-motion` where applicable).
+  - [x] 21.3 Add **hover interactions and animations** for hero section elements (e.g. photo, links, headings, or key UI) without hurting keyboard focus or readability.
+  - [x] 21.4 Add **hover interactions and animations** for experience timeline items (e.g. entries, nodes, or skill tiles) so motion reinforces hierarchy without breaking accessibility.
+  - [x] 21.5 Run `npm run lint` and `npm run build` to confirm no regressions.
+  - [x] 21.6 Remove the **extra line** below the header (theme / language bar) so the top bar does not show redundant dividers or stray UI chrome.
+  - [x] 21.7 In the **experience timeline**, add a control to **show or hide** each job’s **description body** (highlights, extended copy, or the collapsible block you define) with a **fluid open/close animation** (e.g. Framer Motion height/opacity or `AnimatePresence`); keep it **keyboard accessible** (`button` or disclosure pattern, `aria-expanded`, focus styles) and respect **`prefers-reduced-motion`**.
+  - [x] 21.8 Replace the **Show/Hide details** row with an **up/down arrow** at the **far end of the date line** (date on one side, arrow on the other): **down** when details are **collapsed**, **up** when **expanded**; keep the same **fluid animation**, **`aria-expanded` / `aria-label`**, keyboard focus, and **`prefers-reduced-motion`**.
+
+- [x] **Task 22: Hero CLI-style multilingual “spell-out”**
+  - [x] 22.1 Add **copy for the hero line(s)** to spell out in **five languages**: **English**, **Swedish**, **Hindi**, **Assamese**, and **Bengali** (same intent as the current tagline/intro or a dedicated CLI phrase — store in data, e.g. extend translations or a small `hero-cli` strings module).
+  - [x] 22.2 Style a **CLI / terminal block** in the hero (e.g. monospace, dark-on-light or theme-aware panel, optional **prompt** `$` / `>` and cursor affordance) without hurting layout on mobile.
+  - [x] 22.3 Implement **character-by-character (or word-by-word) “typing” animation** in CLI style (timing, cursor blink, optional line breaks); prefer a **client component** and reuse **Framer Motion** or `requestAnimationFrame` as appropriate.
+  - [x] 22.4 **Sequence all five languages** in the hero (define order, pause between lines, and whether the animation **loops**); keep behaviour predictable and not distracting per `PROJECT_GUIDELINES.md`.
+  - [x] 22.5 **Chain typing per language:** Only after the **full line** in the **current** language has been typed out and that step’s animation is **complete** (including any end-of-line pause), **start typing** the line in the **next** language; continue through **all five** in order, then **loop** or **stop** (document the chosen behaviour in code or comments).
+  - [x] 22.6 **Accessibility:** respect **`prefers-reduced-motion`** (show final text or static fallback), provide a **clear screen-reader experience** (e.g. `aria-live` used carefully or **sr-only** full text so assistive tech is not spammed).
+  - [x] 22.7 **Fonts / scripts:** ensure **Devanagari and Bengali** (and Assamese, typically Bengali script) **render reliably** (system stack and/or `next/font` / subsetted webfont).
+  - [x] 22.8 Run **`npm run lint`** and **`npm run build`** to confirm no regressions.
+  - [x] 22.9 Apply the **same CLI terminal + grapheme typing + five-language chain** pattern to the **hero name** (`<h1>` / visible name), **not** the tagline/description: add **name strings** for **English, Swedish, Hindi, Assamese, and Bengali** in data (Latin, transliteration, or native script as you choose), wire a **second terminal row** (or dedicated name block) that **loops independently** or in sync per your UX choice, keep **`prefers-reduced-motion`** fallback to a **single static name**, and preserve a **correct accessible heading** (e.g. one stable `<h1>` for SEO with visually animated content, or an equivalent pattern per guidelines).
+  - [x] 22.10 **Remove** the **CLI terminal / multilingual typing** from the **hero tagline / description** — show the tagline as **normal text** (or existing typography) again; keep the CLI spell-out **only** for the **hero heading / name** (unless product choice says otherwise).
+  - [x] 22.11 For the **hero heading (name)** CLI only: **slow typing** by **+300 ms** per step vs the current default (e.g. dedicated `CHAR_DELAY_MS` or name-only timing), and use a **1 second** gap after a language finishes (before the **next** language starts typing) — set **`LINE_PAUSE_MS` (or name-only equivalent) to 1000 ms** and document in code.
+  - [x] 22.12 Use an **underscore (`_`)** as the CLI “caret” for the typing animation (instead of a pipe-style block / `|`), and **speed up** name typing by **50 ms** per grapheme vs the prior step (document in `hero-cli-terminal.tsx`).
+  - [x] 22.13 **CLI width:** hero CLI panel is **fixed to 325 px** (`CLI_BOX_WIDTH_PX` + inline `width` in `hero-cli-terminal.tsx`); long lines use **horizontal scroll** inside the content row.
+  - [x] 22.14 **Name CLI — one cycle then English:** hero **name** terminal types **all five** names in order once (same timing/chain as before), then types **English** a **final** time and **stays** on English (no infinite loop). **Pointer enters** the CLI box → **pause**; **pointer leaves** (after a hover that paused) → **restart** from English (document in `hero-cli-terminal.tsx`).
+  - [x] 22.15 After the **name** CLI cycle **finishes** (resting on English), keep the **`_` caret blinking** with the same **`cli-cursor-blink`** animation as during typing (`prefers-reduced-motion` still disables blink in `globals.css`).
 
 ---
 

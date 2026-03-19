@@ -30,6 +30,7 @@ export function HomeContent({ sections }: HomeContentProps) {
               sectionItems={sectionItems}
               tagline={t.hero.tagline}
               intro={t.hero.intro}
+              nameHeadingSrNote={t.hero.nameHeadingSrNote}
             />
           </div>
           <div className="lg:min-w-0 lg:flex-1">
@@ -41,6 +42,8 @@ export function HomeContent({ sections }: HomeContentProps) {
                   headingId={section.headingId}
                   title={t.sectionTitles[section.id] ?? section.title}
                   timeline={t.experienceTimeline}
+                  expandJobDetailsLabel={t.experienceUi.expandJobDetails}
+                  collapseJobDetailsLabel={t.experienceUi.collapseJobDetails}
                 />
               ) : (
                 <ContentSection

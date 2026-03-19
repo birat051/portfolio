@@ -1,47 +1,31 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "@/lib/motion";
 
 type ScrollRevealProps = Readonly<{
   children: React.ReactNode;
   className?: string;
 }>;
 
+/**
+ * In-view reveal using Framer Motion. Respects `prefers-reduced-motion` (no animation).
+ */
 export function ScrollReveal({ children, className }: ScrollRevealProps) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const reduceMotion = useReducedMotion();
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || isVisible) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 },
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [isVisible]);
+  if (reduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
-    <div
-      ref={ref}
-      className={[
-        "will-change-transform transition duration-700 ease-out motion-reduce:transition-none motion-reduce:transform-none motion-reduce:opacity-100",
-        isVisible ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0",
-        className ?? "",
-      ].join(" ")}
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.12, margin: "0px 0px -10% 0px" }}
+      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
-

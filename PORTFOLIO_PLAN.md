@@ -18,7 +18,7 @@ I've led large frontend initiatives, built reusable UI platforms and component l
 
 - Healthplix Technologies (Bengaluru) — March 2024 to January 2026
 - MPSC Inc. (Remote) — March 2022 to February 2024
-- Hitachi Vantara (Bengaluru) — June 2019 to September 2021
+- Hitachi Vantara (Hyderabad) — June 2019 to September 2021
 
 Experience will be rendered as a timeline, with highlights and technology/skill tiles pulled from your CV.
 
