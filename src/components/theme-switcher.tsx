@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 
+import { useLocale } from "@/contexts/locale-context";
+import { getTranslations } from "@/data/translations";
+
 const ICON_CLASS = "h-4 w-4 shrink-0";
 const THEME_STORAGE_KEY = "theme";
 
@@ -74,6 +77,8 @@ function setThemeClass(theme: "light" | "dark") {
 }
 
 export function ThemeSwitcher() {
+  const { locale } = useLocale();
+  const t = getTranslations(locale);
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [mounted, setMounted] = useState(false);
 
@@ -98,7 +103,10 @@ export function ThemeSwitcher() {
 
   if (!mounted) {
     return (
-      <div className="flex items-center gap-1" aria-label="Theme selection">
+      <div
+        className="flex items-center gap-1"
+        aria-label={t.a11y.themeSelection}
+      >
         <span className="h-9 w-24" aria-hidden />
       </div>
     );
@@ -108,7 +116,7 @@ export function ThemeSwitcher() {
     <div
       className="flex items-center justify-start"
       role="group"
-      aria-label="Theme selection"
+      aria-label={t.a11y.themeSelection}
     >
       <div
         className="relative grid w-24 grid-cols-2 rounded-full border border-secondary bg-secondary/50 p-0.5"
@@ -130,8 +138,8 @@ export function ThemeSwitcher() {
           aria-pressed={theme === "light"}
           aria-label={
             theme === "light"
-              ? "Light mode, current theme"
-              : "Switch to light mode"
+              ? t.a11y.themeLightCurrent
+              : t.a11y.themeLightSwitch
           }
           className="relative z-10 col-start-1 row-start-1 flex items-center justify-center rounded-full py-2 text-secondary-foreground outline-none transition-colors hover:text-primary-foreground focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 focus-visible:ring-offset-primary aria-pressed:text-primary-foreground"
         >
@@ -143,8 +151,8 @@ export function ThemeSwitcher() {
           aria-pressed={theme === "dark"}
           aria-label={
             theme === "dark"
-              ? "Dark mode, current theme"
-              : "Switch to dark mode"
+              ? t.a11y.themeDarkCurrent
+              : t.a11y.themeDarkSwitch
           }
           className="relative z-10 col-start-2 row-start-1 flex items-center justify-center rounded-full py-2 text-secondary-foreground outline-none transition-colors hover:text-primary-foreground focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 focus-visible:ring-offset-primary aria-pressed:text-primary-foreground"
         >

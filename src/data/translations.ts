@@ -21,6 +21,39 @@ export type Translations = {
   };
   comingSoon: string;
   footer: string;
+  /** Task 2.2 / 2.6 — Landmarks, skip link, lists, theme/language, hero socials. */
+  a11y: {
+    sitePreferencesHeaderAriaLabel: string;
+    sectionNavigationAriaLabel: string;
+    siteFooterAriaLabel: string;
+    /** Visible skip-link text + accessible name. */
+    skipToMainContent: string;
+    socialLinks: string;
+    githubProfile: string;
+    linkedInProfile: string;
+    experienceTimelineList: string;
+    experienceSkillsList: string;
+    /** Placeholders `{role}`, `{company}`, `{dateRange}`. */
+    experienceJobRowAriaTemplate: string;
+    themeSelection: string;
+    themeLightCurrent: string;
+    themeLightSwitch: string;
+    themeDarkCurrent: string;
+    themeDarkSwitch: string;
+    languageSelection: string;
+    languageEnCurrent: string;
+    languageEnSwitch: string;
+    languageSvCurrent: string;
+    languageSvSwitch: string;
+  };
+  /** Task 23.4 — Engineering Case Studies section (JSON-driven blogs). */
+  caseStudiesUi: {
+    opensInNewTab: string;
+    emptyPlaceholder: string;
+    tagsListAriaLabel: string;
+    /** Task 2.6 — `aria-label` on the list of article cards. */
+    articlesListAriaLabel: string;
+  };
 };
 
 const en: Translations = {
@@ -139,6 +172,35 @@ const en: Translations = {
   },
   comingSoon: "Content coming soon.",
   footer: "Birat Bhattacharjee © ",
+  a11y: {
+    sitePreferencesHeaderAriaLabel: "Site preferences: theme and language",
+    sectionNavigationAriaLabel: "Section navigation",
+    siteFooterAriaLabel: "Site footer",
+    skipToMainContent: "Skip to main content",
+    socialLinks: "Social links",
+    githubProfile: "GitHub profile",
+    linkedInProfile: "LinkedIn profile",
+    experienceTimelineList: "Work experience timeline",
+    experienceSkillsList: "Technologies and skills",
+    experienceJobRowAriaTemplate: "{role} at {company}, {dateRange}",
+    themeSelection: "Theme selection",
+    themeLightCurrent: "Light mode, current theme",
+    themeLightSwitch: "Switch to light mode",
+    themeDarkCurrent: "Dark mode, current theme",
+    themeDarkSwitch: "Switch to dark mode",
+    languageSelection: "Language selection",
+    languageEnCurrent: "English, current language",
+    languageEnSwitch: "Switch to English",
+    languageSvCurrent: "Swedish, current language",
+    languageSvSwitch: "Switch to Swedish",
+  },
+  caseStudiesUi: {
+    opensInNewTab: "(opens in a new tab)",
+    emptyPlaceholder:
+      "No case studies listed yet. Add entries to src/data/case-studies-blogs.json.",
+    tagsListAriaLabel: "Article tags",
+    articlesListAriaLabel: "Engineering case study articles",
+  },
 };
 
 const sv: Translations = {
@@ -257,10 +319,50 @@ const sv: Translations = {
   },
   comingSoon: "Innehåll kommer snart.",
   footer: "Birat Bhattacharjee © ",
+  a11y: {
+    sitePreferencesHeaderAriaLabel: "Webbplatsinställningar: tema och språk",
+    sectionNavigationAriaLabel: "Navigering mellan avsnitt",
+    siteFooterAriaLabel: "Sidfot",
+    skipToMainContent: "Hoppa till huvudinnehåll",
+    socialLinks: "Sociala länkar",
+    githubProfile: "Profil på GitHub",
+    linkedInProfile: "Profil på LinkedIn",
+    experienceTimelineList: "Tidslinje för arbetslivserfarenhet",
+    experienceSkillsList: "Teknologier och kompetenser",
+    experienceJobRowAriaTemplate: "{role} vid {company}, {dateRange}",
+    themeSelection: "Temaval",
+    themeLightCurrent: "Ljust läge, aktivt tema",
+    themeLightSwitch: "Byt till ljust läge",
+    themeDarkCurrent: "Mörkt läge, aktivt tema",
+    themeDarkSwitch: "Byt till mörkt läge",
+    languageSelection: "Språkval",
+    languageEnCurrent: "Engelska, aktivt språk",
+    languageEnSwitch: "Byt till engelska",
+    languageSvCurrent: "Svenska, aktivt språk",
+    languageSvSwitch: "Byt till svenska",
+  },
+  caseStudiesUi: {
+    opensInNewTab: "(öppnas i ny flik)",
+    emptyPlaceholder:
+      "Inga fallstudier ännu. Lägg till poster i src/data/case-studies-blogs.json.",
+    tagsListAriaLabel: "Artikeltaggar",
+    articlesListAriaLabel: "Artiklar om tekniska fallstudier",
+  },
 };
 
 const translations: Record<"en" | "sv", Translations> = { en, sv };
 
 export function getTranslations(locale: "en" | "sv"): Translations {
   return translations[locale];
+}
+
+/** Task **2.6** — Localized `aria-label` for each experience timeline row. */
+export function formatExperienceJobRowAriaLabel(
+  template: string,
+  item: { role: string; company: string; dateRange: string },
+): string {
+  return template
+    .replaceAll("{role}", item.role)
+    .replaceAll("{company}", item.company)
+    .replaceAll("{dateRange}", item.dateRange);
 }

@@ -76,12 +76,61 @@ html.dark {
 
 html {
   color-scheme: light dark;
+  /*
+   * Task 12.2 — In-page anchors (`#problems`, `#experience`, …) land below the fixed-flow
+   * preferences header so section headings stay visible (split hero + main layout unchanged).
+   */
+  scroll-padding-top: 3.5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Task 13.2 — Skip link moves focus to `#main-content`; `:focus` (not only `:focus-visible`) so programmatic focus shows. */
+#main-content:focus {
+  outline: 2px solid var(--tertiary);
+  outline-offset: 2px;
 }
 
 body {
   background: var(--primary);
   color: var(--primary-foreground);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Task 25.1 — Pointer cursor on hyperlinks and buttons site-wide */
+a[href],
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  cursor: pointer;
+}
+
+button:disabled,
+button[disabled],
+input[type="button"]:disabled,
+input[type="submit"]:disabled,
+input[type="reset"]:disabled,
+a[href][aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+/* Task 2.4 — Visible keyboard focus: default outline for interactive elements. Components that
+ * set `outline-none` and `focus-visible:ring-*` (Tailwind utilities) keep ring-only indicators. */
+@layer base {
+  a[href]:focus-visible,
+  button:focus-visible,
+  input:not([type="hidden"]):focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid var(--tertiary);
+    outline-offset: 2px;
+  }
 }
 
 /*

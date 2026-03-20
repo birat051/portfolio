@@ -1,6 +1,7 @@
 "use client";
 
 import { useLocale } from "@/contexts/locale-context";
+import { getTranslations } from "@/data/translations";
 
 const FLAG_UK = (
   <svg
@@ -39,18 +40,21 @@ const FLAG_SE = (
 
 export function LanguageSwitcher() {
   const { locale, setLocale } = useLocale();
+  const t = getTranslations(locale);
 
   return (
     <div
       className="flex items-center justify-end gap-1"
       role="group"
-      aria-label="Language selection"
+      aria-label={t.a11y.languageSelection}
     >
       <button
         type="button"
         onClick={() => setLocale("en")}
         aria-pressed={locale === "en"}
-        aria-label={locale === "en" ? "English, current language" : "Switch to English"}
+        aria-label={
+          locale === "en" ? t.a11y.languageEnCurrent : t.a11y.languageEnSwitch
+        }
         className="flex items-center gap-2 rounded px-3 py-1.5 text-sm text-secondary-foreground outline-none transition-colors hover:bg-secondary hover:text-primary-foreground focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 focus-visible:ring-offset-primary aria-pressed:bg-secondary aria-pressed:text-primary-foreground"
       >
         {FLAG_UK}
@@ -60,7 +64,9 @@ export function LanguageSwitcher() {
         type="button"
         onClick={() => setLocale("sv")}
         aria-pressed={locale === "sv"}
-        aria-label={locale === "sv" ? "Svenska, current language" : "Switch to Svenska"}
+        aria-label={
+          locale === "sv" ? t.a11y.languageSvCurrent : t.a11y.languageSvSwitch
+        }
         className="flex items-center gap-2 rounded px-3 py-1.5 text-sm text-secondary-foreground outline-none transition-colors hover:bg-secondary hover:text-primary-foreground focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 focus-visible:ring-offset-primary aria-pressed:bg-secondary aria-pressed:text-primary-foreground"
       >
         {FLAG_SE}

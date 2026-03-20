@@ -44,6 +44,13 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
+  /** Task 2.6 — `<html lang>` matches active locale for pronunciation / AT. */
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = locale === "sv" ? "sv" : "en";
+    }
+  }, [locale]);
+
   const value: LocaleContextValue = { locale, setLocale: setLocaleAndPersist };
   return (
     <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>

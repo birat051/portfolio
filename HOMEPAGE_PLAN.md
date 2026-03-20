@@ -2,6 +2,8 @@
 
 Tasks and subtasks for the default landing page. Aligned with `PORTFOLIO_PLAN.md` and `PROJECT_GUIDELINES.md`.
 
+**Agent / contributor workflow:** For **new or changed homepage work**, add or extend a **Task *N*** section with **numbered subtasks** in this file **before** writing implementation code. Check off subtasks as they ship. (See `.cursor/rules/homepage-plan-first.mdc`.)
+
 ---
 
 ## Checklist
@@ -12,13 +14,13 @@ Use this list to track progress. Mark items with `[x]` when done.
   - [x] 1.1 Set page metadata (title, description with “Birat Bhattacharjee”)
   - [x] 1.2 Single `<main>`, one `<h1>`, logical `<h2>` per section
   - [x] 1.3 Semantic HTML for main structure
-- [ ] **Task 2: Accessibility**
+- [x] **Task 2: Accessibility**
   - [x] 2.1 Skip link (“Skip to main content”) → `#main-content`
-  - [ ] 2.2 Landmarks: header, main, footer, nav with accessible name
-  - [ ] 2.3 Heading hierarchy (h1 → h2, no skips)
-  - [ ] 2.4 Visible focus styles on interactive elements
-  - [ ] 2.5 Full keyboard flow; no focus traps
-  - [ ] 2.6 Screen-reader friendly structure
+  - [x] 2.2 Landmarks: header, main, footer, nav with accessible name **Done:** **`<header>`** banner via **`SitePreferencesHeader`** (outside **`<main>`**); **`main`** `#main-content`; **`<footer>`** **`contentinfo`** with **`aria-label`**; section **`<nav>`** in **`SectionSwitcher`** uses locale **`t.a11y`** strings (**`translations.ts`**).
+  - [x] 2.3 Heading hierarchy (h1 → h2, no skips) **Done:** single **`h1`** in **`Hero`**; section **`h2`**s; **`h3`** for each experience job title (**`experience-timeline.tsx`**, was **`p`**) and each case-study card (**`case-studies-section.tsx`**); contract noted in **`home-content.tsx`**.
+  - [x] 2.4 Visible focus styles on interactive elements **Done:** **`@layer base`** **`:focus-visible`** outline (**`var(--tertiary)`**) in **`globals.css`** for **`a[href]`**, **`button`**, **`input`**, **`textarea`**, **`select`**, **`summary`**; existing **`outline-none` + `focus-visible:ring-*`** on header, hero links, section nav, case-study links, experience toggle, theme/language, skip link ( **`focus:`** ring) unchanged and override outline where set.
+  - [x] 2.5 Full keyboard flow; no focus traps **Done:** audited — no dialogs / Tab-capture; skip link → header controls → **`main`**; **`inert`** on collapsed experience disclosure panels (**`experience-timeline.tsx`**); tab order noted in **`home-content.tsx`**.
+  - [x] 2.6 Screen-reader friendly structure **Done:** **`document.documentElement.lang`** syncs with locale (**`locale-context.tsx`**); EN/SV **`a11y`** strings for skip link, hero socials, experience timeline/skills/row template, theme + language controls (**`translations.ts`**); **`articlesListAriaLabel`** on case-study list; removed duplicate **`sr-only`** inside social links (**`aria-label`** only); **`formatExperienceJobRowAriaLabel`** helper.
 - [x] **Task 3: Header and navigation**
   - [x] 3.1 Header with site identity
   - [x] 3.2 Nav with in-page links (Hero, What problems I solve, main sections)
@@ -62,18 +64,18 @@ Use this list to track progress. Mark items with `[x]` when done.
   - [x] 11.1 Reduce overall horizontal padding to **3rem** on both sides (i.e. `px-12` equivalent) for main content containers.
   - [x] 11.2 Ensure the 3rem rule applies consistently across hero + all sections + header/footer (or validate removal where applicable).
 
-- [ ] **Task 12: Split layout (hero + main content side-by-side)**
+- [x] **Task 12: Split layout (hero + main content side-by-side)**
   - [x] 12.1 Update layout so the hero is displayed side-by-side with the main content (desktop), stacked on small screens.
-  - [ ] 12.2 Confirm anchor scrolling and section reveal still work with the new layout.
+  - [x] 12.2 Confirm anchor scrolling and section reveal still work with the new layout. **Done:** verified **`section[id]`** targets in the main column; **`IntersectionObserver`** + **`ScrollReveal`** use viewport (document scroll); **`scroll-padding-top: 3.5rem`** + optional **`scroll-behavior: smooth`** (respects reduced motion) in **`globals.css`** so hash links clear the preferences header.
 
-- [ ] **Task 13: Remove header**
+- [x] **Task 13: Remove header**
   - [x] 13.1 Remove the header completely.
-  - [ ] 13.2 Ensure the skip link still functions and focus order remains correct.
+  - [x] 13.2 Ensure the skip link still functions and focus order remains correct. **Done:** **`tabIndex={-1}`** on **`<main id="main-content">`**; skip link **`onClick`** focuses main after hash navigation; **`#main-content:focus`** outline in **`globals.css`**; DOM order unchanged (**`SkipLink`** → preferences header → **`main`** → **`Footer`**); removed unused **`header.tsx`**.
 
-- [ ] **Task 14: Brittany-style scroll “section switch” hero**
+- [x] **Task 14: Brittany-style scroll “section switch” hero**
   - [x] 14.1 Redesign the hero interaction so scrolling up/down visually “switches” between sections.
   - [x] 14.2 Keep motion subtle, accessible, and respect reduced-motion settings.
-  - [ ] 14.3 Ensure this does not break static content/SEO (content still renders as HTML).
+  - [x] 14.3 Ensure this does not break static content/SEO (content still renders as HTML). **Done:** Main copy and `<section id="…">` blocks stay in the DOM as HTML (SSR); `SectionSwitcher` is anchor + `IntersectionObserver` only (see **`hero.tsx`**, **`section-switcher.tsx`**). **`src/data/site.ts`** + **`layout.tsx`** (`metadataBase`, Open Graph, Twitter, `robots`), **`page.tsx`** (canonical + Person **JSON-LD**).
 
 - [x] **Task 15: Fixed social links at bottom**
   - [x] 15.1 Move GitHub + LinkedIn links to the bottom of the hero area and keep them **fixed at the bottom of the page**.
@@ -147,10 +149,61 @@ Use this list to track progress. Mark items with `[x]` when done.
   - [x] 22.14 **Name CLI — one cycle then English:** hero **name** terminal types **all five** names in order once (same timing/chain as before), then types **English** a **final** time and **stays** on English (no infinite loop). **Pointer enters** the CLI box → **pause**; **pointer leaves** (after a hover that paused) → **restart** from English (document in `hero-cli-terminal.tsx`).
   - [x] 22.15 After the **name** CLI cycle **finishes** (resting on English), keep the **`_` caret blinking** with the same **`cli-cursor-blink`** animation as during typing (`prefers-reduced-motion` still disables blink in `globals.css`).
 
+- [x] **Task 23: Engineering case studies — JSON-driven external articles (e.g. Medium)**
+
+  **Planning note:** This task was defined *before* implementation (see project rule **homepage plan first**). Subtasks below are tracked as work completes.
+
+  - [x] 23.1 Add **`src/data/case-studies-blogs.json`** listing external write-ups (`id`, `title`, `url`, `source`, `publishedAt`, optional `summary` / `tags`); document the schema in **`src/data/case-studies-blogs.ts`**.
+  - [x] 23.2 Export **`getCaseStudyBlogs()`** (or equivalent) returning entries sorted **newest `publishedAt` first** so new JSON rows render without further code changes.
+  - [x] 23.3 Add **`CaseStudiesSection`** (cards, accessible external links, `ScrollReveal`, empty state) and wire **`case-studies`** in **`home-content.tsx`** instead of the generic placeholder.
+  - [x] 23.4 Add **`caseStudiesUi`** strings to **`translations.ts`** (EN + SV) for section intro, “Read on {source}”, published label, new-tab hints, and tag list **`aria-label`**.
+  - [x] 23.5 Populate JSON with real article(s) (e.g. Medium); run **`npm run lint`** and **`npm run build`**.
+
+- [ ] **Task 24: Glass hover + external-link icon (case studies & experience)**
+  - [x] 24.1 **Case studies:** remove **“Read on {source}”** button; show a **redirect / external-link icon** beside the **title** (same link as the article).
+  - [ ] 24.2 **Case studies:** ~~on **hover** / **`focus-within`**, show an **Apple-style glass** panel~~ **Reverted** — no hover glass; **summary** is shown **in the card** again (`case-studies-section.tsx`).
+  - [ ] 24.3 **Experience timeline:** ~~same **glass hover** on each job row~~ **Reverted** — no glass overlay; inline content + expand/collapse only (`experience-timeline.tsx`). Removed unused **`.glass-apple-panel`** from **`globals.css`**.
+  - [x] 24.4 Add any new **EN + SV** strings in **`translations.ts`**; run **`npm run lint`** and **`npm run build`**.
+  - [x] 24.5 **Case studies:** show the **card box** (border / rounded panel / shadow ring currently always on each article card) **only on hover** — and on **`focus-within`** when the title link or any focusable control inside the card is focused — so the default state is flatter/cleaner (`case-studies-section.tsx`).
+  - [x] 24.6 **Case studies:** remove the **published details** line from each blog card (e.g. **Published** label, formatted date, **`{source}`**). Keep **`publishedAt`** (and **`source`** if still useful) in **`case-studies-blogs.json`** for sorting / future use; drop **`published`** from **`caseStudiesUi`** in **`translations.ts`** if unused after removal (`case-studies-section.tsx`).
+
+- [x] **Task 25: Pointer cursor on links and buttons (site-wide)**
+  - [x] 25.1 Show **`cursor: pointer`** for all **hyperlinks** (`<a href>`) and **`<button>`** elements across the project. Prefer a **global baseline** in **`globals.css`** (e.g. `a[href], button { cursor: pointer; }`) and add **`cursor-pointer`** in components only where needed for non-standard interactive nodes; use **`cursor: not-allowed`** (or equivalent) for **`disabled`** buttons where appropriate. Audit **header**, **hero**, **footer**, **case studies**, **experience**, **theme / language** controls, and **skip link**; run **`npm run lint`** and **`npm run build`**. **Done:** global rules in **`globals.css`** (includes **`input[type=button|submit|reset]`**); **`cursor-default`** skill chips in **`experience-timeline.tsx`** unchanged (not links/buttons).
+
+- [x] **Task 26: Swedish language support — Engineering Case Studies section**
+
+  **Context:** Section chrome (**`caseStudiesUi`**) already has EN/SV in **`translations.ts`**, but **per-article** **`title`**, **`summary`**, and **`tags`** in **`case-studies-blogs.json`** are English-only. When the site locale is **Swedish**, cards should show **Swedish** titles/summaries (and tags if translated) where available, while **`url`** / **`source`** / **`publishedAt`** stay shared.
+
+  - [x] 26.1 **Data model:** extend the case-study schema (JSON + **`case-studies-blogs.ts`**) with optional Swedish fields (e.g. **`titleSv`**, **`summarySv`**, optional **`tagsSv`**) or an equivalent locale map; document fallbacks (**English** when Swedish is missing). **Done:** optional **`titleSv`**, **`summarySv`**, **`tagsSv`** on **`CaseStudyBlogEntry`** + JSDoc table in **`case-studies-blogs.ts`** (existing JSON rows valid with no SV keys until **26.4**).
+  - [x] 26.2 **Data access:** update **`getCaseStudyBlogs()`** (or add **`getCaseStudyBlogsForLocale(locale)`**) so the UI receives entries with **resolved display fields** for the active locale. **Done:** **`CaseStudyBlogDisplay`**, **`resolveCaseStudyBlogForLocale`**, **`getCaseStudyBlogsForLocale`** in **`case-studies-blogs.ts`**; **`home-content`** memoizes on **`locale`**; **`CaseStudiesSection`** typed with **`CaseStudyBlogDisplay[]`**.
+  - [x] 26.3 **UI:** wire **`CaseStudiesSection`** / **`home-content.tsx`** to pass **`locale`** (or pre-resolved entries) so Swedish users see Swedish copy; keep **`opensInNewTab`**, **`emptyPlaceholder`**, **`tagsListAriaLabel`**, etc. from existing **`caseStudiesUi`**. **Done:** **`locale`** + **`getCaseStudyBlogsForLocale(locale)`** from **`home-content`**; **`caseStudiesUi`** from **`t`**; **`lang`** on **`<section>`** (`en` / `sv`).
+  - [x] 26.4 **Content:** add **Swedish** strings for existing articles in **`case-studies-blogs.json`** (titles/summaries; translate or adapt tags only if desired). **Done:** **`titleSv`**, **`summarySv`**, **`tagsSv`** for WebRTC- och Next.js-artiklarna (tekniska etiketter delvis oförändrade).
+  - [x] 26.5 Run **`npm run lint`** and **`npm run build`**. **Done:** run after **26.4** (same verification).
+
+- [x] **Task 27: Fix section switcher active state when scrolling back to the top**
+
+  **Context / bug (resolved):** Scrolling **down** (e.g. from **What problems I solve** → **Engineering case studies**) updates the hero section switcher correctly. Scrolling **back up** to the **top of the page** used to leave the switcher on **Engineering case studies**; **27.3** fixed stale **`activeId`**; **27.4** covered hash / short viewport / reduced motion.
+
+  - [x] 27.1 **Reproduce** consistently (desktop layout with sticky hero + main column scroll); note viewport height, scroll position at “top”, and which section ids are observed (**`section-switcher.tsx`** + **`sections.json`** / **`home-content.tsx`**). **Done — reproduction notes:**
+    - **When:** **`lg` breakpoint and up** (side-by-side layout). **`home-content.tsx`:** hero column **`lg:sticky lg:top-10 lg:h-[calc(100vh-2.5rem)]`**; main column scrolls with **document** (`window` / root scroll; not a nested scroll container).
+    - **Steps:** (1) Load `/`. (2) Scroll **down** until **Engineering case studies** is highlighted in the hero section nav. (3) Scroll **back up** until **`window.scrollY`** is **0** (or visually the top of the page / first section in view). **Expected:** active nav matches **What problems I solve** (or whichever section occupies the observer “focus” band). **Actual:** active nav can **remain** **Engineering case studies**.
+    - **Observed section ids** (order from **`sections.json`**, wired via **`home-content.tsx`** → **`sectionItems`** → **`SectionSwitcher`):** **`problems`** → **`experience`** → **`case-studies`** → **`demos`** → **`ai`**. Each maps to **`<section id="…">`** (or equivalent) in the main column via **`ContentSection`** / **`ExperienceTimeline`** / **`CaseStudiesSection`**.
+    - **Observer setup (**`section-switcher.tsx`**):** **`root: null`** (viewport), **`rootMargin: "-10% 0px -70% 0px"`** (effective intersection band ≈ middle **20%** of viewport height), **`threshold: [0, 0.1, …, 1]`**.
+    - **At “top”:** **`scrollY ≈ 0`**; first sections are in the upper viewport; the sticky hero occupies the **left** column only — **does not** change the fact that **`IntersectionObserver`** uses the **viewport** as root.
+    - **Hypothesis for 27.2:** Callback uses **`let bestId = activeId`** and **`bestId !== activeId`** to decide whether to **`setActiveId`**, but **`useEffect`** only depends on **`ids.join("|")`**, so **`activeId` inside the observer callback is a stale closure** (typically the **initial** **`items[0].id`** = **`problems`**). After state has moved to **`case-studies`**, scrolling back can compute **`bestId === "problems"`** while comparing to **stale `activeId === "problems"`**, so **`setActiveId`** is **skipped** and the UI stays on **`case-studies`**. **27.2** should confirm (e.g. logging or deps fix spike).
+  - [x] 27.2 **Identify root cause** (e.g. **`IntersectionObserver`** thresholds / **`rootMargin`** vs sticky hero; sections no longer crossing observer thresholds when scrolling up; “highest visibility” tie-break or ratio map not resetting for upper sections). **Done — root cause:**
+    - **Primary (confirmed):** **`activeId` stale closure** in **`section-switcher.tsx`**. The **`IntersectionObserver`** callback reads **`activeId`** from the render that ran when the effect last executed (`useEffect` deps: **`[ids.join("|")]`** only; **`eslint-disable-next-line react-hooks/exhaustive-deps`**). With stable **`ids`**, the effect runs **once on mount**, so **`activeId` inside the callback is frozen** at **`items[0]?.id`** (e.g. **`problems`**). The loop still computes the correct **`bestId`** from intersection ratios, but **`if (bestId && bestId !== activeId)`** compares **`bestId`** to that **frozen** value. After React state has updated to **`case-studies`**, scrolling back yields **`bestId === "problems"`** and **`stale activeId === "problems"`** → condition is **false** → **`setActiveId`** never runs → UI stuck on **`case-studies`**.
+    - **Not primary:** Sticky hero does **not** change **`IntersectionObserver`**’s root (still **viewport** / **`null`**). **`rootMargin`** / thresholds shape *which* section wins the ratio race but do **not** explain “correct **`bestId`** yet no state update”; that mismatch is explained by the closure bug alone.
+    - **Secondary (optional hardening in 27.3):** The **`ratios`** **`Map`** is only updated for targets present in each **`entries`** batch; other ids keep prior ratios until their next event. Unlikely to be the main “scroll to top” failure once the closure is fixed; revisit only if odd ties remain.
+  - [x] 27.3 **Implement fix** in **`section-switcher.tsx`** (or related layout/observer setup) so the active id always reflects the **main-column section most in view**, including when the user returns to **scrollY ≈ 0** / first sections — without breaking anchor clicks or keyboard focus. **Done:** Functional updater **`setActiveId((prev) => (prev === bestId ? prev : bestId))`** so the guard uses **live** React state, not the observer’s stale **`activeId`**. **`bestId`** seed is **`ids[0]`** (not closure **`activeId`**). Effect deps **`[ids]`**; removed **`eslint-disable`** for **`exhaustive-deps`**.
+  - [x] 27.4 **Edge cases:** hash / **`#section-id`** navigation, very short viewports, and **`prefers-reduced-motion`** (behaviour should stay correct; motion is separate). **Done:** **`hashchange`** + double **`requestAnimationFrame`** after mount sync **`activeId`** when **`location.hash`** matches a known **`ids`** entry (direct links, in-page anchors, back/forward). **`innerHeight < 480`** uses a milder **`rootMargin`** (`-8% 0px -52% 0px`) so the intersection band stays ~40% of viewport; **`resize`** + **`visualViewport`** **`resize`** reconnect the observer. **`prefers-reduced-motion`:** already disables Framer hover/tap on nav links; highlight is IO/hash-driven only — documented in **`section-switcher.tsx`** JSDoc. **Note:** manual scroll does not rewrite the URL hash; highlight can differ from **`#hash`** until the user follows a hash link again (expected).
+  - [x] 27.5 Run **`npm run lint`** and **`npm run build`**; manually verify scroll down → scroll up to top. **Done:** **`npm run lint`** and **`npm run build`** pass (Next.js **16.1.6**, **`/`** static). **Manual QA (repeat anytime):** at **`lg+`**, scroll until **Engineering case studies** is active in the hero nav → scroll back to **`scrollY ≈ 0`** → active nav should match the top/main band (**e.g. What problems I solve**). Optionally: open **`/#case-studies`**, confirm highlight, scroll away and confirm IO updates; resize / short height sanity check.
+
 ---
 
 ## File and route summary
 
 - **Route:** `src/app/page.tsx` (default landing).
-- **Components:** `src/components/skip-link.tsx`, `header.tsx`, `hero.tsx`, `section-value-prop.tsx`, `section-placeholder.tsx`, `scroll-reveal.tsx` (client), `footer.tsx`.
+- **Components:** `src/components/skip-link.tsx`, `site-preferences-header.tsx`, `hero.tsx`, `section-switcher.tsx` (Task **27** — active section on scroll-up), `case-studies-section.tsx`, `external-link-icon.tsx`, `section-value-prop.tsx`, `section-placeholder.tsx`, `scroll-reveal.tsx` (client), `footer.tsx`.
+- **Case studies (Task 23; Task 26 SV copy):** `src/data/case-studies-blogs.json`, `src/data/case-studies-blogs.ts`, `case-studies-section.tsx`, `home-content.tsx`.
 - **Profile photo:** `public/photo_op.jpeg` (or `src/assets/images/photo_op.jpeg` if moved for optimization).

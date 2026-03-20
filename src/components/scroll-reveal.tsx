@@ -9,6 +9,9 @@ type ScrollRevealProps = Readonly<{
 
 /**
  * In-view reveal using Framer Motion. Respects `prefers-reduced-motion` (no animation).
+ *
+ * Task 12.2 — `whileInView` uses the viewport as root; sections in the right-hand main
+ * column still intersect the window while scrolling, so reveals work with the split layout.
  */
 export function ScrollReveal({ children, className }: ScrollRevealProps) {
   const reduceMotion = useReducedMotion();

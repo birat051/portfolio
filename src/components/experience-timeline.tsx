@@ -7,9 +7,16 @@ import healthplixLogo from "@/assets/images/healthplix_logo.jpeg";
 import hitachiVantaraLogo from "@/assets/images/hitachi_vantara.jpeg";
 import mpscLogo from "@/assets/images/mpsc_logo.png";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { formatExperienceJobRowAriaLabel } from "@/data/translations";
 import { motion, useReducedMotion } from "@/lib/motion";
 
 import type { ExperienceTimelineItem } from "@/components/types";
+
+/**
+ * Task **2.5** — Keyboard: native **`button`** / **`a href`** only; no modal focus trap. Collapsed job
+ * detail regions use **`inert`** so they cannot receive focus while hidden.
+ * Task **2.6** — Timeline / skills list labels and per-row `aria-label` from locale templates.
+ */
 
 const COMPANY_LOGO_MAP: Record<string, { src: typeof healthplixLogo; alt: string }> = {
   "Healthplix Technologies": { src: healthplixLogo, alt: "Healthplix Technologies" },
@@ -55,6 +62,9 @@ type ExperienceTimelineProps = Readonly<{
   timeline: ExperienceTimelineItem[];
   expandJobDetailsLabel: string;
   collapseJobDetailsLabel: string;
+  timelineListAriaLabel: string;
+  skillsListAriaLabel: string;
+  jobRowAriaTemplate: string;
 }>;
 
 export function ExperienceTimeline({
@@ -64,6 +74,9 @@ export function ExperienceTimeline({
   timeline,
   expandJobDetailsLabel,
   collapseJobDetailsLabel,
+  timelineListAriaLabel,
+  skillsListAriaLabel,
+  jobRowAriaTemplate,
 }: ExperienceTimelineProps) {
   const reduceMotion = useReducedMotion();
   const hoverOff = reduceMotion === true;
@@ -96,7 +109,7 @@ export function ExperienceTimeline({
 
         <ol
           className="mt-8 list-none pl-0"
-          aria-label="Work experience timeline"
+          aria-label={timelineListAriaLabel}
         >
           {timeline.map((item, index) => {
             const isLast = index === timeline.length - 1;
@@ -106,12 +119,16 @@ export function ExperienceTimeline({
             const open = expandedByKey[stateKey] !== false;
             const panelId = `${sectionId}-details-${index}`;
             const buttonId = `${sectionId}-toggle-${index}`;
+            const jobHeadingId = `${sectionId}-job-heading-${index}`;
 
             return (
               <motion.li
                 key={itemKey}
                 className="relative flex gap-3 pb-6 last:pb-0 sm:gap-4 sm:pb-8"
-                aria-label={`${item.role} at ${item.company}, ${item.dateRange}`}
+                aria-label={formatExperienceJobRowAriaLabel(
+                  jobRowAriaTemplate,
+                  item,
+                )}
                 initial="rest"
                 whileHover={hoverOff ? undefined : "hover"}
                 animate="rest"
@@ -154,9 +171,10 @@ export function ExperienceTimeline({
                 </div>
 
                 <motion.div
-                  className="min-w-0 flex-1 space-y-3 rounded-xl border border-transparent px-2 py-1 text-secondary-foreground -mx-2 transition-colors hover:border-secondary/80 hover:bg-secondary/20"
+                  className="relative min-w-0 flex-1 rounded-xl border border-transparent text-secondary-foreground -mx-2 transition-colors hover:border-secondary/80 hover:bg-secondary/20"
                   variants={hoverOff ? undefined : contentVariants}
                 >
+                  <div className="relative z-0 space-y-3 px-2 py-1">
                   <div className="flex items-center justify-between gap-3">
                     <p className="min-w-0 text-sm text-tertiary">
                       {item.dateRange}
@@ -201,13 +219,17 @@ export function ExperienceTimeline({
                       </motion.span>
                     </button>
                   </div>
-                  <p className="text-base">
+                  {/* Task 2.3 — h3 under section h2; keeps outline h1 → h2 → h3 (no level skips). */}
+                  <h3
+                    id={jobHeadingId}
+                    className="m-0 text-base font-normal text-secondary-foreground"
+                  >
                     <span className="font-semibold text-primary-foreground">
                       {item.role}
                     </span>
                     {" — "}
                     <span>{item.company}</span>
-                  </p>
+                  </h3>
                   <p className="text-sm">{item.location}</p>
 
                   <motion.div
@@ -233,6 +255,7 @@ export function ExperienceTimeline({
                     style={{ overflow: "hidden" }}
                     aria-hidden={!open}
                     className={open ? "" : "pointer-events-none"}
+                    {...(!open ? { inert: true as const } : {})}
                   >
                     <div className="space-y-3 pb-1 pt-1">
                       <ul className="list-disc space-y-1 pl-5">
@@ -242,7 +265,7 @@ export function ExperienceTimeline({
                       </ul>
 
                       <ul
-                        aria-label="Technologies and skills"
+                        aria-label={skillsListAriaLabel}
                         className="flex flex-wrap gap-2"
                       >
                         {item.skills.map((skill) => (
@@ -261,6 +284,7 @@ export function ExperienceTimeline({
                       </ul>
                     </div>
                   </motion.div>
+                  </div>
                 </motion.div>
               </motion.li>
             );

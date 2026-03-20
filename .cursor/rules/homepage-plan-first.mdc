@@ -1,0 +1,15 @@
+---
+description: Require HOMEPAGE_PLAN.md task sections before homepage implementation code
+alwaysApply: true
+---
+
+# Homepage work: plan first, then code
+
+For this repo’s **Next.js homepage** (`src/app/page.tsx`, `src/components/home-content.tsx`, related `src/components/*`, `src/data/*` used on the landing page):
+
+1. **Before** adding or changing implementation, edit **`HOMEPAGE_PLAN.md`**:
+   - Add a **Task *N*** section (or extend an existing one) with **concrete subtasks** (`23.1`, `23.2`, …).
+   - Leave new work as `[ ]` until done; mark `[x]` when complete.
+2. **Then** implement and wire features to match those subtasks.
+
+Do **not** skip straight to code for new homepage features without updating **`HOMEPAGE_PLAN.md`** first. If the user asks for a feature mid-thread, add the task block **first**, then implement in a follow-up (or same turn: plan section first, then code).

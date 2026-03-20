@@ -6,6 +6,7 @@ import {
 } from "next/font/google";
 
 import { LayoutWithLocale } from "@/components/layout-with-locale";
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "@/data/site";
 
 import "./globals.css";
 
@@ -38,9 +39,26 @@ const notoSansBengali = Noto_Sans_Bengali({
 });
 
 export const metadata: Metadata = {
-  title: "Birat Bhattacharjee | Senior Software Engineer",
-  description:
-    "Birat Bhattacharjee — Senior Software Engineer building real-time web experiences that scale. React, TypeScript, Node.js, Go. Scalable frontend architecture, real-time systems, performance optimisation.",
+  metadataBase: new URL(SITE_URL),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  openGraph: {
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: "Birat Bhattacharjee",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

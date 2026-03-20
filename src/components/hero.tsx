@@ -10,6 +10,12 @@ import { motion, useReducedMotion } from "@/lib/motion";
 
 type HeroProps = Readonly<{
   sectionItems: readonly { id: string; label: string }[];
+  /** Task **2.2** — `aria-label` for sidebar section `<nav>`. */
+  sectionNavAriaLabel: string;
+  /** Task **2.6** — Social link group + per-link names (locale-specific). */
+  socialLinksAriaLabel: string;
+  githubProfileAriaLabel: string;
+  linkedInProfileAriaLabel: string;
   tagline?: string;
   intro?: string;
   /** Task 22.6 — SR-only sentence after the name in `<h1>` (locale-specific). */
@@ -27,8 +33,17 @@ const DEFAULT_NAME_HEADING_SR_NOTE =
 const springSoft = { type: "spring" as const, stiffness: 380, damping: 26 };
 const springSnappy = { type: "spring" as const, stiffness: 450, damping: 22 };
 
+/**
+ * Task **14.3** — Brittany-style sticky hero + section switch is **additive UX** only: tagline, intro,
+ * `<h1>`, and main-column `<section id="…">` blocks remain **real HTML** in the document (SSR/crawlable).
+ * `SectionSwitcher` uses `<a href="#id">` and `IntersectionObserver`; it does not replace page content.
+ */
 export function Hero({
   sectionItems,
+  sectionNavAriaLabel,
+  socialLinksAriaLabel,
+  githubProfileAriaLabel,
+  linkedInProfileAriaLabel,
   tagline = DEFAULT_TAGLINE,
   intro = DEFAULT_INTRO,
   nameHeadingSrNote = DEFAULT_NAME_HEADING_SR_NOTE,
@@ -89,21 +104,23 @@ export function Hero({
           <p className="mt-1 text-secondary-foreground">{intro}</p>
         </motion.div>
         <div className="hidden w-full lg:block">
-          <SectionSwitcher items={sectionItems} />
+          <SectionSwitcher
+            items={sectionItems}
+            navAriaLabel={sectionNavAriaLabel}
+          />
         </div>
         <div className="hidden w-full md:block md:pt-6 lg:mt-auto">
-          <div className="flex items-center gap-4" aria-label="Social links">
+          <div className="flex items-center gap-4" aria-label={socialLinksAriaLabel}>
             <motion.a
               href="https://github.com/birat051"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="GitHub profile"
+              aria-label={githubProfileAriaLabel}
               className="rounded text-secondary-foreground outline-none transition-colors hover:text-tertiary focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
               whileHover={hoverOff ? undefined : { scale: 1.12, y: -2 }}
               whileTap={hoverOff ? undefined : { scale: 0.94 }}
               transition={springSnappy}
             >
-              <span className="sr-only">GitHub</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -119,13 +136,12 @@ export function Hero({
               href="https://www.linkedin.com/in/biratbhattacharjee/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="LinkedIn profile"
+              aria-label={linkedInProfileAriaLabel}
               className="rounded text-secondary-foreground outline-none transition-colors hover:text-tertiary focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
               whileHover={hoverOff ? undefined : { scale: 1.12, y: -2 }}
               whileTap={hoverOff ? undefined : { scale: 0.94 }}
               transition={springSnappy}
             >
-              <span className="sr-only">LinkedIn</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

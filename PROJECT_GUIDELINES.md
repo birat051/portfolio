@@ -57,6 +57,7 @@ Rules and conventions for building and maintaining this portfolio.
 ## 8. Reference the plan and guidelines
 
 - When asking for work, point to `PORTFOLIO_PLAN.md` (structure, copy) and `PROJECT_GUIDELINES.md` so the AI follows them.
+- For **homepage** work, also use **`HOMEPAGE_PLAN.md`** (tasks/subtasks before implementation — see **§23**).
 
 ---
 
@@ -152,3 +153,11 @@ Rules and conventions for building and maintaining this portfolio.
 
 - When working from a plan with tasks and subtasks (e.g. `HOMEPAGE_PLAN.md`), **mark the parent task as done** once **all** of its subtasks are completed.
 - Keep the checklist accurate so progress is clear and nothing is left partially checked.
+
+---
+
+## 23. `HOMEPAGE_PLAN.md` before executing homepage tasks
+
+- **Do not** implement or “execute” homepage work (default landing: `src/app/page.tsx`, `home-content.tsx`, and related homepage components/data) **until** the work is captured in **`HOMEPAGE_PLAN.md`** as a **Task *N*** with **numbered subtasks** (e.g. `23.1`, `23.2`).
+- Add or extend the task section **first**; then write code and check off subtasks as they ship.
+- This applies to humans and AI contributors; it pairs with `.cursor/rules/homepage-plan-first.mdc` and the workflow note at the top of `HOMEPAGE_PLAN.md`.

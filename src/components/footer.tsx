@@ -9,7 +9,10 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-secondary py-4 text-sm text-secondary-foreground">
+    <footer
+      className="bg-secondary py-4 text-sm text-secondary-foreground"
+      aria-label={t.a11y.siteFooterAriaLabel}
+    >
       <div className="mx-4 md:mx-12">
         <div className="mx-auto max-w-7xl px-3 text-center md:px-8">
           <span>
