@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Birat Bhattacharjee — Portfolio
 
-## Getting Started
+Personal portfolio site: **real-time web experiences that scale.**
 
-First, run the development server:
+Built with **Next.js** (App Router), **React**, **TypeScript**, and **Tailwind CSS**. Content and section goals are defined in [`PORTFOLIO_PLAN.md`](./PORTFOLIO_PLAN.md); homepage tasks and history live in [`HOMEPAGE_PLAN.md`](./HOMEPAGE_PLAN.md).
+
+---
+
+## Site structure (from the portfolio plan)
+
+| Section | Intent |
+|--------|--------|
+| **What problems I solve** | Intro and positioning — scalable frontend architecture, real-time systems (WebRTC, WebSockets, SSE), React/TypeScript/Node/Go, and how you work with teams and delivery. |
+| **Experience** | Timeline (Healthplix, MPSC, Hitachi Vantara) with highlights, skill tiles, company links, and related-work chips. |
+| **Engineering case studies** | Deep dives / external write-ups (e.g. Medium) — problem, approach, outcomes. |
+| **Demos** | Live or recorded demos with links and short context. *(Placeholder until content is added.)* |
+| **AI** | Notes on AI-assisted frontend work — practical caveats, security, complexity. *(Placeholder until content is added.)* |
+
+Conventions and quality bar: [`PROJECT_GUIDELINES.md`](./PROJECT_GUIDELINES.md).
+
+---
+
+## Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm run start` | Run production server (after `build`) |
+| `npm run lint` | ESLint |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+Production deploy and DNS (Vercel + `www.biratbhattacharjee.com`): see [`DEPLOYMENT.md`](./DEPLOYMENT.md).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Optional: SEO checklist and keyword notes in [`docs/SEO_AUDIT.md`](./docs/SEO_AUDIT.md).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Tech stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Next.js** 16 · **React** 19 · **TypeScript**
+- **Tailwind CSS** v4
+- **Framer Motion** (motion / reduced-motion–aware UI)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Key paths
+
+| Path | Role |
+|------|------|
+| `src/app/` | App Router — `layout.tsx`, `page.tsx`, `globals.css` |
+| `src/components/` | UI — hero, experience timeline, case studies, section nav, etc. |
+| `src/data/` | Copy, JSON (sections, case-study blogs), translations (EN/SV), site metadata |
+
+---
+
+## License
+
+Private project — all rights reserved unless you add an explicit license.
