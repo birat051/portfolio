@@ -18,6 +18,13 @@ export type Translations = {
     expandJobDetails: string;
     /** Accessible name when details are expanded (collapse action). */
     collapseJobDetails: string;
+    /** Task **28.3** — Visible subheading above related-work chip links. */
+    relatedWorkHeading: string;
+    /**
+     * Task **28.3** — External / new-tab hint (match tone with **`caseStudiesUi.opensInNewTab`**;
+     * may be concatenated in **`aria-label`** or **`sr-only`** next to chips).
+     */
+    opensInNewTab: string;
   };
   comingSoon: string;
   footer: string;
@@ -35,6 +42,12 @@ export type Translations = {
     experienceSkillsList: string;
     /** Placeholders `{role}`, `{company}`, `{dateRange}`. */
     experienceJobRowAriaTemplate: string;
+    /** Task **28.3** — `aria-label` on the list of related-work chip links for one job. */
+    experienceRelatedWorkListAriaLabel: string;
+    /** Task **28.3** — Placeholders `{label}` (chip text). */
+    experienceRelatedWorkLinkAriaTemplate: string;
+    /** Task **28.3** — Placeholders `{company}` (employer name for company-site link). */
+    experienceCompanySiteAriaTemplate: string;
     themeSelection: string;
     themeLightCurrent: string;
     themeLightSwitch: string;
@@ -169,6 +182,8 @@ const en: Translations = {
   experienceUi: {
     expandJobDetails: "Expand job details",
     collapseJobDetails: "Collapse job details",
+    relatedWorkHeading: "Related work",
+    opensInNewTab: "(opens in a new tab)",
   },
   comingSoon: "Content coming soon.",
   footer: "Birat Bhattacharjee © ",
@@ -183,6 +198,9 @@ const en: Translations = {
     experienceTimelineList: "Work experience timeline",
     experienceSkillsList: "Technologies and skills",
     experienceJobRowAriaTemplate: "{role} at {company}, {dateRange}",
+    experienceRelatedWorkListAriaLabel: "Related work links",
+    experienceRelatedWorkLinkAriaTemplate: "{label} (opens in a new tab)",
+    experienceCompanySiteAriaTemplate: "{company} website (opens in a new tab)",
     themeSelection: "Theme selection",
     themeLightCurrent: "Light mode, current theme",
     themeLightSwitch: "Switch to light mode",
@@ -316,6 +334,8 @@ const sv: Translations = {
   experienceUi: {
     expandJobDetails: "Visa jobbdetaljer",
     collapseJobDetails: "Dölj jobbdetaljer",
+    relatedWorkHeading: "Relaterat arbete",
+    opensInNewTab: "(öppnas i ny flik)",
   },
   comingSoon: "Innehåll kommer snart.",
   footer: "Birat Bhattacharjee © ",
@@ -330,6 +350,9 @@ const sv: Translations = {
     experienceTimelineList: "Tidslinje för arbetslivserfarenhet",
     experienceSkillsList: "Teknologier och kompetenser",
     experienceJobRowAriaTemplate: "{role} vid {company}, {dateRange}",
+    experienceRelatedWorkListAriaLabel: "Länkar till relaterat arbete",
+    experienceRelatedWorkLinkAriaTemplate: "{label} (öppnas i ny flik)",
+    experienceCompanySiteAriaTemplate: "Webbplats för {company} (öppnas i ny flik)",
     themeSelection: "Temaval",
     themeLightCurrent: "Ljust läge, aktivt tema",
     themeLightSwitch: "Byt till ljust läge",
@@ -365,4 +388,20 @@ export function formatExperienceJobRowAriaLabel(
     .replaceAll("{role}", item.role)
     .replaceAll("{company}", item.company)
     .replaceAll("{dateRange}", item.dateRange);
+}
+
+/** Task **28.3** — Localized `aria-label` for a related-work chip link. */
+export function formatExperienceRelatedWorkLinkAriaLabel(
+  template: string,
+  label: string,
+): string {
+  return template.replaceAll("{label}", label);
+}
+
+/** Task **28.3** — Localized `aria-label` for the employer homepage link on the company name. */
+export function formatExperienceCompanySiteAriaLabel(
+  template: string,
+  company: string,
+): string {
+  return template.replaceAll("{company}", company);
 }

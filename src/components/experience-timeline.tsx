@@ -6,8 +6,13 @@ import { useCallback, useState } from "react";
 import healthplixLogo from "@/assets/images/healthplix_logo.jpeg";
 import hitachiVantaraLogo from "@/assets/images/hitachi_vantara.jpeg";
 import mpscLogo from "@/assets/images/mpsc_logo.png";
+import { ExternalLinkIcon } from "@/components/external-link-icon";
 import { ScrollReveal } from "@/components/scroll-reveal";
-import { formatExperienceJobRowAriaLabel } from "@/data/translations";
+import {
+  formatExperienceCompanySiteAriaLabel,
+  formatExperienceJobRowAriaLabel,
+  formatExperienceRelatedWorkLinkAriaLabel,
+} from "@/data/translations";
 import { motion, useReducedMotion } from "@/lib/motion";
 
 import type { ExperienceTimelineItem } from "@/components/types";
@@ -16,6 +21,8 @@ import type { ExperienceTimelineItem } from "@/components/types";
  * Task **2.5** — Keyboard: native **`button`** / **`a href`** only; no modal focus trap. Collapsed job
  * detail regions use **`inert`** so they cannot receive focus while hidden.
  * Task **2.6** — Timeline / skills list labels and per-row `aria-label` from locale templates.
+ * Task **28.4** — Company name links out when **`companyUrl`** is set.
+ * Task **28.5** — **`relatedWorks`** pill links + **`ExternalLinkIcon`**; motion off when reduced motion.
  */
 
 const COMPANY_LOGO_MAP: Record<string, { src: typeof healthplixLogo; alt: string }> = {
@@ -65,6 +72,12 @@ type ExperienceTimelineProps = Readonly<{
   timelineListAriaLabel: string;
   skillsListAriaLabel: string;
   jobRowAriaTemplate: string;
+  /** Task **28.3** / **28.4** — `{company}` template for employer homepage link `aria-label`. */
+  companySiteAriaTemplate: string;
+  /** Task **28.3** / **28.5** — Visible subheading above related-work chips. */
+  relatedWorkHeading: string;
+  /** Task **28.3** / **28.5** — `{label}` template for each chip link `aria-label`. */
+  relatedWorkLinkAriaTemplate: string;
 }>;
 
 export function ExperienceTimeline({
@@ -77,6 +90,9 @@ export function ExperienceTimeline({
   timelineListAriaLabel,
   skillsListAriaLabel,
   jobRowAriaTemplate,
+  companySiteAriaTemplate,
+  relatedWorkHeading,
+  relatedWorkLinkAriaTemplate,
 }: ExperienceTimelineProps) {
   const reduceMotion = useReducedMotion();
   const hoverOff = reduceMotion === true;
@@ -120,6 +136,7 @@ export function ExperienceTimeline({
             const panelId = `${sectionId}-details-${index}`;
             const buttonId = `${sectionId}-toggle-${index}`;
             const jobHeadingId = `${sectionId}-job-heading-${index}`;
+            const relatedWorkHeadingId = `${sectionId}-related-work-heading-${index}`;
 
             return (
               <motion.li
@@ -228,7 +245,23 @@ export function ExperienceTimeline({
                       {item.role}
                     </span>
                     {" — "}
-                    <span>{item.company}</span>
+                    {item.companyUrl ? (
+                      <a
+                        href={item.companyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group/company inline-flex max-w-full items-center gap-1 rounded-sm text-primary-foreground underline decoration-tertiary/50 underline-offset-2 outline-none transition-colors hover:text-tertiary hover:decoration-tertiary focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+                        aria-label={formatExperienceCompanySiteAriaLabel(
+                          companySiteAriaTemplate,
+                          item.company,
+                        )}
+                      >
+                        <span className="min-w-0 break-words">{item.company}</span>
+                        <ExternalLinkIcon className="h-3.5 w-3.5 shrink-0 text-tertiary opacity-80 group-hover/company:opacity-100" />
+                      </a>
+                    ) : (
+                      <span>{item.company}</span>
+                    )}
                   </h3>
                   <p className="text-sm">{item.location}</p>
 
@@ -282,6 +315,48 @@ export function ExperienceTimeline({
                           </motion.li>
                         ))}
                       </ul>
+
+                      {item.relatedWorks && item.relatedWorks.length > 0 ? (
+                        <div className="border-t border-secondary/60 pt-3">
+                          <p
+                            id={relatedWorkHeadingId}
+                            className="mb-2 text-xs font-semibold uppercase tracking-wider text-secondary-foreground"
+                          >
+                            {relatedWorkHeading}
+                          </p>
+                          <ul
+                            className="m-0 flex list-none flex-wrap gap-2 p-0"
+                            aria-labelledby={relatedWorkHeadingId}
+                          >
+                            {item.relatedWorks.map((work) => (
+                              <li key={`${itemKey}-work-${work.url}`}>
+                                <motion.a
+                                  href={work.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="group/chip inline-flex max-w-full items-center gap-1.5 rounded-full border border-secondary bg-secondary/40 px-3 py-1.5 text-xs font-medium text-primary-foreground outline-none transition-colors hover:border-tertiary/50 hover:bg-secondary focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 focus-visible:ring-offset-primary dark:hover:bg-secondary/60"
+                                  aria-label={formatExperienceRelatedWorkLinkAriaLabel(
+                                    relatedWorkLinkAriaTemplate,
+                                    work.label,
+                                  )}
+                                  whileHover={
+                                    hoverOff ? undefined : { scale: 1.04, y: -1 }
+                                  }
+                                  whileTap={
+                                    hoverOff ? undefined : { scale: 0.98 }
+                                  }
+                                  transition={springChip}
+                                >
+                                  <span className="min-w-0 break-words">
+                                    {work.label}
+                                  </span>
+                                  <ExternalLinkIcon className="h-3.5 w-3.5 shrink-0 text-tertiary opacity-80 group-hover/chip:opacity-100" />
+                                </motion.a>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : null}
                     </div>
                   </motion.div>
                   </div>

@@ -10,6 +10,7 @@
  *
  * Task **2.6** — Screen-reader strings and `html lang` come from **`getTranslations(locale)`** /
  * **`LocaleProvider`** (see **`skip-link`**, **`hero`**, **`experience-timeline`**, **`case-studies`**).
+ * Task **28.4** — Experience timeline merges **`t.experienceTimeline`** with **`sections.json`** link fields via **`mergeExperienceTimelineWithLinks`**.
  */
 
 import { useMemo } from "react";
@@ -20,6 +21,7 @@ import { ExperienceTimeline } from "@/components/experience-timeline";
 import { Hero } from "@/components/hero";
 import { useLocale } from "@/contexts/locale-context";
 import { getCaseStudyBlogsForLocale } from "@/data/case-studies-blogs";
+import { mergeExperienceTimelineWithLinks } from "@/data/experience-timeline-merge";
 import { getTranslations } from "@/data/translations";
 
 import type { SectionEntry } from "@/app/types";
@@ -41,6 +43,15 @@ export function HomeContent({ sections }: HomeContentProps) {
     () => getCaseStudyBlogsForLocale(locale),
     [locale],
   );
+
+  /** Task **28.2** / **28.4** — Locale copy + **`sections.json`** link metadata (`companyUrl`, later chips). */
+  const experienceTimeline = useMemo(() => {
+    const exp = sections.find((s) => s.id === "experience");
+    return mergeExperienceTimelineWithLinks(
+      t.experienceTimeline,
+      exp?.timeline ?? null,
+    );
+  }, [sections, t.experienceTimeline]);
 
   return (
     <div className="mx-4 md:mx-12">
@@ -67,12 +78,17 @@ export function HomeContent({ sections }: HomeContentProps) {
                   id={section.id}
                   headingId={section.headingId}
                   title={t.sectionTitles[section.id] ?? section.title}
-                  timeline={t.experienceTimeline}
+                  timeline={experienceTimeline}
                   expandJobDetailsLabel={t.experienceUi.expandJobDetails}
                   collapseJobDetailsLabel={t.experienceUi.collapseJobDetails}
                   timelineListAriaLabel={t.a11y.experienceTimelineList}
                   skillsListAriaLabel={t.a11y.experienceSkillsList}
                   jobRowAriaTemplate={t.a11y.experienceJobRowAriaTemplate}
+                  companySiteAriaTemplate={t.a11y.experienceCompanySiteAriaTemplate}
+                  relatedWorkHeading={t.experienceUi.relatedWorkHeading}
+                  relatedWorkLinkAriaTemplate={
+                    t.a11y.experienceRelatedWorkLinkAriaTemplate
+                  }
                 />
               ) : section.id === "case-studies" ? (
                 <CaseStudiesSection
