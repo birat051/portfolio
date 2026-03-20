@@ -47,6 +47,17 @@
           "GRPC",
           "AWS",
           "MySQL"
+        ],
+        "companyUrl": "https://www.healthplix.com/",
+        "relatedWorks": [
+          {
+            "label": "H.A.L.O",
+            "url": "https://www.healthplix.com/halo"
+          },
+          {
+            "label": "hplx-react-elements (npm)",
+            "url": "https://www.npmjs.com/package/hplx-react-elements-dev"
+          }
         ]
       },
       {
@@ -78,6 +89,13 @@
           "GCP",
           "Azure",
           "Mongo"
+        ],
+        "companyUrl": "https://mpsc.io/",
+        "relatedWorks": [
+          {
+            "label": "HooT",
+            "url": "https://hoot.mx/"
+          }
         ]
       },
       {
@@ -102,7 +120,9 @@
           "Webpack",
           "Accessibility",
           "REST"
-        ]
+        ],
+        "companyUrl": "https://www.hitachivantara.com/en-us/home",
+        "relatedWorks": []
       }
     ]
   },
