@@ -19,34 +19,25 @@
         "company": "Healthplix Technologies",
         "location": "Bengaluru",
         "dateRange": "March 2024 – January 2026",
+        "companyDescription": "Healthplix is India's largest EMR and clinic management platform, supporting 14,000+ doctors across 370+ cities and 45 million+ patients. HALO is its AI assistant that transcribes doctor-patient conversations in real time and auto-generates prescriptions and clinical summaries.",
         "highlights": [
-          "Led frontend architecture for HALO, the platform's AI assistant — collaborating across backend, product, and design to define component boundaries, data flows, and release strategy for a scalable, multi-team delivery.",
-          "Built a real-time audio recording pipeline using Web Workers and WebSockets, enabling low-latency audio uploads at scale across the enterprise user base.",
-          "Designed a JSON-driven UI engine that eliminated per-template frontend development, cutting turnaround from 3 days to zero for new clinical form templates.",
-          "Developed a secure attachment microservice in Go, MySQL, GRPC and AWS cloudfront, serving 5 million patients with improved fault tolerance.",
-          "Improved HALO lighthouse score from 80 to 93 through targeted Core Web Vitals optimisation, reducing FID, LCP and CLS scores.",
-          "Owned production debugging and RCA of critical issues, driving improvements in code quality, linting standards, release strategies, and sharing learnings across teams to prevent regressions."
+          "Led frontend architecture for HALO (AI assistant), defining component boundaries and data flows across a multi-team setup.",
+          "Built a real-time audio streaming pipeline using WebSockets and Web Workers, reducing transcription latency by 80% (10s → 2s) and improving responsiveness under load.",
+          "Designed a JSON-driven UI system, reducing new template development time from ~3 days to near zero.",
+          "Contributed to a secure attachment microservice (Go + AWS + MySQL), supporting 2000+ RPM with improved reliability.",
+          "Improved Lighthouse performance score from 80 → 93, reducing LCP, CLS, and FID through targeted optimizations.",
+          "Drove production issue resolution and RCA processes, improving release stability and team-wide engineering practices."
         ],
         "skills": [
           "React",
+          "TypeScript",
           "Zustand",
-          "React Testing Library",
           "TailwindCSS",
-          "Lighthouse",
-          "Rollup",
-          "Go",
-          "Node.js",
-          "Sentry",
-          "Kibana",
-          "CubeAPM",
-          "NPM",
-          "Service Workers",
-          "REST",
-          "SSE",
+          "Web Workers",
           "WebSockets",
-          "GRPC",
-          "AWS",
-          "MySQL"
+          "Node.js",
+          "Go",
+          "AWS"
         ],
         "companyUrl": "https://www.healthplix.com/",
         "relatedWorks": [
@@ -65,30 +56,25 @@
         "company": "MPSC Inc.",
         "location": "Remote",
         "dateRange": "March 2022 – February 2024",
+        "companyDescription": "MPSC builds low-latency communication products over the cloud for the finance industry, powered by WebRTC, SIP and FreeSWITCH.",
         "highlights": [
-          "Built and led development of low-latency real-time communication platforms for financial trading systems using React, WebRTC and Node.js.",
-          "Implemented Redux-based connection state management combined with callbacks to handle reconnects one call at a time, reducing call drops by 25%.",
-          "Delivered real-time conference event updates using Websocket combined with Web Workers, improving UI responsiveness under high load.",
+          "Built and scaled real-time communication interfaces for trading platforms using React and WebRTC.",
+          "Reduced call drop rate by 25% by redesigning connection state management and reconnection flows.",
+          "Implemented real-time event streaming using SSE and Web Workers, maintaining 30–80ms average delivery latency while improving UI responsiveness under high load.",
           "Designed and developed backend APIs to create and manage conferences with secure authentication using Auth0, and built a payment validation microservice improving licence conversion by 50%.",
-          "Engineered scalable conferencing infrastructure on GCP using GKE, provisioning FreeSWITCH nodes and ensuring session stickiness via SIP proxy for reliable call routing.",
-          "As a lead, collaborated with stakeholders to define requirements, plan timelines and drive milestone-based delivery, ensuring predictable releases.",
-          "Mentored engineers and improved team delivery efficiency through code reviews and architectural guidance."
+          "Contributed to cloud-based conferencing infrastructure (GCP, Kubernetes, FreeSWITCH) for reliable session handling.",
+          "Collaborated with cross-functional stakeholders to deliver features in iterative, milestone-driven cycles.",
+          "Mentored engineers through code reviews, linting standards and design discussions."
         ],
         "skills": [
           "React",
           "Redux",
-          "CSS",
-          "FreeSWITCH",
-          "Rollup",
           "WebRTC",
           "Node.js",
-          "Kubernetes",
-          "Docker",
-          "REST",
           "WebSockets",
           "GCP",
-          "Azure",
-          "Mongo"
+          "Docker",
+          "Kubernetes"
         ],
         "companyUrl": "https://mpsc.io/",
         "relatedWorks": [
@@ -103,23 +89,19 @@
         "company": "Hitachi Vantara",
         "location": "Hyderabad",
         "dateRange": "June 2019 – September 2021",
+        "companyDescription": "Hitachi Vantara is a Hitachi company that provides data storage, hybrid cloud infrastructure, and enterprise software and consulting for organizations worldwide.",
         "highlights": [
-          "Developed new features and enhanced existing functionality in a Java-based engine that processed Change Orders between two PLM enterprise applications.",
-          "Optimized SQL queries for faster lookups, reducing Change Order processing time.",
-          "Implemented scheduling mechanisms on Linux and Windows servers to run the engine reliably.",
-          "Additionally, built pixel-perfect, responsive UI components for an internal tool.",
-          "Improved accessibility and performance, increasing accessibility score in Lighthouse from 10 to 80.",
-          "Integrated REST APIs to enable seamless data exchange between frontend and backend systems."
+          "Developed and maintained enterprise Java applications handling large-scale Change Order workflows.",
+          "Improved query performance, reducing processing time for key operations.",
+          "Built pixel-perfect, responsive UI components for an internal tool and improved accessibility (Lighthouse score 10 → 80).",
+          "Integrated REST APIs to streamline data exchange across systems."
         ],
         "skills": [
           "Java",
-          "MySQL",
           "React",
-          "HTML",
-          "CSS",
-          "Webpack",
-          "Accessibility",
-          "REST"
+          "MySQL",
+          "REST APIs",
+          "Linux"
         ],
         "companyUrl": "https://www.hitachivantara.com/en-us/home",
         "relatedWorks": []

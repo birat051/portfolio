@@ -7,6 +7,7 @@
  * | ----- | ---- | ----- |
  * | **`companyUrl`** | `string` | Absolute **https** employer homepage (company heading link in **28.4**). |
  * | **`relatedWorks`** | `{ label, url }[]` | Chip row; **`url`** absolute **https**; order preserved. |
+ * | **`companyDescription`** | `string` (optional) | Employer context for **SEO** only — serialized as JSON-LD (`Organization` descriptions) from **`page.tsx`**; **not** shown in the timeline. |
  *
  * Locale-specific copy (**`role`**, **`highlights`**, **`skills`**, etc.) lives in **`translations.ts`**
  * (`experienceTimeline`). Merge at runtime with **`mergeExperienceTimelineWithLinks`** in
