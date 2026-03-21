@@ -1,5 +1,6 @@
 import { HomeContent } from "@/components/home-content";
 import { SitePreferencesHeader } from "@/components/site-preferences-header";
+import { buildExperienceEmployersJsonLd } from "@/data/experience-seo-jsonld";
 import sectionsData from "@/data/sections.json";
 import { SITE_PERSON_JSON_LD } from "@/data/site";
 
@@ -16,6 +17,10 @@ export const metadata: Metadata = {
 /** Homepage: semantic structure only — main + sections. Language-aware content via HomeContent. */
 export default function Home() {
   const sections = sectionsData as SectionEntry[];
+  const experienceSection = sections.find((s) => s.id === "experience");
+  const employersJsonLd = buildExperienceEmployersJsonLd(
+    experienceSection?.timeline,
+  );
 
   return (
     <>
@@ -25,6 +30,14 @@ export default function Home() {
           __html: JSON.stringify(SITE_PERSON_JSON_LD),
         }}
       />
+      {employersJsonLd ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(employersJsonLd),
+          }}
+        />
+      ) : null}
       <SitePreferencesHeader />
       <main
         id="main-content"

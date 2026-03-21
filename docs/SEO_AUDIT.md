@@ -10,7 +10,7 @@
 
 The site has a **solid technical SEO baseline**: static HTML for main content, one clear `<h1>`, semantic sections with `id` anchors, `metadataBase` + Open Graph + Twitter metadata, canonical `/`, `robots` index/follow, and **Person** JSON-LD. Body copy (especially “What problems I solve”) naturally targets **React**, **real-time systems**, and **your name**.
 
-**Main gaps:** no **`sitemap.xml` / `robots.txt`** via Next conventions, **no dedicated Open Graph / Twitter image**, **`Next.js` is barely mentioned** in machine-readable summary fields, and **`full-stack` / `frontend developer`** could be reinforced in title/description without sounding spammy. International SEO is **English-first** with client-side Swedish (`<html lang>` updates in JS)—fine for a portfolio, but not ideal if you want Swedish SERP pages.
+**Main gaps:** no **`sitemap.xml` / `robots.txt`** via Next conventions, **no dedicated Open Graph / Twitter image**, **`Next.js` is barely mentioned** in machine-readable summary fields, and **frontend-focused phrasing** could be reinforced further in title/description without sounding spammy. International SEO is **English-first** with client-side Swedish (`<html lang>` updates in JS)—fine for a portfolio, but not ideal if you want Swedish SERP pages.
 
 ---
 
@@ -20,7 +20,7 @@ The site has a **solid technical SEO baseline**: static HTML for main content, o
 |------|----------------|
 | **Title & description** | `SITE_TITLE` / `SITE_DESCRIPTION` in `src/data/site.ts`; used in `layout.tsx` metadata. Name + real-time + React + stack mentioned. |
 | **Canonical URL** | `metadataBase` + `page.tsx` `alternates.canonical: "/"`. |
-| **Structured data** | `SITE_PERSON_JSON_LD` (Person + `sameAs` GitHub/LinkedIn) on homepage. |
+| **Structured data** | `SITE_PERSON_JSON_LD` (Person + `sameAs` GitHub/LinkedIn) on homepage; second JSON-LD script — **ItemList** of **Organization** entries with `description` from `sections.json` `companyDescription` (not shown in the timeline UI). |
 | **Semantic HTML** | `<main id="main-content">`, section `id`s, single `<h1>` with crawlable name (`sr-only` + decorative CLI per `hero.tsx`). |
 | **Crawlable anchors** | In-page `#problems`, `#experience`, etc. via `SectionSwitcher`. |
 | **Images** | Hero photo `alt="Birat Bhattacharjee"`, `priority` for LCP. |
@@ -38,7 +38,7 @@ The site has a **solid technical SEO baseline**: static HTML for main content, o
 | **No `robots.txt` route** | No `app/robots.ts`. Next can generate this to point at sitemap and confirm host. |
 | **`summary_large_image` without image** | `twitter.card` is `summary_large_image` but there is no `openGraph.images` / `twitter.images`. Cards may look plain or inconsistent. |
 | **`Next.js` underrepresented in “head” copy** | You use Next in the stack; **`SITE_DESCRIPTION` and `SITE_TITLE` do not say “Next.js”**. Crawlers weight title/description heavily. |
-| **Job title vs keywords** | JSON-LD `jobTitle` is “Senior Software Engineer” — accurate, but doesn’t surface **frontend** / **full-stack** as phrases searchers use. |
+| **Job title vs keywords** | JSON-LD `jobTitle` is “Senior Software Engineer” — accurate; hero intro adds **front-end focused** wording. |
 | **Locale & hreflang** | Swedish is client-only; no `hreflang`, no separate URLs. Expected for this setup; limits SV-specific ranking. |
 | **Thin placeholder sections** | Demos / AI (and similar) may dilute perceived depth if indexed as sparse—acceptable if you’ll fill or `noindex` later. |
 
@@ -52,8 +52,8 @@ The site has a **solid technical SEO baseline**: static HTML for main content, o
 | **Real-time systems** | Meta description; strong in body (WebRTC, WebSockets, SSE, “real-time” in highlights) | Add to JSON-LD `knowsAbout` or a one-line `description` on Person; optional FAQ or a short “Focus” blurb with H2. |
 | **React** | Meta description; very strong in experience + problems copy | Same as above; consider `knowsAbout: ["React", ...]`. |
 | **Next.js** | Mostly **missing** from title/description/JSON-LD | Add naturally to `SITE_DESCRIPTION` and/or hero tagline variant; mention in opening paragraph once. |
-| **Full-stack developer** | Hero `intro` (EN: “Full-stack developer”) | Also weave into meta description or subtitle once if you want that query. |
-| **Frontend developer** | “frontend” appears in body copy; not in title | Optional: “Senior Software Engineer (frontend & full-stack)” in `jobTitle` or a second sentence in description—**avoid stuffing**. |
+| **Front-end / frontend** | Hero `intro` (EN: “Front-end focused Senior Software Engineer”); strong in body copy | Optional: align `jobTitle` in JSON-LD with intro if you want exact phrase match—**avoid stuffing**. |
+| **Full-stack** | Problems copy still mentions backend breadth | Intentional if you want to signal full-stack depth alongside frontend focus. |
 
 ---
 
@@ -76,7 +76,7 @@ The site has a **solid technical SEO baseline**: static HTML for main content, o
 
 ### 3. Content & on-page (keywords without stuffing)
 
-7. **First screen visible text** — Ensure the **tagline/intro** (already “Real-time…” + “Full-stack developer”) stays in HTML; consider one natural sentence mentioning **Next.js** next to React in hero or problems section.
+7. **First screen visible text** — Ensure the **tagline/intro** (already “Real-time…” + “Front-end focused Senior Software Engineer”) stays in HTML; consider one natural sentence mentioning **Next.js** next to React in hero or problems section.
 8. **Section headings** — Your H2s are clear; optional subheading under Experience: “Frontend architecture & real-time platforms” if it reads well for humans.
 9. **Case studies / articles** — Titles and summaries that mention **React**, **real-time**, or **Next.js** help long-tail queries when Medium/external pages are indexed.
 
