@@ -1,13 +1,41 @@
 [
   {
+    "id": "from-mic-to-model-transcription-browser-e0235322cdcf",
+    "title": "From Mic to Model: Real-Time Transcription Pipelines in the Browser",
+    "titleSv": "Från mikrofon till modell: realtids transkriptionspipelines i webbläsaren",
+    "url": "https://medium.com/@biratbhattacharjee/from-mic-to-model-real-time-transcription-pipelines-in-the-browser-e0235322cdcf",
+    "source": "Medium",
+    "publishedAt": "2026-03-16",
+    "summary": "Live clinical audio transcription in the browser— reducing transcription time by ~80% (10s → 2s).",
+    "summarySv": "Live transkription av kliniskt ljud i webbläsaren—~80 % kortare transkriptionstid (10 s → 2 s).",
+    "tags": [
+      "WebSocket",
+      "Web Workers",
+      "RecordRTC",
+      "React",
+      "TypeScript",
+      "WaveSurfer",
+      "AI"
+    ],
+    "tagsSv": [
+      "WebSocket",
+      "Web Workers",
+      "RecordRTC",
+      "React",
+      "TypeScript",
+      "WaveSurfer",
+      "AI"
+    ]
+  },
+  {
     "id": "webrtc-conference-events-sse-ea95c27e58f7",
     "title": "How we built a Secure, Real-Time Conference Events Flow for WebRTC at Scale",
     "titleSv": "Hur vi byggde ett säkert, realtidsskalbart flöde för konferenshändelser med WebRTC",
     "url": "https://medium.com/@biratbhattacharjee/how-i-built-a-secure-real-time-conference-events-flow-for-webrtc-at-scale-ea95c27e58f7",
     "source": "Medium",
     "publishedAt": "2026-03-01",
-    "summary": "At MPSC, a multiplexed pipeline from FreeSWITCH/SIP to the browser using SSE, Redis, and an event microservice on GKE—so 10–20 concurrent WebRTC calls per tab get sub-second mute, speaking, and join/leave signals without FCM or per-call sockets. Covers Auth0, tradeoffs vs WebSockets, and why we moved off Firebase Cloud Messaging.",
-    "summarySv": "På MPSC: en multiplexad pipeline från FreeSWITCH/SIP till webbläsaren med SSE, Redis och en händelsemikrotjänst på GKE – så att 10–20 samtidiga WebRTC-samtal per flik får signaler för tystning, tal och anslutning/utträde på under en sekund, utan FCM eller en socket per samtal. Täcker Auth0, avvägningar gentemot WebSockets och varför vi lämnade Firebase Cloud Messaging.",
+    "summary": "Pooling multiple conference events using a single SSE stream.",
+    "summarySv": "Flera konferenshändelser via en enda SSE-ström.",
     "tags": [
       "WebRTC",
       "SSE",
@@ -15,8 +43,7 @@
       "Microservices",
       "Auth0",
       "GCP",
-      "FreeSWITCH",
-      "Real-time"
+      "FreeSWITCH"
     ],
     "tagsSv": [
       "WebRTC",
@@ -25,8 +52,7 @@
       "Mikrotjänster",
       "Auth0",
       "GCP",
-      "FreeSWITCH",
-      "Realtid"
+      "FreeSWITCH"
     ]
   },
   {
@@ -36,8 +62,8 @@
     "url": "https://medium.com/@biratbhattacharjee/streaming-with-next-js-d15b325b78ec",
     "source": "Medium",
     "publishedAt": "2023-10-01",
-    "summary": "Explains how the Next.js 13 App Router uses streaming and React Suspense to improve perceived performance: a loading.tsx route segment supplies the initial fallback, and a posts-and-comments example shows SEO-critical content in the first HTML response while comments load inside Suspense boundaries with skeleton placeholders.",
-    "summarySv": "Beskriver hur Next.js 13 App Router använder streaming och React Suspense för bättre upplevd prestanda: ett route-segment med loading.tsx ger första fallback, och ett exempel med inlägg och kommentarer visar SEO-kritiskt innehåll i det första HTML-svaret medan kommentarer laddas inom Suspense-gränser med skelett-UI som platshållare.",
+    "summary": "App Router streaming + Suspense.",
+    "summarySv": "App Router med streaming och Suspense.",
     "tags": [
       "Next.js",
       "React",
