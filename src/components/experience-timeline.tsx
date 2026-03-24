@@ -105,7 +105,7 @@ export function ExperienceTimeline({
   const toggle = useCallback((key: string) => {
     setExpandedByKey((prev) => ({
       ...prev,
-      [key]: !(prev[key] ?? true),
+      [key]: !(prev[key] ?? false),
     }));
   }, []);
 
@@ -132,7 +132,7 @@ export function ExperienceTimeline({
             const itemKey = `${item.role}-${item.company}-${item.dateRange}`;
             const stateKey = `${sectionId}-${index}-${itemKey}`;
             const logo = getLogo(item.company);
-            const open = expandedByKey[stateKey] !== false;
+            const open = expandedByKey[stateKey] === true;
             const panelId = `${sectionId}-details-${index}`;
             const buttonId = `${sectionId}-toggle-${index}`;
             const jobHeadingId = `${sectionId}-job-heading-${index}`;
