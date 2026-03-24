@@ -131,6 +131,7 @@ Use this list to track progress. Mark items with `[x]` when done.
   - [x] 21.6 Remove the **extra line** below the header (theme / language bar) so the top bar does not show redundant dividers or stray UI chrome.
   - [x] 21.7 In the **experience timeline**, add a control to **show or hide** each job’s **description body** (highlights, extended copy, or the collapsible block you define) with a **fluid open/close animation** (e.g. Framer Motion height/opacity or `AnimatePresence`); keep it **keyboard accessible** (`button` or disclosure pattern, `aria-expanded`, focus styles) and respect **`prefers-reduced-motion`**.
   - [x] 21.8 Replace the **Show/Hide details** row with an **up/down arrow** at the **far end of the date line** (date on one side, arrow on the other): **down** when details are **collapsed**, **up** when **expanded**; keep the same **fluid animation**, **`aria-expanded` / `aria-label`**, keyboard focus, and **`prefers-reduced-motion`**.
+  - [x] 21.9 **Default collapsed:** Each job’s detail panel **starts collapsed** on load; only **`expandedByKey[stateKey] === true`** after the user toggles (**`experience-timeline.tsx`**).
 
 - [x] **Task 22: Hero CLI-style multilingual “spell-out”**
   - [x] 22.1 Add **copy for the hero line(s)** to spell out in **five languages**: **English**, **Swedish**, **Hindi**, **Assamese**, and **Bengali** (same intent as the current tagline/intro or a dedicated CLI phrase — store in data, e.g. extend translations or a small `hero-cli` strings module).
