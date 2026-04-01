@@ -1,5 +1,33 @@
 [
   {
+    "id": "scaling-ui-delivery-ci-cd-react-design-system-c16e9f419950",
+    "title": "Scaling UI Delivery: CI/CD for a React Design System Across Environments",
+    "titleSv": "Skala UI-leverans: CI/CD för ett React-designsystem över miljöer",
+    "url": "https://biratbhattacharjee.medium.com/scaling-ui-delivery-ci-cd-for-a-react-design-system-across-environments-c16e9f419950",
+    "source": "Medium",
+    "publishedAt": "2026-04-16",
+    "summary": "Publishing the UI library only as `latest` gave every app the same build—and one bad release a full prod blast radius. Branch pipelines, commit-driven semver, npm tags per env, and tagged installs in app builds.",
+    "summarySv": "När biblioteket bara publicerades som `latest` fick alla appar samma bygge—en dålig release nådde hela prod. Grenpipelines, semver från commits, npm-taggar per miljö och taggad installation i appbyggen.",
+    "tags": [
+      "Design system",
+      "React",
+      "Jenkins",
+      "npm",
+      "CI/CD",
+      "Node.js",
+      "Semantic versioning"
+    ],
+    "tagsSv": [
+      "Designsystem",
+      "React",
+      "Jenkins",
+      "npm",
+      "CI/CD",
+      "Node.js",
+      "Semantisk versionering"
+    ]
+  },
+  {
     "id": "from-mic-to-model-transcription-browser-e0235322cdcf",
     "title": "From Mic to Model: Real-Time Transcription Pipelines in the Browser",
     "titleSv": "Från mikrofon till modell: realtids transkriptionspipelines i webbläsaren",
