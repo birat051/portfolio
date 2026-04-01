@@ -4,7 +4,7 @@
     "headingId": "problems-heading",
     "title": "What problems I solve",
     "content": [
-      "Hi, I am Birat Bhattacharjee, a Senior Software Engineer with 6 years of experience building scalable, high-performance web applications using React, TypeScript, Node.js, and Go. I specialise in designing and implementing scalable frontend architecture, real-time systems, and performance optimisation, working with technologies such as WebRTC, WebSockets, and Server-Sent Events.",
+      "Hi, I am Birat Bhattacharjee, a Frontend focused full-stack developer with 6 years of experience building scalable, high-performance web applications using React, TypeScript, Node.js, and Go. I specialise in designing and implementing scalable frontend architecture, real-time systems, and performance optimisation, working with technologies such as WebRTC, WebSockets, and Server-Sent Events.",
       "I've led large frontend initiatives, built reusable UI platforms and component libraries, worked with monitoring tools like Sentry, Kibana, CubeAPM and developed backend micro-services that support thousands of users. My focus is on writing clean, scalable code through well-structured architectures, reusable abstractions, and solid test coverage, while collaborating closely with cross-functional teams, mentoring engineers through code reviews and design discussions, and driving reliable releases via strong CI/CD practices."
     ]
   },
@@ -21,23 +21,23 @@
         "dateRange": "March 2024 – January 2026",
         "companyDescription": "Healthplix is India's largest EMR and clinic management platform, supporting 14,000+ doctors across 370+ cities and 45 million+ patients. HALO is its AI assistant that transcribes doctor-patient conversations in real time and auto-generates prescriptions and clinical summaries.",
         "highlights": [
-          "Led frontend architecture for HALO (AI assistant), defining component boundaries and data flows across a multi-team setup.",
-          "Built a real-time audio streaming pipeline using WebSockets and Web Workers, reducing transcription latency by 80% (10s → 2s) and improving responsiveness under load.",
-          "Designed a JSON-driven UI system, reducing new template development time from ~3 days to near zero.",
-          "Contributed to a secure attachment microservice (Go + AWS + MySQL), supporting 2000+ RPM with improved reliability.",
-          "Improved Lighthouse performance score from 80 → 93, reducing LCP, CLS, and FID through targeted optimizations.",
-          "Drove production issue resolution and RCA processes, improving release stability and team-wide engineering practices."
+          "Led frontend architecture for HALO (AI assistant), reducing development complexity and enabling faster feature iteration across teams.",
+          "Built a real-time audio streaming pipeline using WebSockets and Web Workers, reducing transcription latency by 80% (10s → 2s), enabling near real-time clinical documentation for 14,000+ doctors.",
+          "Designed a JSON-driven UI system, reducing new template development time from ~3 days to near zero, enabling rapid scaling of new clinical templates without engineering dependency.",
+          "Improved Lighthouse performance score from 80 → 93, improving load performance and usability for doctors operating on low-bandwidth networks.",
+          "Engineered a secure attachment microservice (Go, AWS, MySQL) handling 2K+ RPM, unlocking onboarding of security-compliant hospitals and directly driving new customer acquisition."
         ],
         "skills": [
           "React",
           "TypeScript",
           "Zustand",
           "TailwindCSS",
-          "Web Workers",
-          "WebSockets",
           "Node.js",
+          "Husky",
+          "React Testing Library",
           "Go",
-          "AWS"
+          "AWS",
+          "MySQL"
         ],
         "companyUrl": "https://www.healthplix.com/",
         "relatedWorks": [
@@ -58,23 +58,21 @@
         "dateRange": "March 2022 – February 2024",
         "companyDescription": "MPSC builds low-latency communication products over the cloud for the finance industry, powered by WebRTC, SIP and FreeSWITCH.",
         "highlights": [
-          "Built and scaled real-time communication interfaces for trading platforms using React and WebRTC.",
-          "Reduced call drop rate by 25% by redesigning connection state management and reconnection flows.",
-          "Implemented real-time event streaming using SSE and Web Workers, maintaining 30–80ms average delivery latency while improving UI responsiveness under high load.",
-          "Designed and developed backend APIs to create and manage conferences with secure authentication using Auth0, and built a payment validation microservice improving licence conversion by 50%.",
-          "Contributed to cloud-based conferencing infrastructure (GCP, Kubernetes, FreeSWITCH) for reliable session handling.",
-          "Collaborated with cross-functional stakeholders to deliver features in iterative, milestone-driven cycles.",
-          "Mentored engineers through code reviews, linting standards and design discussions."
+          "Built and scaled real-time communication interfaces for trading platforms using React and WebRTC, handling high-frequency interactions with strict latency requirements.",
+          "Reduced call drop rate by 25% by redesigning connection state management and reconnection flows, boosting reliability of real-time communication for end users.",
+          "Implemented event streaming using SSE and Web Workers, maintaining 30–80ms average delivery latency, ensuring low-latency and stable communication under high-frequency trading scenarios.",
+          "Designed backend APIs for secure conference management (Auth0) and payment validation microservice, expediting license conversion by 50% and raising onboarding efficiency.",
+          "Built cloud-based conferencing infrastructure (AWS, Kubernetes, FreeSWITCH) for reliable session handling, later productized into an API platform, enabling onboarding of 3 clients."
         ],
         "skills": [
           "React",
           "Redux",
+          "TypeScript",
           "WebRTC",
           "Node.js",
-          "WebSockets",
-          "GCP",
-          "Docker",
-          "Kubernetes"
+          "Express",
+          "Accessibility",
+          "AWS"
         ],
         "companyUrl": "https://mpsc.io/",
         "relatedWorks": [
@@ -91,17 +89,14 @@
         "dateRange": "June 2019 – September 2021",
         "companyDescription": "Hitachi Vantara is a Hitachi company that provides data storage, hybrid cloud infrastructure, and enterprise software and consulting for organizations worldwide.",
         "highlights": [
-          "Developed and maintained enterprise Java applications handling large-scale Change Order workflows.",
-          "Improved query performance, reducing processing time for key operations.",
-          "Built pixel-perfect, responsive UI components for an internal tool and improved accessibility (Lighthouse score 10 → 80).",
+          "Enhanced query performance, reducing processing time for key operations in Enterprise applications.",
+          "Built responsive frontend components for an internal tool and improved WCAG accessibility (Lighthouse score 10 → 80).",
           "Integrated REST APIs to streamline data exchange across systems."
         ],
         "skills": [
-          "Java",
           "React",
-          "MySQL",
-          "REST APIs",
-          "Linux"
+          "TypeScript",
+          "MySQL"
         ],
         "companyUrl": "https://www.hitachivantara.com/en-us/home",
         "relatedWorks": []

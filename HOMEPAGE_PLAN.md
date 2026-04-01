@@ -217,12 +217,33 @@ Use this list to track progress. Mark items with `[x]` when done.
   - [x] 28.6 **Wire `home-content.tsx`:** pass new fields from **`sections.json`** into **`ExperienceTimeline`**; ensure **`getTranslations(locale)`** supplies UI copy; **Hitachi** row shows company link + zero chips if **`relatedWorks`** is empty (no placeholder noise unless product wants “Coming soon”). *(Timeline merge for **`companyUrl`** / **`relatedWorks`** already in **`home-content`** from **28.4**; **28.6** completes chip UI + any remaining props.)* **Done:** Merge + **28.5** translation props; **Hitachi** **`relatedWorks: []`** → no related-work block.
   - [x] 28.7 **Quality:** run **`npm run lint`** and **`npm run build`**; quick keyboard + screen-reader pass on new links (focus order, **`aria-current`** N/A for external; **`aria-label`** where icon-only risk). **Done:** **`npm run lint`** clean; **`npm run build`** OK (Next **16.1.6**, **`/`** static). **Code audit:** company **`a`** and chip **`motion.a`** use **`aria-label`** templates (icons **`aria-hidden`** — not icon-only links); **`focus-visible:ring-tertiary`** on both; expand/collapse **`button`** stays before panel in DOM → Tab reaches toggle before in-panel links when open. **`aria-current`** not used on external links (correct). **Manual (recommended):** Tab through **Experience** with a row expanded — focus company link + each related-work chip; spot-check VoiceOver/NVDA EN/SV announcement for **`aria-label`** strings.
 
+- [x] **Task 29: Engineering case study — “Scaling UI Delivery” (Medium, design-system CI/CD)**
+
+  - [x] 29.1 **What the article is about (card teaser / context):** A React UI library published only as npm **`latest`** meant a small dev fix could ship to **every** consumer and cause real prod impact (e.g. unintended **`useEffect`** loops → API spikes). The post walks through **environment-aware release**: Jenkins pipelines per branch (**`qa`** / **`preprod`** / **`prod`**), a **Node semver script** (registry + **`breaking:`** / **`feature:`** commit conventions), **npm distribution tags** instead of a single **`latest`**, and **app pre-build installs** pinned to the matching tag so each environment pulls a controlled version.
+  - [x] 29.2 Add a row to **`src/data/case-studies-blogs.json`** with **`title`**, **`url`** ([Scaling UI Delivery on Medium](https://biratbhattacharjee.medium.com/scaling-ui-delivery-ci-cd-for-a-react-design-system-across-environments-c16e9f419950)), **`publishedAt`**, **`summary`** / **`summarySv`**, **`tags`** / **`tagsSv`** aligned with **29.1**; run **`npm run lint`** and **`npm run build`**.
+
+- [ ] **Task 30: Center hero profile image horizontally in the hero column**
+
+  **Context:** In **`hero.tsx`**, the hero column is a **`flex flex-col`** with **`items-center`** on small viewports but **`md:items-start`** from **`md+`**, which **left-aligns** all flex children—including the **round profile `Image`**—inside the sticky sidebar at **`lg`**. The avatar’s inner wrapper uses **`items-center`**, but the **block itself** sits on the **start** edge of the column, so it is **not** centered horizontally in the column on tablet/desktop.
+
+  - [ ] 30.1 **Layout audit:** Confirm desired alignment for **headline / tagline / intro** (**`md:text-left`**) vs **photo** (centered in column); avoid unintentionally centering text if only the image should move.
+  - [ ] 30.2 **Implement:** Keep text and below-the-fold hero controls as today; **horizontally center** only the profile image row (e.g. **`self-center`** on the photo’s outer wrapper, or **`w-full flex justify-center`** around the **`Image`** / **`motion.div`** block) so the avatar is centered in the **full width** of the hero column at **`md`** and **`lg`**.
+  - [ ] 30.3 **Verify:** Resize **`sm` → `md` → `lg`**; check sticky hero column still looks balanced; run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 31: Hide Demos + AI sections (temporary)**
+
+  - [x] 31.1 Filter **`demos`** and **`ai`** out in **`home-content.tsx`** (**`SECTION_IDS_DISABLED_FOR_NOW`**) so they disappear from **SectionSwitcher** and the main column; keep entries in **`sections.json`** — remove ids from the Set to show them again.
+
+- [x] **Task 32: Experience copy aligned with resume (PDF)**
+
+  - [x] 32.1 Refresh **`sections.json`** timeline **`highlights`** / **`skills`** and matching **`translations.ts`** (**EN + SV**) for **Healthplix**, **MPSC**, and **Hitachi Vantara** from the current resume (roles, bullets, and **Technologies/Tools** lines). **`companyDescription`** in JSON unchanged (SEO JSON-LD source).
+
 ---
 
 ## File and route summary
 
 - **Route:** `src/app/page.tsx` (default landing).
 - **Components:** `src/components/skip-link.tsx`, `site-preferences-header.tsx`, `hero.tsx`, `section-switcher.tsx` (Task **27** — active section on scroll-up), `case-studies-section.tsx`, `external-link-icon.tsx`, `section-value-prop.tsx`, `section-placeholder.tsx`, `scroll-reveal.tsx` (client), `footer.tsx`, `experience-timeline.tsx` (Task **28** — company URLs + related-work chips).
-- **Case studies (Task 23; Task 26 SV copy):** `src/data/case-studies-blogs.json`, `src/data/case-studies-blogs.ts`, `case-studies-section.tsx`, `home-content.tsx`.
+- **Case studies (Task 23; Task 26 SV copy; Task 29 design-system CI/CD article):** `src/data/case-studies-blogs.json`, `src/data/case-studies-blogs.ts`, `case-studies-section.tsx`, `home-content.tsx`.
 - **Experience timeline (Task 18; Task 28 links + chips):** `src/data/sections.json`, `src/data/experience-timeline-schema.ts`, `src/data/experience-timeline-merge.ts`, `experience-timeline.tsx`, `home-content.tsx`, `translations.ts`, `src/app/types.ts`, `src/components/types.ts`.
 - **Profile photo:** `public/photo_op.jpeg` (or `src/assets/images/photo_op.jpeg` if moved for optimization).

@@ -26,6 +26,9 @@ import { getTranslations } from "@/data/translations";
 
 import type { SectionEntry } from "@/app/types";
 
+/** Temporarily excluded from hero nav + main column; rows stay in `sections.json` for easy restore. */
+const SECTION_IDS_DISABLED_FOR_NOW = new Set<string>(["demos", "ai"]);
+
 type HomeContentProps = Readonly<{
   sections: SectionEntry[];
 }>;
@@ -34,7 +37,11 @@ export function HomeContent({ sections }: HomeContentProps) {
   const { locale } = useLocale();
   const t = getTranslations(locale);
 
-  const sectionItems = sections.map((s) => ({
+  const visibleSections = sections.filter(
+    (s) => !SECTION_IDS_DISABLED_FOR_NOW.has(s.id),
+  );
+
+  const sectionItems = visibleSections.map((s) => ({
     id: s.id,
     label: t.sectionTitles[s.id] ?? s.title,
   }));
@@ -71,7 +78,7 @@ export function HomeContent({ sections }: HomeContentProps) {
             />
           </div>
           <div className="lg:min-w-0 lg:flex-1">
-            {sections.map((section) =>
+            {visibleSections.map((section) =>
               section.id === "experience" ? (
                 <ExperienceTimeline
                   key={section.id}

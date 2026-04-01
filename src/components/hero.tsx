@@ -23,7 +23,7 @@ type HeroProps = Readonly<{
 }>;
 
 const DEFAULT_TAGLINE = "Real-time web experiences that scale.";
-const DEFAULT_INTRO = "Front-end focused Senior Software Engineer";
+const DEFAULT_INTRO = "Frontend focused full-stack developer";
 /** Canonical page title / h1 for SEO and screen readers (Task 22.9). */
 const HERO_DISPLAY_NAME = "Birat Bhattacharjee";
 /** Fallback if `nameHeadingSrNote` is omitted (matches English copy). */
