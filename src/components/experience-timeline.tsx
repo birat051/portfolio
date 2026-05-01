@@ -6,6 +6,7 @@ import { useCallback, useState } from "react";
 import healthplixLogo from "@/assets/images/healthplix_logo.jpeg";
 import hitachiVantaraLogo from "@/assets/images/hitachi_vantara.jpeg";
 import mpscLogo from "@/assets/images/mpsc_logo.png";
+import { ExperienceSkillIcon } from "@/components/experience-skill-icon";
 import { ExternalLinkIcon } from "@/components/external-link-icon";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import {
@@ -18,15 +19,15 @@ import { motion, useReducedMotion } from "@/lib/motion";
 import type { ExperienceTimelineItem } from "@/components/types";
 
 /**
- * Task **2.5** — Keyboard: native **`button`** / **`a href`** only; no modal focus trap. Collapsed job
- * detail regions use **`inert`** so they cannot receive focus while hidden.
  * Task **2.6** — Timeline / skills list labels and per-row `aria-label` from locale templates.
  * Task **28.4** — Company name links out when **`companyUrl`** is set.
  * Task **28.5** — **`relatedWorks`** pill links + **`ExternalLinkIcon`**; motion off when reduced motion.
+ * Read more / less: when a job has highlight bullets, **collapsed** shows **`intro`** only + **Read more**;
+ * **skills** and **related work** stay visible; **expanded** adds **all bullets** and **Read less** above skills.
  */
 
 const COMPANY_LOGO_MAP: Record<string, { src: typeof healthplixLogo; alt: string }> = {
-  "Healthplix Technologies": { src: healthplixLogo, alt: "Healthplix Technologies" },
+  Healthplix: { src: healthplixLogo, alt: "Healthplix" },
   "MPSC Inc.": { src: mpscLogo, alt: "MPSC Inc." },
   "Hitachi Vantara": { src: hitachiVantaraLogo, alt: "Hitachi Vantara" },
 };
@@ -67,8 +68,6 @@ type ExperienceTimelineProps = Readonly<{
   headingId: string;
   title: string;
   timeline: ExperienceTimelineItem[];
-  expandJobDetailsLabel: string;
-  collapseJobDetailsLabel: string;
   timelineListAriaLabel: string;
   skillsListAriaLabel: string;
   jobRowAriaTemplate: string;
@@ -78,6 +77,8 @@ type ExperienceTimelineProps = Readonly<{
   relatedWorkHeading: string;
   /** Task **28.3** / **28.5** — `{label}` template for each chip link `aria-label`. */
   relatedWorkLinkAriaTemplate: string;
+  readMoreHighlights: string;
+  readLessHighlights: string;
 }>;
 
 export function ExperienceTimeline({
@@ -85,25 +86,24 @@ export function ExperienceTimeline({
   headingId,
   title,
   timeline,
-  expandJobDetailsLabel,
-  collapseJobDetailsLabel,
   timelineListAriaLabel,
   skillsListAriaLabel,
   jobRowAriaTemplate,
   companySiteAriaTemplate,
   relatedWorkHeading,
   relatedWorkLinkAriaTemplate,
+  readMoreHighlights,
+  readLessHighlights,
 }: ExperienceTimelineProps) {
   const reduceMotion = useReducedMotion();
   const hoverOff = reduceMotion === true;
-  const motionInstant = reduceMotion === true;
 
-  const [expandedByKey, setExpandedByKey] = useState<Record<string, boolean>>(
-    {},
-  );
+  const [highlightsExpandedByKey, setHighlightsExpandedByKey] = useState<
+    Record<string, boolean>
+  >({});
 
-  const toggle = useCallback((key: string) => {
-    setExpandedByKey((prev) => ({
+  const toggleJobDetails = useCallback((key: string) => {
+    setHighlightsExpandedByKey((prev) => ({
       ...prev,
       [key]: !(prev[key] ?? false),
     }));
@@ -130,13 +130,100 @@ export function ExperienceTimeline({
           {timeline.map((item, index) => {
             const isLast = index === timeline.length - 1;
             const itemKey = `${item.role}-${item.company}-${item.dateRange}`;
-            const stateKey = `${sectionId}-${index}-${itemKey}`;
             const logo = getLogo(item.company);
-            const open = expandedByKey[stateKey] === true;
-            const panelId = `${sectionId}-details-${index}`;
-            const buttonId = `${sectionId}-toggle-${index}`;
             const jobHeadingId = `${sectionId}-job-heading-${index}`;
             const relatedWorkHeadingId = `${sectionId}-related-work-heading-${index}`;
+            const detailsStateKey = `${sectionId}-${index}-${itemKey}`;
+            const detailsPanelId = `${sectionId}-job-details-${index}`;
+            const highlightsListId = `${sectionId}-highlights-${index}`;
+            const readMoreToggleId = `${sectionId}-read-more-${index}`;
+            const readLessToggleId = `${sectionId}-read-less-${index}`;
+            const highlightCount = item.highlights.length;
+            const hasDetailsToggle = highlightCount > 0;
+            const detailsExpanded =
+              highlightsExpandedByKey[detailsStateKey] === true;
+
+            const highlightsList =
+              highlightCount > 0 ? (
+                <ul
+                  id={highlightsListId}
+                  className="list-disc space-y-1 pl-5"
+                  aria-labelledby={jobHeadingId}
+                >
+                  {item.highlights.map((h) => (
+                    <li key={`${itemKey}-${h}`}>{h}</li>
+                  ))}
+                </ul>
+              ) : null;
+
+            const skillsAndRelated = (
+              <>
+                <ul
+                  aria-label={skillsListAriaLabel}
+                  className="flex flex-wrap gap-2"
+                >
+                  {item.skills.map((skill) => (
+                    <motion.li
+                      key={`${itemKey}-${skill}`}
+                      className="inline-flex cursor-default items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs text-secondary-foreground ring-2 ring-transparent transition-shadow hover:ring-tertiary/25"
+                      whileHover={
+                        hoverOff ? undefined : { scale: 1.06, y: -2 }
+                      }
+                      whileTap={hoverOff ? undefined : { scale: 0.97 }}
+                      transition={springChip}
+                    >
+                      <ExperienceSkillIcon
+                        skill={skill}
+                        className="h-3.5 w-3.5 shrink-0 opacity-90"
+                      />
+                      {skill}
+                    </motion.li>
+                  ))}
+                </ul>
+
+                {item.relatedWorks && item.relatedWorks.length > 0 ? (
+                  <div className="border-t border-secondary/60 pt-3">
+                    <p
+                      id={relatedWorkHeadingId}
+                      className="mb-2 text-xs font-semibold uppercase tracking-wider text-secondary-foreground"
+                    >
+                      {relatedWorkHeading}
+                    </p>
+                    <ul
+                      className="m-0 flex list-none flex-wrap gap-2 p-0"
+                      aria-labelledby={relatedWorkHeadingId}
+                    >
+                      {item.relatedWorks.map((work) => (
+                        <li key={`${itemKey}-work-${work.url}`}>
+                          <motion.a
+                            href={work.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group/chip inline-flex max-w-full items-center gap-1.5 rounded-full border border-secondary bg-secondary/40 px-3 py-1.5 text-xs font-medium text-primary-foreground outline-none transition-colors hover:border-tertiary/50 hover:bg-secondary focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 focus-visible:ring-offset-primary dark:hover:bg-secondary/60"
+                            aria-label={formatExperienceRelatedWorkLinkAriaLabel(
+                              relatedWorkLinkAriaTemplate,
+                              work.label,
+                            )}
+                            whileHover={
+                              hoverOff ? undefined : { scale: 1.04, y: -1 }
+                            }
+                            whileTap={
+                              hoverOff ? undefined : { scale: 0.98 }
+                            }
+                            transition={springChip}
+                          >
+                            <span className="min-w-0 break-words">
+                              {work.label}
+                            </span>
+                            <ExternalLinkIcon className="h-3.5 w-3.5 shrink-0 text-tertiary opacity-80 group-hover/chip:opacity-100" />
+                          </motion.a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+              </>
+            );
 
             return (
               <motion.li
@@ -192,173 +279,80 @@ export function ExperienceTimeline({
                   variants={hoverOff ? undefined : contentVariants}
                 >
                   <div className="relative z-0 space-y-3 px-2 py-1">
-                  <div className="flex items-center justify-between gap-3">
-                    <p className="min-w-0 text-sm text-tertiary">
-                      {item.dateRange}
-                    </p>
-                    <button
-                      type="button"
-                      id={buttonId}
-                      aria-expanded={open}
-                      aria-controls={panelId}
-                      aria-label={
-                        open
-                          ? `${collapseJobDetailsLabel} — ${item.role}, ${item.company}`
-                          : `${expandJobDetailsLabel} — ${item.role}, ${item.company}`
-                      }
-                      onClick={() => toggle(stateKey)}
-                      className="flex shrink-0 items-center justify-center rounded-md p-1.5 text-tertiary outline-none transition-colors hover:bg-secondary/60 hover:text-primary-foreground focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+                    <p className="text-sm text-tertiary">{item.dateRange}</p>
+                    {/* Task 2.3 — h3 under section h2; keeps outline h1 → h2 → h3 (no level skips). */}
+                    <h3
+                      id={jobHeadingId}
+                      className="m-0 text-base font-normal text-secondary-foreground"
                     >
-                      <motion.span
-                        aria-hidden
-                        className="inline-flex"
-                        animate={{ rotate: open ? 180 : 0 }}
-                        transition={
-                          motionInstant
-                            ? { duration: 0 }
-                            : { type: "spring", stiffness: 320, damping: 24 }
-                        }
-                      >
-                        {/* Chevron down = collapsed; rotated 180° = up when expanded */}
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
+                      <span className="font-semibold text-primary-foreground">
+                        {item.role}
+                      </span>
+                      {" — "}
+                      {item.companyUrl ? (
+                        <a
+                          href={item.companyUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group/company inline-flex max-w-full items-center gap-1 rounded-sm text-primary-foreground underline decoration-tertiary/50 underline-offset-2 outline-none transition-colors hover:text-tertiary hover:decoration-tertiary focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+                          aria-label={formatExperienceCompanySiteAriaLabel(
+                            companySiteAriaTemplate,
+                            item.company,
+                          )}
                         >
-                          <path d="m6 9 6 6 6-6" />
-                        </svg>
-                      </motion.span>
-                    </button>
-                  </div>
-                  {/* Task 2.3 — h3 under section h2; keeps outline h1 → h2 → h3 (no level skips). */}
-                  <h3
-                    id={jobHeadingId}
-                    className="m-0 text-base font-normal text-secondary-foreground"
-                  >
-                    <span className="font-semibold text-primary-foreground">
-                      {item.role}
-                    </span>
-                    {" — "}
-                    {item.companyUrl ? (
-                      <a
-                        href={item.companyUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group/company inline-flex max-w-full items-center gap-1 rounded-sm text-primary-foreground underline decoration-tertiary/50 underline-offset-2 outline-none transition-colors hover:text-tertiary hover:decoration-tertiary focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
-                        aria-label={formatExperienceCompanySiteAriaLabel(
-                          companySiteAriaTemplate,
-                          item.company,
-                        )}
-                      >
-                        <span className="min-w-0 break-words">{item.company}</span>
-                        <ExternalLinkIcon className="h-3.5 w-3.5 shrink-0 text-tertiary opacity-80 group-hover/company:opacity-100" />
-                      </a>
-                    ) : (
-                      <span>{item.company}</span>
-                    )}
-                  </h3>
-                  <p className="text-sm">{item.location}</p>
+                          <span className="min-w-0 break-words">{item.company}</span>
+                          <ExternalLinkIcon className="h-3.5 w-3.5 shrink-0 text-tertiary opacity-80 group-hover/company:opacity-100" />
+                        </a>
+                      ) : (
+                        <span>{item.company}</span>
+                      )}
+                    </h3>
+                    <p className="text-sm">{item.location}</p>
 
-                  <motion.div
-                    id={panelId}
-                    role="region"
-                    aria-labelledby={buttonId}
-                    initial={false}
-                    animate={{
-                      height: open ? "auto" : 0,
-                      opacity: open ? 1 : 0,
-                    }}
-                    transition={
-                      motionInstant
-                        ? { duration: 0 }
-                        : {
-                            height: {
-                              duration: 0.42,
-                              ease: [0.33, 1, 0.68, 1],
-                            },
-                            opacity: { duration: 0.22 },
-                          }
-                    }
-                    style={{ overflow: "hidden" }}
-                    aria-hidden={!open}
-                    className={open ? "" : "pointer-events-none"}
-                    {...(!open ? { inert: true as const } : {})}
-                  >
+                    <p className="text-sm leading-relaxed text-secondary-foreground">
+                      {item.intro}
+                    </p>
+
                     <div className="space-y-3 pb-1 pt-1">
-                      <ul className="list-disc space-y-1 pl-5">
-                        {item.highlights.map((h) => (
-                          <li key={`${itemKey}-${h}`}>{h}</li>
-                        ))}
-                      </ul>
-
-                      <ul
-                        aria-label={skillsListAriaLabel}
-                        className="flex flex-wrap gap-2"
-                      >
-                        {item.skills.map((skill) => (
-                          <motion.li
-                            key={`${itemKey}-${skill}`}
-                            className="cursor-default rounded-full bg-secondary px-3 py-1 text-xs text-secondary-foreground ring-2 ring-transparent transition-shadow hover:ring-tertiary/25"
-                            whileHover={
-                              hoverOff ? undefined : { scale: 1.06, y: -2 }
-                            }
-                            whileTap={hoverOff ? undefined : { scale: 0.97 }}
-                            transition={springChip}
-                          >
-                            {skill}
-                          </motion.li>
-                        ))}
-                      </ul>
-
-                      {item.relatedWorks && item.relatedWorks.length > 0 ? (
-                        <div className="border-t border-secondary/60 pt-3">
-                          <p
-                            id={relatedWorkHeadingId}
-                            className="mb-2 text-xs font-semibold uppercase tracking-wider text-secondary-foreground"
-                          >
-                            {relatedWorkHeading}
-                          </p>
-                          <ul
-                            className="m-0 flex list-none flex-wrap gap-2 p-0"
-                            aria-labelledby={relatedWorkHeadingId}
-                          >
-                            {item.relatedWorks.map((work) => (
-                              <li key={`${itemKey}-work-${work.url}`}>
-                                <motion.a
-                                  href={work.url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="group/chip inline-flex max-w-full items-center gap-1.5 rounded-full border border-secondary bg-secondary/40 px-3 py-1.5 text-xs font-medium text-primary-foreground outline-none transition-colors hover:border-tertiary/50 hover:bg-secondary focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 focus-visible:ring-offset-primary dark:hover:bg-secondary/60"
-                                  aria-label={formatExperienceRelatedWorkLinkAriaLabel(
-                                    relatedWorkLinkAriaTemplate,
-                                    work.label,
-                                  )}
-                                  whileHover={
-                                    hoverOff ? undefined : { scale: 1.04, y: -1 }
-                                  }
-                                  whileTap={
-                                    hoverOff ? undefined : { scale: 0.98 }
-                                  }
-                                  transition={springChip}
-                                >
-                                  <span className="min-w-0 break-words">
-                                    {work.label}
-                                  </span>
-                                  <ExternalLinkIcon className="h-3.5 w-3.5 shrink-0 text-tertiary opacity-80 group-hover/chip:opacity-100" />
-                                </motion.a>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
+                      {hasDetailsToggle && !detailsExpanded ? (
+                        <button
+                          id={readMoreToggleId}
+                          type="button"
+                          aria-expanded={false}
+                          aria-controls={detailsPanelId}
+                          onClick={() => toggleJobDetails(detailsStateKey)}
+                          className="text-left text-sm font-medium text-tertiary underline decoration-tertiary/50 underline-offset-2 outline-none transition-colors hover:text-primary-foreground hover:decoration-tertiary focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+                        >
+                          {readMoreHighlights}
+                        </button>
                       ) : null}
+
+                      {hasDetailsToggle ? (
+                        <div
+                          id={detailsPanelId}
+                          hidden={!detailsExpanded}
+                          className="space-y-3"
+                        >
+                          {highlightsList}
+                          {detailsExpanded ? (
+                            <button
+                              id={readLessToggleId}
+                              type="button"
+                              aria-expanded={true}
+                              aria-controls={detailsPanelId}
+                              onClick={() => toggleJobDetails(detailsStateKey)}
+                              className="text-left text-sm font-medium text-tertiary underline decoration-tertiary/50 underline-offset-2 outline-none transition-colors hover:text-primary-foreground hover:decoration-tertiary focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+                            >
+                              {readLessHighlights}
+                            </button>
+                          ) : null}
+                        </div>
+                      ) : (
+                        highlightsList
+                      )}
+
+                      {skillsAndRelated}
                     </div>
-                  </motion.div>
                   </div>
                 </motion.div>
               </motion.li>

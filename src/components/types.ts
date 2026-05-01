@@ -19,6 +19,10 @@ export type ExperienceTimelineItem = {
    * shown in the timeline UI. Personal accomplishments stay in **`highlights`**.
    */
   companyDescription?: string;
+  /**
+   * Visible context under location and above highlight bullets; locale-specific copy in **`translations.ts`**.
+   */
+  intro: string;
   highlights: string[];
   skills: string[];
   /** Task **28.1** — Employer homepage (company heading link). Canonical in **`sections.json`**. */
@@ -26,4 +30,12 @@ export type ExperienceTimelineItem = {
   /** Task **28.1** — Outbound related-work links (chip row); order preserved. */
   relatedWorks?: ExperienceRelatedWorkLink[];
 };
+
+export type ProjectItem = Readonly<{
+  title: string;
+  subtitle: string;
+  url: string;
+  sourceUrl?: string;
+  highlights: readonly string[];
+}>;
 

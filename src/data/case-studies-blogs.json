@@ -9,7 +9,6 @@
     "summary": "Publishing the UI library only as `latest` gave every app the same build—and one bad release a full prod blast radius. Branch pipelines, commit-driven semver, npm tags per env, and tagged installs in app builds.",
     "summarySv": "När biblioteket bara publicerades som `latest` fick alla appar samma bygge—en dålig release nådde hela prod. Grenpipelines, semver från commits, npm-taggar per miljö och taggad installation i appbyggen.",
     "tags": [
-      "Design system",
       "React",
       "Jenkins",
       "npm",
@@ -18,7 +17,6 @@
       "Semantic versioning"
     ],
     "tagsSv": [
-      "Designsystem",
       "React",
       "Jenkins",
       "npm",
@@ -38,8 +36,6 @@
     "summarySv": "Live transkription av kliniskt ljud i webbläsaren—~80 % kortare transkriptionstid (10 s → 2 s).",
     "tags": [
       "WebSocket",
-      "Web Workers",
-      "RecordRTC",
       "React",
       "TypeScript",
       "WaveSurfer",
@@ -47,8 +43,6 @@
     ],
     "tagsSv": [
       "WebSocket",
-      "Web Workers",
-      "RecordRTC",
       "React",
       "TypeScript",
       "WaveSurfer",
@@ -66,20 +60,18 @@
     "summarySv": "Flera konferenshändelser via en enda SSE-ström.",
     "tags": [
       "WebRTC",
-      "SSE",
       "React",
       "Microservices",
       "Auth0",
-      "GCP",
+      "AWS",
       "FreeSWITCH"
     ],
     "tagsSv": [
       "WebRTC",
-      "SSE",
       "React",
       "Mikrotjänster",
       "Auth0",
-      "GCP",
+      "AWS",
       "FreeSWITCH"
     ]
   },
@@ -95,19 +87,11 @@
     "tags": [
       "Next.js",
       "React",
-      "Streaming",
-      "Suspense",
-      "App Router",
-      "SSR",
       "TypeScript"
     ],
     "tagsSv": [
       "Next.js",
       "React",
-      "Streaming",
-      "Suspense",
-      "App Router",
-      "SSR",
       "TypeScript"
     ]
   }
