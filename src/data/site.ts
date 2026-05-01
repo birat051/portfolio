@@ -25,6 +25,7 @@ export const SITE_PERSON_JSON_LD = {
   url: SITE_URL,
   sameAs: [
     "https://github.com/birat051",
+    "https://medium.com/@biratbhattacharjee",
     "https://www.linkedin.com/in/biratbhattacharjee/",
   ],
 } as const;

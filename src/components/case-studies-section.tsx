@@ -1,3 +1,4 @@
+import { ExperienceSkillIcon } from "@/components/experience-skill-icon";
 import { ExternalLinkIcon } from "@/components/external-link-icon";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
@@ -32,6 +33,7 @@ type CaseStudiesSectionProps = Readonly<{
  * Task **24.6** — no per-card **published** line; **`publishedAt`** / **`source`** stay in JSON for sort / future use.
  * Task **26.2** — **`blogs`** are **`CaseStudyBlogDisplay`** (locale-resolved via **`getCaseStudyBlogsForLocale`** in **`home-content`**).
  * Task **26.3** — **`locale`** is passed from **`home-content`**; **`caseStudiesUi`** from **`getTranslations(locale)`**; section **`lang`** matches locale for assistive tech.
+ * Task **38** — Tag chips use **`ExperienceSkillIcon`** (same map as experience skills + case-study tag keys).
  * Task **2.6** — Article **`ul`** **`aria-label`** from **`articlesListAriaLabel`**.
  */
 export function CaseStudiesSection({
@@ -94,7 +96,11 @@ export function CaseStudiesSection({
                       >
                         {entry.tags.map((tag) => (
                           <li key={tag}>
-                            <span className="inline-block rounded-full border border-secondary/80 bg-primary px-2.5 py-0.5 text-xs font-medium text-secondary-foreground">
+                            <span className="inline-flex items-center gap-1.5 rounded-full border border-secondary/80 bg-primary px-2.5 py-0.5 text-xs font-medium text-secondary-foreground">
+                              <ExperienceSkillIcon
+                                skill={tag}
+                                className="h-3.5 w-3.5 shrink-0 opacity-90"
+                              />
                               {tag}
                             </span>
                           </li>

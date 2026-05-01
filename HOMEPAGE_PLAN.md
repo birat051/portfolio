@@ -19,7 +19,7 @@ Use this list to track progress. Mark items with `[x]` when done.
   - [x] 2.2 Landmarks: header, main, footer, nav with accessible name **Done:** **`<header>`** banner via **`SitePreferencesHeader`** (outside **`<main>`**); **`main`** `#main-content`; **`<footer>`** **`contentinfo`** with **`aria-label`**; section **`<nav>`** in **`SectionSwitcher`** uses locale **`t.a11y`** strings (**`translations.ts`**).
   - [x] 2.3 Heading hierarchy (h1 → h2, no skips) **Done:** single **`h1`** in **`Hero`**; section **`h2`**s; **`h3`** for each experience job title (**`experience-timeline.tsx`**, was **`p`**) and each case-study card (**`case-studies-section.tsx`**); contract noted in **`home-content.tsx`**.
   - [x] 2.4 Visible focus styles on interactive elements **Done:** **`@layer base`** **`:focus-visible`** outline (**`var(--tertiary)`**) in **`globals.css`** for **`a[href]`**, **`button`**, **`input`**, **`textarea`**, **`select`**, **`summary`**; existing **`outline-none` + `focus-visible:ring-*`** on header, hero links, section nav, case-study links, experience toggle, theme/language, skip link ( **`focus:`** ring) unchanged and override outline where set.
-  - [x] 2.5 Full keyboard flow; no focus traps **Done:** audited — no dialogs / Tab-capture; skip link → header controls → **`main`**; **`inert`** on collapsed experience disclosure panels (**`experience-timeline.tsx`**); tab order noted in **`home-content.tsx`**.
+  - [x] 2.5 Full keyboard flow; no focus traps **Done:** audited — no dialogs / Tab-capture; skip link → header controls → **`main`**; tab order noted in **`home-content.tsx`**. *(Experience jobs no longer use expand/collapse — **`Task 34`**.)*
   - [x] 2.6 Screen-reader friendly structure **Done:** **`document.documentElement.lang`** syncs with locale (**`locale-context.tsx`**); EN/SV **`a11y`** strings for skip link, hero socials, experience timeline/skills/row template, theme + language controls (**`translations.ts`**); **`articlesListAriaLabel`** on case-study list; removed duplicate **`sr-only`** inside social links (**`aria-label`** only); **`formatExperienceJobRowAriaLabel`** helper.
 - [x] **Task 3: Header and navigation**
   - [x] 3.1 Header with site identity
@@ -34,6 +34,7 @@ Use this list to track progress. Mark items with `[x]` when done.
   - [x] 5.1 Section with clear h2
   - [x] 5.2 Placeholder content only
   - [x] 5.3 Replace placeholder with About copy from `PORTFOLIO_PLAN.md`
+  - [x] 5.4 Refresh body copy (frontend-focused positioning, stack breadth, team fit); EN + SV in `translations.ts`, parity in `sections.json`
 - [ ] **Task 6: Main sections (placeholders)**
   - [x] 6.1 One block per section (7 sections)
   - [x] 6.2 Each: `<section>`, `<h2>`, placeholder
@@ -238,12 +239,71 @@ Use this list to track progress. Mark items with `[x]` when done.
 
   - [x] 32.1 Refresh **`sections.json`** timeline **`highlights`** / **`skills`** and matching **`translations.ts`** (**EN + SV**) for **Healthplix**, **MPSC**, and **Hitachi Vantara** from the current resume (roles, bullets, and **Technologies/Tools** lines). **`companyDescription`** in JSON unchanged (SEO JSON-LD source).
 
+- [x] **Task 33: Problems + experience copy refresh**
+
+  - [x] 33.1 Update **`problemsContent`** closing paragraph (idea → production, codebase hygiene); **`sections.json`** parity.
+  - [x] 33.2 Refresh experience roles, employer blurbs, highlights, and skills in **`sections.json`** and **`translations.ts`** (EN + SV); use **`company`** **`Healthplix`** for timeline + link merge; update **`experience-timeline.tsx`** logo map.
+
+- [x] **Task 34: Experience timeline — remove expand/collapse**
+
+  - [x] 34.1 Always show highlights, skills, and related-work links per job; drop toggle **`button`**, height animation, and **`inert`** wrapper (**`experience-timeline.tsx`**).
+  - [x] 34.2 Remove **`expandJobDetails`** / **`collapseJobDetails`** from **`translations.ts`** and props on **`ExperienceTimeline`** / **`home-content.tsx`**.
+  - [x] 34.3 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 35: Experience highlights — read more / less**
+
+  - [x] 35.1 When a job has **one or more** highlight bullets, **collapsed** shows **`intro`** (**description**) only plus **Read more**; **skills** and **related work** stay visible. **Expanded** adds **all bullets** and **Read less** (above skills). Jobs with **no** highlight bullets show **intro**, skills, and related work with no toggle.
+  - [x] 35.2 Add **`readMoreHighlights`** / **`readLessHighlights`** to **`translations.ts`** (EN + SV); wire from **`home-content.tsx`**.
+  - [x] 35.3 **`aria-expanded`** / **`aria-controls`** on the toggle(s); details panel uses **`hidden`** when collapsed; run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 36: Experience job intro (under location)**
+
+  - [x] 36.1 Add **`intro`** to **`ExperienceTimelineItem`**; English in **`sections.json`**, EN + SV in **`translations.ts`**; render between location and highlight bullets (**`experience-timeline.tsx`**).
+  - [x] 36.2 Document in **`experience-timeline-schema.ts`**; run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 38: Skill / tag chips — brand icons**
+
+  - [x] 38.1 Add **`react-icons`**; map labels in **`experience-skill-icon.tsx`** (`TECH_CHIP_ICONS`); experience **`skills`** and case-study **`tags`** use **`ExperienceSkillIcon`** before text (`aria-hidden`); unknown labels → terminal fallback icon.
+  - [x] 38.2 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 39: Projects section — Ekko**
+
+  - [x] 39.1 Add a **Projects** section row to **`sections.json`** so it appears in the main column and hero section navigation before case studies.
+  - [x] 39.2 Add locale-aware project copy in **`translations.ts`** for **Ekko** (open-source E2EE messaging platform, URL, scalability, encryption, and load-test bullets).
+  - [x] 39.3 Create and wire a **`ProjectsSection`** component from **`home-content.tsx`**, with accessible external project link behavior and a project list label.
+  - [x] 39.4 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 40: Ekko try-it-out iframes**
+
+  - [x] 40.1 Extend project data/types with optional iframe demo instances for **Ekko**.
+  - [x] 40.2 Render a **Try it out** area in **`ProjectsSection`** with two horizontally separated iframe instances on wider screens and accessible iframe titles.
+  - [x] 40.3 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 41: Ekko playground route**
+
+  - [x] 41.1 Replace same-page Ekko iframe rendering with a **Try it out** link from the Projects card.
+  - [x] 41.2 Add a dedicated playground route that renders two Ekko iframe instances horizontally, each covering its half of the full viewport height and width.
+  - [x] 41.3 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 42: Ekko external actions**
+
+  - [x] 42.1 Replace the local Ekko playground link with an external new-tab link to the live Ekko website.
+  - [x] 42.2 Add a GitHub source-code link for **`birat051/messaging-system`**.
+  - [x] 42.3 Render project actions as icon-only links with accessible labels, and remove the unused playground route.
+  - [x] 42.4 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 43: Ekko actions — remove duplicate live link**
+
+  - [x] 43.1 Remove the extra live-site icon/button from the Ekko project card because the project title already links to the live website.
+  - [x] 43.2 Keep the GitHub source-code icon link and remove unused live-demo aria-label copy.
+  - [x] 43.3 Run **`npm run lint`** and **`npm run build`**.
+
 ---
 
 ## File and route summary
 
 - **Route:** `src/app/page.tsx` (default landing).
-- **Components:** `src/components/skip-link.tsx`, `site-preferences-header.tsx`, `hero.tsx`, `section-switcher.tsx` (Task **27** — active section on scroll-up), `case-studies-section.tsx`, `external-link-icon.tsx`, `section-value-prop.tsx`, `section-placeholder.tsx`, `scroll-reveal.tsx` (client), `footer.tsx`, `experience-timeline.tsx` (Task **28** — company URLs + related-work chips).
-- **Case studies (Task 23; Task 26 SV copy; Task 29 design-system CI/CD article):** `src/data/case-studies-blogs.json`, `src/data/case-studies-blogs.ts`, `case-studies-section.tsx`, `home-content.tsx`.
-- **Experience timeline (Task 18; Task 28 links + chips):** `src/data/sections.json`, `src/data/experience-timeline-schema.ts`, `src/data/experience-timeline-merge.ts`, `experience-timeline.tsx`, `home-content.tsx`, `translations.ts`, `src/app/types.ts`, `src/components/types.ts`.
+- **Components:** `src/components/skip-link.tsx`, `site-preferences-header.tsx`, `hero.tsx`, `section-switcher.tsx` (Task **27** — active section on scroll-up), `projects-section.tsx`, `case-studies-section.tsx`, `external-link-icon.tsx`, `experience-skill-icon.tsx`, `section-value-prop.tsx`, `section-placeholder.tsx`, `scroll-reveal.tsx` (client), `footer.tsx`, `experience-timeline.tsx` (Task **28** — company URLs + related-work chips).
+- **Case studies (Task 23; Task 26 SV copy; Task 29 design-system CI/CD article; Task 38 tag icons):** `src/data/case-studies-blogs.json`, `src/data/case-studies-blogs.ts`, `case-studies-section.tsx`, `experience-skill-icon.tsx`, `home-content.tsx`.
+- **Experience timeline (Task 18; Task 28 links + chips; Task 38 skill icons):** `src/data/sections.json`, `src/data/experience-timeline-schema.ts`, `src/data/experience-timeline-merge.ts`, `experience-timeline.tsx`, `experience-skill-icon.tsx`, `home-content.tsx`, `translations.ts`, `src/app/types.ts`, `src/components/types.ts`.
 - **Profile photo:** `public/photo_op.jpeg` (or `src/assets/images/photo_op.jpeg` if moved for optimization).

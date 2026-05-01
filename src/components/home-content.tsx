@@ -19,6 +19,7 @@ import { CaseStudiesSection } from "@/components/case-studies-section";
 import { ContentSection } from "@/components/content-section";
 import { ExperienceTimeline } from "@/components/experience-timeline";
 import { Hero } from "@/components/hero";
+import { ProjectsSection } from "@/components/projects-section";
 import { useLocale } from "@/contexts/locale-context";
 import { getCaseStudyBlogsForLocale } from "@/data/case-studies-blogs";
 import { mergeExperienceTimelineWithLinks } from "@/data/experience-timeline-merge";
@@ -71,6 +72,7 @@ export function HomeContent({ sections }: HomeContentProps) {
               sectionNavAriaLabel={t.a11y.sectionNavigationAriaLabel}
               socialLinksAriaLabel={t.a11y.socialLinks}
               githubProfileAriaLabel={t.a11y.githubProfile}
+              mediumProfileAriaLabel={t.a11y.mediumProfile}
               linkedInProfileAriaLabel={t.a11y.linkedInProfile}
               tagline={t.hero.tagline}
               intro={t.hero.intro}
@@ -86,8 +88,6 @@ export function HomeContent({ sections }: HomeContentProps) {
                   headingId={section.headingId}
                   title={t.sectionTitles[section.id] ?? section.title}
                   timeline={experienceTimeline}
-                  expandJobDetailsLabel={t.experienceUi.expandJobDetails}
-                  collapseJobDetailsLabel={t.experienceUi.collapseJobDetails}
                   timelineListAriaLabel={t.a11y.experienceTimelineList}
                   skillsListAriaLabel={t.a11y.experienceSkillsList}
                   jobRowAriaTemplate={t.a11y.experienceJobRowAriaTemplate}
@@ -96,6 +96,8 @@ export function HomeContent({ sections }: HomeContentProps) {
                   relatedWorkLinkAriaTemplate={
                     t.a11y.experienceRelatedWorkLinkAriaTemplate
                   }
+                  readMoreHighlights={t.experienceUi.readMoreHighlights}
+                  readLessHighlights={t.experienceUi.readLessHighlights}
                 />
               ) : section.id === "case-studies" ? (
                 <CaseStudiesSection
@@ -106,6 +108,16 @@ export function HomeContent({ sections }: HomeContentProps) {
                   locale={locale}
                   blogs={caseStudyBlogs}
                   ui={t.caseStudiesUi}
+                />
+              ) : section.id === "projects" ? (
+                <ProjectsSection
+                  key={section.id}
+                  id={section.id}
+                  headingId={section.headingId}
+                  title={t.sectionTitles[section.id] ?? section.title}
+                  locale={locale}
+                  projects={t.projectItems}
+                  ui={t.projectsUi}
                 />
               ) : (
                 <ContentSection
