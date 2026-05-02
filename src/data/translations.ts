@@ -35,6 +35,8 @@ export type Translations = {
     opensInNewTab: string;
     projectsListAriaLabel: string;
     sourceCodeAriaLabel: string;
+    /** Visible label above per-project **`skills`** chips. */
+    coreSkillsHeading: string;
   };
   comingSoon: string;
   footer: string;
@@ -197,12 +199,23 @@ const en: Translations = {
         "Load tested at 10k concurrent users on AWS, achieving 45ms p95 latency and 100% message delivery.",
         "E2EE with AES-256-GCM and per-device keys; server stores only ciphertext.",
       ],
+      skills: [
+        "React",
+        "Node.js",
+        "Express",
+        "TypeScript",
+        "Mongo",
+        "AWS",
+        "Redis",
+        "RabbitMQ",
+      ],
     },
   ],
   projectsUi: {
     opensInNewTab: "(opens in a new tab)",
     projectsListAriaLabel: "Projects",
     sourceCodeAriaLabel: "View Ekko source code on GitHub (opens in a new tab)",
+    coreSkillsHeading: "Core skills",
   },
   comingSoon: "Content coming soon.",
   footer: "Birat Bhattacharjee © ",
@@ -358,12 +371,23 @@ const sv: Translations = {
         "Lasttestat med 10k samtidiga användare på AWS, med 45 ms p95-latens och 100 % meddelandeleverans.",
         "E2EE med AES-256-GCM och nycklar per enhet; servern lagrar endast chiffertext.",
       ],
+      skills: [
+        "React",
+        "Node.js",
+        "Express",
+        "TypeScript",
+        "Mongo",
+        "AWS",
+        "Redis",
+        "RabbitMQ",
+      ],
     },
   ],
   projectsUi: {
     opensInNewTab: "(öppnas i ny flik)",
     projectsListAriaLabel: "Projekt",
     sourceCodeAriaLabel: "Visa Ekkos källkod på GitHub (öppnas i ny flik)",
+    coreSkillsHeading: "Kärntekniker",
   },
   comingSoon: "Innehåll kommer snart.",
   footer: "Birat Bhattacharjee © ",

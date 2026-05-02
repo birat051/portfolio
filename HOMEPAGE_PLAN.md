@@ -350,6 +350,12 @@ Use this list to track progress. Mark items with `[x]` when done.
   - [x] 59.1 Remove the **Load tested at scale; … Redis-based auth caching (p99: 231ms)** Ekko highlight (**`translations.ts`** EN + SV).
   - [x] 59.2 Run **`npm run lint`** and **`npm run build`**.
 
+- [x] **Task 60: Projects — Ekko core skills (icon chips)**
+  - [x] 60.1 Extend **`ProjectItem`** with optional **`skills`**; add **Ekko** stack (**React**, **Node.js**, **Express**, **TypeScript**, **Mongo**, **AWS**, **Redis**, **RabbitMQ**) in **`translations.ts`** (**EN + SV** parity on labels where needed).
+  - [x] 60.2 Map any missing labels in **`experience-skill-icon.tsx`** (**Express**, **Mongo**, **Redis**, **RabbitMQ**; **Typescript** alias).
+  - [x] 60.3 Render a **Core skills** chip row in **`projects-section.tsx`** (same icon + pill pattern as **`experience-timeline`**); add **`projectsUi.coreSkillsHeading`** (**EN + SV**).
+  - [x] 60.4 Run **`npm run lint`** and **`npm run build`**.
+
 ---
 
 ## File and route summary
