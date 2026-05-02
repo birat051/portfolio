@@ -26,7 +26,10 @@ import type { ExperienceTimelineItem } from "@/components/types";
  * **skills** and **related work** stay visible; **expanded** adds **all bullets** and **Read less** above skills.
  */
 
-const COMPANY_LOGO_MAP: Record<string, { src: typeof healthplixLogo; alt: string }> = {
+const COMPANY_LOGO_MAP: Record<
+  string,
+  { src: typeof healthplixLogo; alt: string }
+> = {
   Healthplix: { src: healthplixLogo, alt: "Healthplix" },
   "MPSC Inc.": { src: mpscLogo, alt: "MPSC Inc." },
   "Hitachi Vantara": { src: hitachiVantaraLogo, alt: "Hitachi Vantara" },
@@ -109,6 +112,25 @@ export function ExperienceTimeline({
     }));
   }, []);
 
+  const collapseJobDetailsAndScrollToNext = useCallback(
+    (key: string, jobIndex: number, isLastJob: boolean) => {
+      setHighlightsExpandedByKey((prev) => ({ ...prev, [key]: false }));
+      if (isLastJob) {
+        return;
+      }
+      const nextId = `${sectionId}-job-${jobIndex + 1}`;
+      requestAnimationFrame(() => {
+        document.getElementById(nextId)?.scrollIntoView({
+          // behavior: reduceMotion === true ? "auto" : "smooth",
+          behavior: "smooth",
+
+          block: "center",
+        });
+      });
+    },
+    [sectionId, reduceMotion],
+  );
+
   return (
     <section
       id={sectionId}
@@ -123,10 +145,7 @@ export function ExperienceTimeline({
           {title}
         </h2>
 
-        <ol
-          className="mt-8 list-none pl-0"
-          aria-label={timelineListAriaLabel}
-        >
+        <ol className="mt-8 list-none pl-0" aria-label={timelineListAriaLabel}>
           {timeline.map((item, index) => {
             const isLast = index === timeline.length - 1;
             const itemKey = `${item.role}-${item.company}-${item.dateRange}`;
@@ -166,9 +185,7 @@ export function ExperienceTimeline({
                     <motion.li
                       key={`${itemKey}-${skill}`}
                       className="inline-flex cursor-default items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs text-secondary-foreground ring-2 ring-transparent transition-shadow hover:ring-tertiary/25"
-                      whileHover={
-                        hoverOff ? undefined : { scale: 1.06, y: -2 }
-                      }
+                      whileHover={hoverOff ? undefined : { scale: 1.06, y: -2 }}
                       whileTap={hoverOff ? undefined : { scale: 0.97 }}
                       transition={springChip}
                     >
@@ -207,9 +224,7 @@ export function ExperienceTimeline({
                             whileHover={
                               hoverOff ? undefined : { scale: 1.04, y: -1 }
                             }
-                            whileTap={
-                              hoverOff ? undefined : { scale: 0.98 }
-                            }
+                            whileTap={hoverOff ? undefined : { scale: 0.98 }}
                             transition={springChip}
                           >
                             <span className="min-w-0 break-words">
@@ -228,6 +243,7 @@ export function ExperienceTimeline({
             return (
               <motion.li
                 key={itemKey}
+                id={`${sectionId}-job-${index}`}
                 className="relative flex gap-3 pb-6 last:pb-0 sm:gap-4 sm:pb-8"
                 aria-label={formatExperienceJobRowAriaLabel(
                   jobRowAriaTemplate,
@@ -300,7 +316,9 @@ export function ExperienceTimeline({
                             item.company,
                           )}
                         >
-                          <span className="min-w-0 break-words">{item.company}</span>
+                          <span className="min-w-0 break-words">
+                            {item.company}
+                          </span>
                           <ExternalLinkIcon className="h-3.5 w-3.5 shrink-0 text-tertiary opacity-80 group-hover/company:opacity-100" />
                         </a>
                       ) : (
@@ -340,7 +358,13 @@ export function ExperienceTimeline({
                               type="button"
                               aria-expanded={true}
                               aria-controls={detailsPanelId}
-                              onClick={() => toggleJobDetails(detailsStateKey)}
+                              onClick={() =>
+                                collapseJobDetailsAndScrollToNext(
+                                  detailsStateKey,
+                                  index,
+                                  isLast,
+                                )
+                              }
                               className="text-left text-sm font-medium text-tertiary underline decoration-tertiary/50 underline-offset-2 outline-none transition-colors hover:text-primary-foreground hover:decoration-tertiary focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
                             >
                               {readLessHighlights}

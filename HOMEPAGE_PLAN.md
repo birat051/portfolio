@@ -298,6 +298,13 @@ Use this list to track progress. Mark items with `[x]` when done.
   - [x] 43.2 Keep the GitHub source-code icon link and remove unused live-demo aria-label copy.
   - [x] 43.3 Run **`npm run lint`** and **`npm run build`**.
 
+- [x] **Task 44: Experience — Read less scrolls to next job**
+
+  - [x] 44.1 When the user clicks **Read less** on a timeline job (collapsing highlights), scroll the viewport to the **next** experience row if one exists.
+  - [x] 44.2 If the job is the **last** in the timeline, collapse only — no scroll.
+  - [x] 44.3 Use **`prefers-reduced-motion`** / existing **`useReducedMotion`** for smooth vs instant scroll.
+  - [x] 44.4 Run **`npm run lint`** and **`npm run build`**.
+
 ---
 
 ## File and route summary
