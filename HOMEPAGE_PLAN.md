@@ -307,6 +307,25 @@ Use this list to track progress. Mark items with `[x]` when done.
   - [x] 50.1 In the **MPSC Inc.** timeline highlight, replace **unblocked** with **unlocked** in English (**`translations.ts`**, **`sections.json`**); update Swedish (**`translations.ts`**) to match the same meaning.
   - [x] 50.2 Run **`npm run lint`** and **`npm run build`**.
 
+- [x] **Task 51: SEO — senior developer + Gothenburg / Sweden**
+
+  - [x] 51.1 Refresh global **`SITE_TITLE`**, **`SITE_DESCRIPTION`**, **`keywords`**, and Open Graph / Twitter fields in **`layout.tsx`** (sourced from **`site.ts`**) to cover **senior**, **full-stack**, **frontend**, **Gothenburg**, and **Sweden** without stuffing.
+  - [x] 51.2 Extend **`Person` JSON-LD** (**`site.ts`**) with **`jobTitle`**, **`description`**, **`address`**, and **`knowsAbout`** aligned to that positioning.
+  - [x] 51.3 Align visible hero **`intro`** and the first **About** paragraph (**`translations.ts`**, **`hero.tsx`** default) with the same terms where natural (**EN + SV**).
+  - [x] 51.4 Add **`app/sitemap.ts`** and **`app/robots.ts`** using **`SITE_URL`**.
+  - [x] 51.5 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 52: SEO — senior frontend-focused full-stack + Gothenburg / Sweden**
+
+  - [x] 52.1 Tighten **`SITE_TITLE`**, **`SITE_DESCRIPTION`**, **`SITE_KEYWORDS`**, and **`Person` JSON-LD** (**`site.ts`**) so **senior**, **frontend-focused** (or **focus**), **full-stack**, **developer**, **Gothenburg**, and **Sweden** read naturally in titles and body copy.
+  - [x] 52.2 Align hero **`intro`** and the first About paragraph (**`translations.ts`**, **`hero.tsx`** default) in **EN + SV**.
+  - [x] 52.3 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 53: Positioning wording — “Frontend focused full-stack developer”**
+
+  - [x] 53.1 Use **Frontend focused full-stack developer** (space, no hyphen on *focused* in English hero role) in **`translations.ts`**, **`hero.tsx`** default, About lead (**EN + SV** parity), **`site.ts`** title/description/JSON-LD/**keywords**, and **`sections.json`** problems **`content`** where it duplicates copy.
+  - [x] 53.2 Run **`npm run lint`** and **`npm run build`**.
+
 ---
 
 ## File and route summary

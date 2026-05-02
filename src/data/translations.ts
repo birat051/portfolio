@@ -99,7 +99,7 @@ const en: Translations = {
     ai: "AI",
   },
   problemsContent: [
-    "I'm a frontend-focused full-stack developer with a habit of going a bit deeper than the UI layer when the problem calls for it. Most of my work has been on products where the frontend isn't just a skin, where performance, reliability, or iteration speed actually affected the people using it. I've helped teams ship faster by reducing engineering dependencies, improved products that were slow to load, and built the kind of component systems that make the next feature easier than the last.",
+    "I'm a frontend focused full-stack developer based in Gothenburg, Sweden, with a habit of going a bit deeper than the UI layer when the problem calls for it. Most of my work has been on products where the frontend isn't just a skin, where performance, reliability, or iteration speed actually affected the people using it. I've helped teams ship faster by reducing engineering dependencies, improved products that were slow to load, and built the kind of component systems that make the next feature easier than the last.",
     "When the product has needed it, I've also worked further down the stack, building backend services in Node.js, Python and Go, wiring up cloud infrastructure on AWS, and setting up the CI/CD pipelines that keep deployments boring and predictable.",
     "I work best in small, collaborative teams where I can take ownership of a problem from idea to production, and leave the codebase a little easier to work with than I found it.",
   ],
@@ -260,7 +260,7 @@ const sv: Translations = {
     ai: "AI",
   },
   problemsContent: [
-    "Jag är en frontend-fokuserad fullstackutvecklare med en vana att gå lite djupare än själva UI-lagret när uppgiften kräver det. Mina projekt har oftast handlat om produkter där frontend inte bara är ett skal, utan där prestanda, tillförlitlighet eller iterationstakt verkligen påverkat dem som använder dem. Jag har hjälpt team att leverera snabbare genom att minska beroenden av ingenjörer, förbättrat produkter som laddade långsamt och byggt komponentsystem som gör nästa funktion enklare än den förra.",
+    "Jag är en frontend-fokuserad fullstackutvecklare baserad i Göteborg, Sverige, med en vana att gå lite djupare än själva UI-lagret när uppgiften kräver det. Mina projekt har oftast handlat om produkter där frontend inte bara är ett skal, utan där prestanda, tillförlitlighet eller iterationstakt verkligen påverkat dem som använder dem. Jag har hjälpt team att leverera snabbare genom att minska beroenden av ingenjörer, förbättrat produkter som laddade långsamt och byggt komponentsystem som gör nästa funktion enklare än den förra.",
     "När produkten har krävt det har jag också arbetat längre ner i stacken, byggt backend-tjänster i Node.js, Python och Go, kopplat upp molninfrastruktur på AWS och satt upp CI/CD-pipelines som gör driftsättningar tråkiga och förutsägbara.",
     "Jag trivs bäst i små, samarbetsinriktade team där jag kan ta ansvar för ett problem från idé till produktion och lämna kodbasen lite enklare att arbeta i än jag fann den.",
   ],
