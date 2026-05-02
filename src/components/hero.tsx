@@ -4,7 +4,7 @@ import Image from "next/image";
 import { HiOutlineIdentification, HiOutlineMapPin } from "react-icons/hi2";
 import { SiMedium } from "react-icons/si";
 
-import heroPhoto from "@/assets/images/photo_op.jpeg";
+import heroPhoto from "@/assets/images/birat_professional.png";
 import { HeroCliTerminal } from "@/components/hero-cli-terminal";
 import { SectionSwitcher } from "@/components/section-switcher";
 import { HERO_CLI_NAME_SEQUENCE } from "@/data/hero-cli-lines";
@@ -116,7 +116,10 @@ export function Hero({
           <p className="mt-2 text-lg text-tertiary">{tagline}</p>
           <p className="mt-1 text-secondary-foreground">{intro}</p>
           <div className="mt-1.5 flex items-center justify-center gap-1.5 text-secondary-foreground md:justify-start">
-            <HiOutlineMapPin className="h-[1.1em] w-[1.1em] shrink-0 text-tertiary" aria-hidden />
+            <HiOutlineMapPin
+              className="h-[1.1em] w-[1.1em] shrink-0 text-tertiary"
+              aria-hidden
+            />
             <span>{location}</span>
           </div>
           <div className="mt-1.5 flex items-center justify-center gap-1.5 text-secondary-foreground md:justify-start">
@@ -126,15 +129,31 @@ export function Hero({
             />
             <span>{visaStatus}</span>
           </div>
-        </motion.div>
-        <div className="hidden w-full lg:block">
-          <SectionSwitcher
-            items={sectionItems}
-            navAriaLabel={sectionNavAriaLabel}
-          />
-        </div>
-        <div className="hidden w-full md:block md:pt-6 lg:mt-auto">
-          <div className="flex items-center gap-4" aria-label={socialLinksAriaLabel}>
+          <div
+            className="mt-4 flex items-center justify-center gap-4 md:justify-start"
+            aria-label={socialLinksAriaLabel}
+          >
+            <motion.a
+              href="https://www.linkedin.com/in/biratbhattacharjee/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={linkedInProfileAriaLabel}
+              className="rounded text-secondary-foreground outline-none transition-colors hover:text-tertiary focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+              whileHover={hoverOff ? undefined : { scale: 1.12, y: -2 }}
+              whileTap={hoverOff ? undefined : { scale: 0.94 }}
+              transition={springSnappy}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden
+              >
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </motion.a>
             <motion.a
               href="https://github.com/birat051"
               target="_blank"
@@ -168,28 +187,13 @@ export function Hero({
             >
               <SiMedium aria-hidden size={24} />
             </motion.a>
-            <motion.a
-              href="https://www.linkedin.com/in/biratbhattacharjee/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={linkedInProfileAriaLabel}
-              className="rounded text-secondary-foreground outline-none transition-colors hover:text-tertiary focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
-              whileHover={hoverOff ? undefined : { scale: 1.12, y: -2 }}
-              whileTap={hoverOff ? undefined : { scale: 0.94 }}
-              transition={springSnappy}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden
-              >
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-              </svg>
-            </motion.a>
           </div>
+        </motion.div>
+        <div className="hidden w-full lg:block">
+          <SectionSwitcher
+            items={sectionItems}
+            navAriaLabel={sectionNavAriaLabel}
+          />
         </div>
       </div>
     </section>

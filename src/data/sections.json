@@ -68,7 +68,7 @@
         "companyDescription": "Early-stage fintech building low-latency communication infrastructure for trading platforms",
         "intro": "An early-stage fintech building communication infrastructure for trading platforms. The focus was on the real-time experience end-to-end, frontend interfaces handling high-frequency interactions, backend services for conference management and payments. Reliability was the core constraint, and most of the work was about making the system predictable under load.",
         "highlights": [
-          "Unblocked onboarding of 3 enterprise clients by architecting a scalable conferencing platform on BigBlueButton, diagnosing core scalability limitations and redesigning the connection layer.",
+          "Unlocked onboarding of 3 enterprise clients by architecting a scalable conferencing platform on BigBlueButton, diagnosing core scalability limitations and redesigning the connection layer.",
           "Kept the real-time experience stable and predictable under peak load by implementing SSE-based event streaming with Web Workers, maintaining 30–80ms average delivery latency.",
           "Reduced call drop rate by 25% by redesigning connection state management and reconnection flows, minimising user-facing disruptions during live trading sessions.",
           "Increased licence conversion by 50% by designing a payment validation microservice and backend APIs for conference management, contributing directly to revenue at a critical product stage.",

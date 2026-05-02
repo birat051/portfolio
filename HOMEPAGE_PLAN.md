@@ -2,7 +2,7 @@
 
 Tasks and subtasks for the default landing page. Aligned with `PORTFOLIO_PLAN.md` and `PROJECT_GUIDELINES.md`.
 
-**Agent / contributor workflow:** For **new or changed homepage work**, add or extend a **Task *N*** section with **numbered subtasks** in this file **before** writing implementation code. Check off subtasks as they ship. (See `.cursor/rules/homepage-plan-first.mdc`.)
+**Agent / contributor workflow:** For **new or changed homepage work**, add or extend a **Task _N_** section with **numbered subtasks** in this file **before** writing implementation code. Check off subtasks as they ship. (See `.cursor/rules/homepage-plan-first.mdc`.)
 
 ---
 
@@ -19,7 +19,7 @@ Use this list to track progress. Mark items with `[x]` when done.
   - [x] 2.2 Landmarks: header, main, footer, nav with accessible name **Done:** **`<header>`** banner via **`SitePreferencesHeader`** (outside **`<main>`**); **`main`** `#main-content`; **`<footer>`** **`contentinfo`** with **`aria-label`**; section **`<nav>`** in **`SectionSwitcher`** uses locale **`t.a11y`** strings (**`translations.ts`**).
   - [x] 2.3 Heading hierarchy (h1 → h2, no skips) **Done:** single **`h1`** in **`Hero`**; section **`h2`**s; **`h3`** for each experience job title (**`experience-timeline.tsx`**, was **`p`**) and each case-study card (**`case-studies-section.tsx`**); contract noted in **`home-content.tsx`**.
   - [x] 2.4 Visible focus styles on interactive elements **Done:** **`@layer base`** **`:focus-visible`** outline (**`var(--tertiary)`**) in **`globals.css`** for **`a[href]`**, **`button`**, **`input`**, **`textarea`**, **`select`**, **`summary`**; existing **`outline-none` + `focus-visible:ring-*`** on header, hero links, section nav, case-study links, experience toggle, theme/language, skip link ( **`focus:`** ring) unchanged and override outline where set.
-  - [x] 2.5 Full keyboard flow; no focus traps **Done:** audited — no dialogs / Tab-capture; skip link → header controls → **`main`**; tab order noted in **`home-content.tsx`**. *(Experience jobs no longer use expand/collapse — **`Task 34`**.)*
+  - [x] 2.5 Full keyboard flow; no focus traps **Done:** audited — no dialogs / Tab-capture; skip link → header controls → **`main`**; tab order noted in **`home-content.tsx`**. _(Experience jobs no longer use expand/collapse — **`Task 34`**.)_
   - [x] 2.6 Screen-reader friendly structure **Done:** **`document.documentElement.lang`** syncs with locale (**`locale-context.tsx`**); EN/SV **`a11y`** strings for skip link, hero socials, experience timeline/skills/row template, theme + language controls (**`translations.ts`**); **`articlesListAriaLabel`** on case-study list; removed duplicate **`sr-only`** inside social links (**`aria-label`** only); **`formatExperienceJobRowAriaLabel`** helper.
 - [x] **Task 3: Header and navigation**
   - [x] 3.1 Header with site identity
@@ -153,8 +153,7 @@ Use this list to track progress. Mark items with `[x]` when done.
 
 - [x] **Task 23: Engineering case studies — JSON-driven external articles (e.g. Medium)**
 
-  **Planning note:** This task was defined *before* implementation (see project rule **homepage plan first**). Subtasks below are tracked as work completes.
-
+  **Planning note:** This task was defined _before_ implementation (see project rule **homepage plan first**). Subtasks below are tracked as work completes.
   - [x] 23.1 Add **`src/data/case-studies-blogs.json`** listing external write-ups (`id`, `title`, `url`, `source`, `publishedAt`, optional `summary` / `tags`); document the schema in **`src/data/case-studies-blogs.ts`**.
   - [x] 23.2 Export **`getCaseStudyBlogs()`** (or equivalent) returning entries sorted **newest `publishedAt` first** so new JSON rows render without further code changes.
   - [x] 23.3 Add **`CaseStudiesSection`** (cards, accessible external links, `ScrollReveal`, empty state) and wire **`case-studies`** in **`home-content.tsx`** instead of the generic placeholder.
@@ -175,7 +174,6 @@ Use this list to track progress. Mark items with `[x]` when done.
 - [x] **Task 26: Swedish language support — Engineering Case Studies section**
 
   **Context:** Section chrome (**`caseStudiesUi`**) already has EN/SV in **`translations.ts`**, but **per-article** **`title`**, **`summary`**, and **`tags`** in **`case-studies-blogs.json`** are English-only. When the site locale is **Swedish**, cards should show **Swedish** titles/summaries (and tags if translated) where available, while **`url`** / **`source`** / **`publishedAt`** stay shared.
-
   - [x] 26.1 **Data model:** extend the case-study schema (JSON + **`case-studies-blogs.ts`**) with optional Swedish fields (e.g. **`titleSv`**, **`summarySv`**, optional **`tagsSv`**) or an equivalent locale map; document fallbacks (**English** when Swedish is missing). **Done:** optional **`titleSv`**, **`summarySv`**, **`tagsSv`** on **`CaseStudyBlogEntry`** + JSDoc table in **`case-studies-blogs.ts`** (existing JSON rows valid with no SV keys until **26.4**).
   - [x] 26.2 **Data access:** update **`getCaseStudyBlogs()`** (or add **`getCaseStudyBlogsForLocale(locale)`**) so the UI receives entries with **resolved display fields** for the active locale. **Done:** **`CaseStudyBlogDisplay`**, **`resolveCaseStudyBlogForLocale`**, **`getCaseStudyBlogsForLocale`** in **`case-studies-blogs.ts`**; **`home-content`** memoizes on **`locale`**; **`CaseStudiesSection`** typed with **`CaseStudyBlogDisplay[]`**.
   - [x] 26.3 **UI:** wire **`CaseStudiesSection`** / **`home-content.tsx`** to pass **`locale`** (or pre-resolved entries) so Swedish users see Swedish copy; keep **`opensInNewTab`**, **`emptyPlaceholder`**, **`tagsListAriaLabel`**, etc. from existing **`caseStudiesUi`**. **Done:** **`locale`** + **`getCaseStudyBlogsForLocale(locale)`** from **`home-content`**; **`caseStudiesUi`** from **`t`**; **`lang`** on **`<section>`** (`en` / `sv`).
@@ -185,7 +183,6 @@ Use this list to track progress. Mark items with `[x]` when done.
 - [x] **Task 27: Fix section switcher active state when scrolling back to the top**
 
   **Context / bug (resolved):** Scrolling **down** (e.g. from **What problems I solve** → **Engineering case studies**) updates the hero section switcher correctly. Scrolling **back up** to the **top of the page** used to leave the switcher on **Engineering case studies**; **27.3** fixed stale **`activeId`**; **27.4** covered hash / short viewport / reduced motion.
-
   - [x] 27.1 **Reproduce** consistently (desktop layout with sticky hero + main column scroll); note viewport height, scroll position at “top”, and which section ids are observed (**`section-switcher.tsx`** + **`sections.json`** / **`home-content.tsx`**). **Done — reproduction notes:**
     - **When:** **`lg` breakpoint and up** (side-by-side layout). **`home-content.tsx`:** hero column **`lg:sticky lg:top-10 lg:h-[calc(100vh-2.5rem)]`**; main column scrolls with **document** (`window` / root scroll; not a nested scroll container).
     - **Steps:** (1) Load `/`. (2) Scroll **down** until **Engineering case studies** is highlighted in the hero section nav. (3) Scroll **back up** until **`window.scrollY`** is **0** (or visually the top of the page / first section in view). **Expected:** active nav matches **What problems I solve** (or whichever section occupies the observer “focus” band). **Actual:** active nav can **remain** **Engineering case studies**.
@@ -195,7 +192,7 @@ Use this list to track progress. Mark items with `[x]` when done.
     - **Hypothesis for 27.2:** Callback uses **`let bestId = activeId`** and **`bestId !== activeId`** to decide whether to **`setActiveId`**, but **`useEffect`** only depends on **`ids.join("|")`**, so **`activeId` inside the observer callback is a stale closure** (typically the **initial** **`items[0].id`** = **`problems`**). After state has moved to **`case-studies`**, scrolling back can compute **`bestId === "problems"`** while comparing to **stale `activeId === "problems"`**, so **`setActiveId`** is **skipped** and the UI stays on **`case-studies`**. **27.2** should confirm (e.g. logging or deps fix spike).
   - [x] 27.2 **Identify root cause** (e.g. **`IntersectionObserver`** thresholds / **`rootMargin`** vs sticky hero; sections no longer crossing observer thresholds when scrolling up; “highest visibility” tie-break or ratio map not resetting for upper sections). **Done — root cause:**
     - **Primary (confirmed):** **`activeId` stale closure** in **`section-switcher.tsx`**. The **`IntersectionObserver`** callback reads **`activeId`** from the render that ran when the effect last executed (`useEffect` deps: **`[ids.join("|")]`** only; **`eslint-disable-next-line react-hooks/exhaustive-deps`**). With stable **`ids`**, the effect runs **once on mount**, so **`activeId` inside the callback is frozen** at **`items[0]?.id`** (e.g. **`problems`**). The loop still computes the correct **`bestId`** from intersection ratios, but **`if (bestId && bestId !== activeId)`** compares **`bestId`** to that **frozen** value. After React state has updated to **`case-studies`**, scrolling back yields **`bestId === "problems"`** and **`stale activeId === "problems"`** → condition is **false** → **`setActiveId`** never runs → UI stuck on **`case-studies`**.
-    - **Not primary:** Sticky hero does **not** change **`IntersectionObserver`**’s root (still **viewport** / **`null`**). **`rootMargin`** / thresholds shape *which* section wins the ratio race but do **not** explain “correct **`bestId`** yet no state update”; that mismatch is explained by the closure bug alone.
+    - **Not primary:** Sticky hero does **not** change **`IntersectionObserver`**’s root (still **viewport** / **`null`**). **`rootMargin`** / thresholds shape _which_ section wins the ratio race but do **not** explain “correct **`bestId`** yet no state update”; that mismatch is explained by the closure bug alone.
     - **Secondary (optional hardening in 27.3):** The **`ratios`** **`Map`** is only updated for targets present in each **`entries`** batch; other ids keep prior ratios until their next event. Unlikely to be the main “scroll to top” failure once the closure is fixed; revisit only if odd ties remain.
   - [x] 27.3 **Implement fix** in **`section-switcher.tsx`** (or related layout/observer setup) so the active id always reflects the **main-column section most in view**, including when the user returns to **scrollY ≈ 0** / first sections — without breaking anchor clicks or keyboard focus. **Done:** Functional updater **`setActiveId((prev) => (prev === bestId ? prev : bestId))`** so the guard uses **live** React state, not the observer’s stale **`activeId`**. **`bestId`** seed is **`ids[0]`** (not closure **`activeId`**). Effect deps **`[ids]`**; removed **`eslint-disable`** for **`exhaustive-deps`**.
   - [x] 27.4 **Edge cases:** hash / **`#section-id`** navigation, very short viewports, and **`prefers-reduced-motion`** (behaviour should stay correct; motion is separate). **Done:** **`hashchange`** + double **`requestAnimationFrame`** after mount sync **`activeId`** when **`location.hash`** matches a known **`ids`** entry (direct links, in-page anchors, back/forward). **`innerHeight < 480`** uses a milder **`rootMargin`** (`-8% 0px -52% 0px`) so the intersection band stays ~40% of viewport; **`resize`** + **`visualViewport`** **`resize`** reconnect the observer. **`prefers-reduced-motion`:** already disables Framer hover/tap on nav links; highlight is IO/hash-driven only — documented in **`section-switcher.tsx`** JSDoc. **Note:** manual scroll does not rewrite the URL hash; highlight can differ from **`#hash`** until the user follows a hash link again (expected).
@@ -208,117 +205,107 @@ Use this list to track progress. Mark items with `[x]` when done.
   **Reference URLs (use in data + verify live):**
   - **HealthPlix Technologies** — company: [healthplix.com](https://www.healthplix.com/). Related works: [H.A.L.O product](https://www.healthplix.com/halo), [npm: `hplx-react-elements-dev`](https://www.npmjs.com/package/hplx-react-elements-dev).
   - **MPSC Inc.** — company: [mpsc.io](https://mpsc.io/). Related work: [HooT (hoot.mx)](https://hoot.mx/).
-  - **Hitachi Vantara** — company: [Hitachi Vantara home](https://www.hitachivantara.com/en-us/home). *(No specific “related work” URLs provided; chips optional, empty, or filled later.)*
+  - **Hitachi Vantara** — company: [Hitachi Vantara home](https://www.hitachivantara.com/en-us/home). _(No specific “related work” URLs provided; chips optional, empty, or filled later.)_
 
-  - [x] 28.1 **Data model:** extend each experience entry in **`sections.json`** (or typed module alongside timeline data) with **`companyUrl`** (canonical employer homepage) and **`relatedWorks`**: ordered list of **`{ label: string, url: string }`** (labels for chip text; URLs must be absolute **https**). Seed **Healthplix** and **MPSC** with the links above; **Hitachi** may use **`relatedWorks: []`** until links exist. **Done:** **`sections.json`** — Healthplix **`companyUrl`** + **H.A.L.O** + **npm** chips; MPSC **`companyUrl`** + **HooT**; Hitachi **`companyUrl`** + **`relatedWorks: []`**. Types **`ExperienceRelatedWorkLink`**, optional **`companyUrl`** / **`relatedWorks`** on **`ExperienceTimelineItem`** in **`components/types.ts`**. Schema note + re-exports: **`src/data/experience-timeline-schema.ts`**. *(UI still uses **`t.experienceTimeline`** only — merge from JSON in **28.6**.)*
+  - [x] 28.1 **Data model:** extend each experience entry in **`sections.json`** (or typed module alongside timeline data) with **`companyUrl`** (canonical employer homepage) and **`relatedWorks`**: ordered list of **`{ label: string, url: string }`** (labels for chip text; URLs must be absolute **https**). Seed **Healthplix** and **MPSC** with the links above; **Hitachi** may use **`relatedWorks: []`** until links exist. **Done:** **`sections.json`** — Healthplix **`companyUrl`** + **H.A.L.O** + **npm** chips; MPSC **`companyUrl`** + **HooT**; Hitachi **`companyUrl`** + **`relatedWorks: []`**. Types **`ExperienceRelatedWorkLink`**, optional **`companyUrl`** / **`relatedWorks`** on **`ExperienceTimelineItem`** in **`components/types.ts`**. Schema note + re-exports: **`src/data/experience-timeline-schema.ts`**. _(UI still uses **`t.experienceTimeline`** only — merge from JSON in **28.6**.)_
   - [x] 28.2 **Types:** update **`SectionEntry`** / timeline types in **`src/app/types.ts`** (and any loaders) so **`ExperienceTimeline`** receives **`companyUrl`** + **`relatedWorks`** per job without breaking existing **`timeline`** shape. **Done:** **`SectionEntry.timeline`** JSDoc; **`ExperienceSectionEntry`** + **`isExperienceSection()`** guard; loader **`mergeExperienceTimelineWithLinks(locale, json)`** in **`src/data/experience-timeline-merge.ts`** (merge by **`company`**); re-export from **`experience-timeline-schema.ts`**. **`ExperienceTimelineItem`** / **`ExperienceRelatedWorkLink`** unchanged from **28.1**. **`home-content`** wiring → **28.6**.
   - [x] 28.3 **Translations:** add EN + SV strings in **`translations.ts`** for a **“Related work”** (or equivalent) subheading, **opens in new tab** / external hints if needed, and optional **`aria-label`** templates for chip links — follow existing **`experienceUi`** / **`a11y`** patterns. **Done:** **`experienceUi.relatedWorkHeading`**, **`experienceUi.opensInNewTab`**; **`a11y.experienceRelatedWorkListAriaLabel`**, **`experienceRelatedWorkLinkAriaTemplate`** (`{label}`), **`experienceCompanySiteAriaTemplate`** (`{company}`); helpers **`formatExperienceRelatedWorkLinkAriaLabel`**, **`formatExperienceCompanySiteAriaLabel`** in **`translations.ts`**.
   - [x] 28.4 **Company heading as link:** in **`experience-timeline.tsx`**, render the **company name** as **`<a href={companyUrl}>`** (or **`next/link`** only if internal — here **external**), **`target="_blank"`** + **`rel="noopener noreferrer"`**, with **accessible name** (company + external hint per **`PROJECT_GUIDELINES.md`**). Keep **logo** + **role** layout and **keyboard focus** styles consistent with the rest of the timeline. **Done:** External **`<a>`** when **`item.companyUrl`**; **`aria-label`** via **`formatExperienceCompanySiteAriaLabel`** + **`companySiteAriaTemplate`** prop; **`ExternalLinkIcon`** (`aria-hidden`); **`focus-visible:ring`** matches site pattern. **`home-content`** uses **`mergeExperienceTimelineWithLinks`** so **`companyUrl`** is present (**28.6** chip copy/strings only).
   - [x] 28.5 **Related-work chips UI:** below each job’s main content (e.g. under highlights / skills area, before next timeline node), render a **horizontal wrap row** of **chips**: pill shape, theme tokens (**`secondary`** / **`tertiary`** border or fill per guidelines), each chip is a single **link** spanning **label + external icon** (reuse **`ExternalLinkIcon`** or shared atom). **Do not** nest interactive elements; respect **`prefers-reduced-motion`** on any chip hover (match case-study / site patterns). **Done:** Inside expanded job panel, after skills; **`relatedWorkHeading`** + **`ul`** **`aria-labelledby`**; **`motion.a`** chip with **`formatExperienceRelatedWorkLinkAriaLabel`**; **`whileHover`/`whileTap`** off when reduced motion; border **`secondary`**, hover **`tertiary`**; **`home-content`** passes **`relatedWorkHeading`** + **`relatedWorkLinkAriaTemplate`**.
-  - [x] 28.6 **Wire `home-content.tsx`:** pass new fields from **`sections.json`** into **`ExperienceTimeline`**; ensure **`getTranslations(locale)`** supplies UI copy; **Hitachi** row shows company link + zero chips if **`relatedWorks`** is empty (no placeholder noise unless product wants “Coming soon”). *(Timeline merge for **`companyUrl`** / **`relatedWorks`** already in **`home-content`** from **28.4**; **28.6** completes chip UI + any remaining props.)* **Done:** Merge + **28.5** translation props; **Hitachi** **`relatedWorks: []`** → no related-work block.
+  - [x] 28.6 **Wire `home-content.tsx`:** pass new fields from **`sections.json`** into **`ExperienceTimeline`**; ensure **`getTranslations(locale)`** supplies UI copy; **Hitachi** row shows company link + zero chips if **`relatedWorks`** is empty (no placeholder noise unless product wants “Coming soon”). _(Timeline merge for **`companyUrl`** / **`relatedWorks`** already in **`home-content`** from **28.4**; **28.6** completes chip UI + any remaining props.)_ **Done:** Merge + **28.5** translation props; **Hitachi** **`relatedWorks: []`** → no related-work block.
   - [x] 28.7 **Quality:** run **`npm run lint`** and **`npm run build`**; quick keyboard + screen-reader pass on new links (focus order, **`aria-current`** N/A for external; **`aria-label`** where icon-only risk). **Done:** **`npm run lint`** clean; **`npm run build`** OK (Next **16.1.6**, **`/`** static). **Code audit:** company **`a`** and chip **`motion.a`** use **`aria-label`** templates (icons **`aria-hidden`** — not icon-only links); **`focus-visible:ring-tertiary`** on both; expand/collapse **`button`** stays before panel in DOM → Tab reaches toggle before in-panel links when open. **`aria-current`** not used on external links (correct). **Manual (recommended):** Tab through **Experience** with a row expanded — focus company link + each related-work chip; spot-check VoiceOver/NVDA EN/SV announcement for **`aria-label`** strings.
 
 - [x] **Task 29: Engineering case study — “Scaling UI Delivery” (Medium, design-system CI/CD)**
-
   - [x] 29.1 **What the article is about (card teaser / context):** A React UI library published only as npm **`latest`** meant a small dev fix could ship to **every** consumer and cause real prod impact (e.g. unintended **`useEffect`** loops → API spikes). The post walks through **environment-aware release**: Jenkins pipelines per branch (**`qa`** / **`preprod`** / **`prod`**), a **Node semver script** (registry + **`breaking:`** / **`feature:`** commit conventions), **npm distribution tags** instead of a single **`latest`**, and **app pre-build installs** pinned to the matching tag so each environment pulls a controlled version.
   - [x] 29.2 Add a row to **`src/data/case-studies-blogs.json`** with **`title`**, **`url`** ([Scaling UI Delivery on Medium](https://biratbhattacharjee.medium.com/scaling-ui-delivery-ci-cd-for-a-react-design-system-across-environments-c16e9f419950)), **`publishedAt`**, **`summary`** / **`summarySv`**, **`tags`** / **`tagsSv`** aligned with **29.1**; run **`npm run lint`** and **`npm run build`**.
 
 - [ ] **Task 30: Center hero profile image horizontally in the hero column**
 
   **Context:** In **`hero.tsx`**, the hero column is a **`flex flex-col`** with **`items-center`** on small viewports but **`md:items-start`** from **`md+`**, which **left-aligns** all flex children—including the **round profile `Image`**—inside the sticky sidebar at **`lg`**. The avatar’s inner wrapper uses **`items-center`**, but the **block itself** sits on the **start** edge of the column, so it is **not** centered horizontally in the column on tablet/desktop.
-
   - [ ] 30.1 **Layout audit:** Confirm desired alignment for **headline / tagline / intro** (**`md:text-left`**) vs **photo** (centered in column); avoid unintentionally centering text if only the image should move.
   - [ ] 30.2 **Implement:** Keep text and below-the-fold hero controls as today; **horizontally center** only the profile image row (e.g. **`self-center`** on the photo’s outer wrapper, or **`w-full flex justify-center`** around the **`Image`** / **`motion.div`** block) so the avatar is centered in the **full width** of the hero column at **`md`** and **`lg`**.
   - [ ] 30.3 **Verify:** Resize **`sm` → `md` → `lg`**; check sticky hero column still looks balanced; run **`npm run lint`** and **`npm run build`**.
 
 - [x] **Task 31: Hide Demos + AI sections (temporary)**
-
   - [x] 31.1 Filter **`demos`** and **`ai`** out in **`home-content.tsx`** (**`SECTION_IDS_DISABLED_FOR_NOW`**) so they disappear from **SectionSwitcher** and the main column; keep entries in **`sections.json`** — remove ids from the Set to show them again.
 
 - [x] **Task 32: Experience copy aligned with resume (PDF)**
-
   - [x] 32.1 Refresh **`sections.json`** timeline **`highlights`** / **`skills`** and matching **`translations.ts`** (**EN + SV**) for **Healthplix**, **MPSC**, and **Hitachi Vantara** from the current resume (roles, bullets, and **Technologies/Tools** lines). **`companyDescription`** in JSON unchanged (SEO JSON-LD source).
 
 - [x] **Task 33: Problems + experience copy refresh**
-
   - [x] 33.1 Update **`problemsContent`** closing paragraph (idea → production, codebase hygiene); **`sections.json`** parity.
   - [x] 33.2 Refresh experience roles, employer blurbs, highlights, and skills in **`sections.json`** and **`translations.ts`** (EN + SV); use **`company`** **`Healthplix`** for timeline + link merge; update **`experience-timeline.tsx`** logo map.
 
 - [x] **Task 34: Experience timeline — remove expand/collapse**
-
   - [x] 34.1 Always show highlights, skills, and related-work links per job; drop toggle **`button`**, height animation, and **`inert`** wrapper (**`experience-timeline.tsx`**).
   - [x] 34.2 Remove **`expandJobDetails`** / **`collapseJobDetails`** from **`translations.ts`** and props on **`ExperienceTimeline`** / **`home-content.tsx`**.
   - [x] 34.3 Run **`npm run lint`** and **`npm run build`**.
 
 - [x] **Task 35: Experience highlights — read more / less**
-
   - [x] 35.1 When a job has **one or more** highlight bullets, **collapsed** shows **`intro`** (**description**) only plus **Read more**; **skills** and **related work** stay visible. **Expanded** adds **all bullets** and **Read less** (above skills). Jobs with **no** highlight bullets show **intro**, skills, and related work with no toggle.
   - [x] 35.2 Add **`readMoreHighlights`** / **`readLessHighlights`** to **`translations.ts`** (EN + SV); wire from **`home-content.tsx`**.
   - [x] 35.3 **`aria-expanded`** / **`aria-controls`** on the toggle(s); details panel uses **`hidden`** when collapsed; run **`npm run lint`** and **`npm run build`**.
 
 - [x] **Task 36: Experience job intro (under location)**
-
   - [x] 36.1 Add **`intro`** to **`ExperienceTimelineItem`**; English in **`sections.json`**, EN + SV in **`translations.ts`**; render between location and highlight bullets (**`experience-timeline.tsx`**).
   - [x] 36.2 Document in **`experience-timeline-schema.ts`**; run **`npm run lint`** and **`npm run build`**.
 
 - [x] **Task 38: Skill / tag chips — brand icons**
-
   - [x] 38.1 Add **`react-icons`**; map labels in **`experience-skill-icon.tsx`** (`TECH_CHIP_ICONS`); experience **`skills`** and case-study **`tags`** use **`ExperienceSkillIcon`** before text (`aria-hidden`); unknown labels → terminal fallback icon.
   - [x] 38.2 Run **`npm run lint`** and **`npm run build`**.
 
 - [x] **Task 39: Projects section — Ekko**
-
   - [x] 39.1 Add a **Projects** section row to **`sections.json`** so it appears in the main column and hero section navigation before case studies.
   - [x] 39.2 Add locale-aware project copy in **`translations.ts`** for **Ekko** (open-source E2EE messaging platform, URL, scalability, encryption, and load-test bullets).
   - [x] 39.3 Create and wire a **`ProjectsSection`** component from **`home-content.tsx`**, with accessible external project link behavior and a project list label.
   - [x] 39.4 Run **`npm run lint`** and **`npm run build`**.
 
 - [x] **Task 40: Ekko try-it-out iframes**
-
   - [x] 40.1 Extend project data/types with optional iframe demo instances for **Ekko**.
   - [x] 40.2 Render a **Try it out** area in **`ProjectsSection`** with two horizontally separated iframe instances on wider screens and accessible iframe titles.
   - [x] 40.3 Run **`npm run lint`** and **`npm run build`**.
 
 - [x] **Task 41: Ekko playground route**
-
   - [x] 41.1 Replace same-page Ekko iframe rendering with a **Try it out** link from the Projects card.
   - [x] 41.2 Add a dedicated playground route that renders two Ekko iframe instances horizontally, each covering its half of the full viewport height and width.
   - [x] 41.3 Run **`npm run lint`** and **`npm run build`**.
 
 - [x] **Task 42: Ekko external actions**
-
   - [x] 42.1 Replace the local Ekko playground link with an external new-tab link to the live Ekko website.
   - [x] 42.2 Add a GitHub source-code link for **`birat051/messaging-system`**.
   - [x] 42.3 Render project actions as icon-only links with accessible labels, and remove the unused playground route.
   - [x] 42.4 Run **`npm run lint`** and **`npm run build`**.
 
 - [x] **Task 43: Ekko actions — remove duplicate live link**
-
   - [x] 43.1 Remove the extra live-site icon/button from the Ekko project card because the project title already links to the live website.
   - [x] 43.2 Keep the GitHub source-code icon link and remove unused live-demo aria-label copy.
   - [x] 43.3 Run **`npm run lint`** and **`npm run build`**.
 
 - [x] **Task 44: Experience — Read less scrolls to next job**
-
   - [x] 44.1 When the user clicks **Read less** on a timeline job (collapsing highlights), scroll the viewport to the **next** experience row if one exists.
   - [x] 44.2 If the job is the **last** in the timeline, collapse only — no scroll.
   - [x] 44.3 Use **`prefers-reduced-motion`** / existing **`useReducedMotion`** for smooth vs instant scroll.
   - [x] 44.4 Run **`npm run lint`** and **`npm run build`**.
 
 - [x] **Task 45: Hero — location line**
-
   - [x] 45.1 Show a location pin icon and locale-aware place name (**`Gothenburg, Sweden`**) below the hero role (**`intro`**); EN + SV in **`translations.ts`**, wire from **`home-content.tsx`** / **`hero.tsx`**.
   - [x] 45.2 Icon decorative (**`aria-hidden`**); run **`npm run lint`** and **`npm run build`**.
 
 - [x] **Task 46: Hero — visa / permit line**
-
   - [x] 46.1 Below location, show an ID-style icon and locale-aware visa/permit copy (**dependant visa**, residence + work permit, valid through **Jan-2028**); EN + SV in **`translations.ts`**, wire **`hero.tsx`** / **`home-content.tsx`**.
   - [x] 46.2 Icon decorative (**`aria-hidden`**); run **`npm run lint`** and **`npm run build`**.
 
 - [x] **Task 48: Hero — visa expiry month**
-
   - [x] 48.1 Update **`hero.visaStatus`** EN + SV so the permit expiry reads **Jan-2028** (month + year); keep **`DEFAULT_VISA_STATUS`** in **`hero.tsx`** aligned with English.
   - [x] 48.2 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 49: Hero — social links under visa**
+  - [x] 49.1 Move GitHub / Medium / LinkedIn icon links to sit **below** the work-permit (**`visaStatus`**) row; order **LinkedIn → GitHub → Medium**; keep existing **`aria-label`**s and motion/hover behavior.
+  - [x] 49.2 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 50: Experience copy — MPSC highlight wording**
+  - [x] 50.1 In the **MPSC Inc.** timeline highlight, replace **unblocked** with **unlocked** in English (**`translations.ts`**, **`sections.json`**); update Swedish (**`translations.ts`**) to match the same meaning.
+  - [x] 50.2 Run **`npm run lint`** and **`npm run build`**.
 
 ---
 
@@ -328,4 +315,4 @@ Use this list to track progress. Mark items with `[x]` when done.
 - **Components:** `src/components/skip-link.tsx`, `site-preferences-header.tsx`, `hero.tsx`, `section-switcher.tsx` (Task **27** — active section on scroll-up), `projects-section.tsx`, `case-studies-section.tsx`, `external-link-icon.tsx`, `experience-skill-icon.tsx`, `section-value-prop.tsx`, `section-placeholder.tsx`, `scroll-reveal.tsx` (client), `footer.tsx`, `experience-timeline.tsx` (Task **28** — company URLs + related-work chips).
 - **Case studies (Task 23; Task 26 SV copy; Task 29 design-system CI/CD article; Task 38 tag icons):** `src/data/case-studies-blogs.json`, `src/data/case-studies-blogs.ts`, `case-studies-section.tsx`, `experience-skill-icon.tsx`, `home-content.tsx`.
 - **Experience timeline (Task 18; Task 28 links + chips; Task 38 skill icons):** `src/data/sections.json`, `src/data/experience-timeline-schema.ts`, `src/data/experience-timeline-merge.ts`, `experience-timeline.tsx`, `experience-skill-icon.tsx`, `home-content.tsx`, `translations.ts`, `src/app/types.ts`, `src/components/types.ts`.
-- **Profile photo:** `public/photo_op.jpeg` (or `src/assets/images/photo_op.jpeg` if moved for optimization).
+- **Profile photo:** `public/birat_professional.png` (or `src/assets/images/birat_professional.png` if moved for optimization).

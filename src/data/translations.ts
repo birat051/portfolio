@@ -146,7 +146,7 @@ const en: Translations = {
       intro:
         "An early-stage fintech building communication infrastructure for trading platforms. The focus was on the real-time experience end-to-end, frontend interfaces handling high-frequency interactions, backend services for conference management and payments. Reliability was the core constraint, and most of the work was about making the system predictable under load.",
       highlights: [
-        "Unblocked onboarding of 3 enterprise clients by architecting a scalable conferencing platform on BigBlueButton, diagnosing core scalability limitations and redesigning the connection layer.",
+        "Unlocked onboarding of 3 enterprise clients by architecting a scalable conferencing platform on BigBlueButton, diagnosing core scalability limitations and redesigning the connection layer.",
         "Kept the real-time experience stable and predictable under peak load by implementing SSE-based event streaming with Web Workers, maintaining 30–80ms average delivery latency.",
         "Reduced call drop rate by 25% by redesigning connection state management and reconnection flows, minimising user-facing disruptions during live trading sessions.",
         "Increased licence conversion by 50% by designing a payment validation microservice and backend APIs for conference management, contributing directly to revenue at a critical product stage.",
@@ -307,7 +307,7 @@ const sv: Translations = {
       intro:
         "En fintech i tidig fas som bygger kommunikationsinfrastruktur för handelsplattformar. Fokus låg på realtidsupplevelsen från början till slut: gränssnitt som hanterade högfrekventa interaktioner och backend-tjänster för konferenshantering och betalningar. Tillförlitligheten var den avgörande begränsningen, och det mesta av arbetet handlade om att göra systemet förutsägbart under last.",
       highlights: [
-        "Tog bort blockerare för onboarding av tre företagskunder genom att arkitektera en skalbar konferensplattform på BigBlueButton, diagnostisera centrala skalbarhetsproblem och omdesigna anslutningslagret.",
+        "Låste upp onboarding av tre företagskunder genom att arkitektera en skalbar konferensplattform på BigBlueButton, diagnostisera centrala skalbarhetsproblem och omdesigna anslutningslagret.",
         "Höll realtidsupplevelsen stabil och förutsägbar vid topplast med SSE-baserad händelseströmning och Web Workers med i genomsnitt 30–80 ms leveranslatens.",
         "Minskade tappade samtal med 25 % genom omdesign av anslutningsstatus och återanslutningsflöden, vilket minimerade störningar för användarna under livehandel.",
         "Ökade licenskonvertering med 50 % genom att designa en mikrotjänst för betalningsvalidering och backend-API:er för konferenshantering, med direkt bidrag till intäkter i en kritisk produktfas.",
