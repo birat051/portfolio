@@ -338,6 +338,18 @@ Use this list to track progress. Mark items with `[x]` when done.
   - [x] 56.1 Update **Ekko** **`projectItems`**.**`highlights`** in **`translations.ts`** (**EN + SV**) to match the latest real-time scale, E2EE, and load-test / Redis caching bullets.
   - [x] 56.2 Run **`npm run lint`** and **`npm run build`**.
 
+- [x] **Task 57: Projects — Ekko architecture bullet**
+  - [x] 57.1 Prepend **Designed for horizontal scaling using stateless services and message fan-out architecture** to **Ekko** highlights (**EN + SV** in **`translations.ts`**); keep existing bullets unchanged.
+  - [x] 57.2 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 58: Projects — Ekko load-test bullet wording**
+  - [x] 58.1 Replace the **Scalable real-time system…Socket.IO** Ekko highlight with **Load tested at 10k concurrent users on AWS…** (**`translations.ts`** EN + SV).
+  - [x] 58.2 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 59: Projects — Ekko MongoDB / Redis bullet removed**
+  - [x] 59.1 Remove the **Load tested at scale; … Redis-based auth caching (p99: 231ms)** Ekko highlight (**`translations.ts`** EN + SV).
+  - [x] 59.2 Run **`npm run lint`** and **`npm run build`**.
+
 ---
 
 ## File and route summary
