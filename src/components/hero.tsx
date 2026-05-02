@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { HiOutlineIdentification, HiOutlineMapPin } from "react-icons/hi2";
 import { SiMedium } from "react-icons/si";
 
 import heroPhoto from "@/assets/images/photo_op.jpeg";
@@ -20,12 +21,19 @@ type HeroProps = Readonly<{
   linkedInProfileAriaLabel: string;
   tagline?: string;
   intro?: string;
+  /** Task 45 — city / country below role (`intro`). */
+  location?: string;
+  /** Task 46 — visa / permit line below `location`. */
+  visaStatus?: string;
   /** Task 22.6 — SR-only sentence after the name in `<h1>` (locale-specific). */
   nameHeadingSrNote?: string;
 }>;
 
 const DEFAULT_TAGLINE = "Real-time web experiences that scale.";
 const DEFAULT_INTRO = "Frontend focused full-stack developer";
+const DEFAULT_LOCATION = "Gothenburg, Sweden";
+const DEFAULT_VISA_STATUS =
+  "Dependant visa with residential and work permit (valid till Jan-2028)";
 /** Canonical page title / h1 for SEO and screen readers (Task 22.9). */
 const HERO_DISPLAY_NAME = "Birat Bhattacharjee";
 /** Fallback if `nameHeadingSrNote` is omitted (matches English copy). */
@@ -49,6 +57,8 @@ export function Hero({
   linkedInProfileAriaLabel,
   tagline = DEFAULT_TAGLINE,
   intro = DEFAULT_INTRO,
+  location = DEFAULT_LOCATION,
+  visaStatus = DEFAULT_VISA_STATUS,
   nameHeadingSrNote = DEFAULT_NAME_HEADING_SR_NOTE,
 }: HeroProps) {
   const reduceMotion = useReducedMotion();
@@ -105,6 +115,17 @@ export function Hero({
           </h1>
           <p className="mt-2 text-lg text-tertiary">{tagline}</p>
           <p className="mt-1 text-secondary-foreground">{intro}</p>
+          <div className="mt-1.5 flex items-center justify-center gap-1.5 text-secondary-foreground md:justify-start">
+            <HiOutlineMapPin className="h-[1.1em] w-[1.1em] shrink-0 text-tertiary" aria-hidden />
+            <span>{location}</span>
+          </div>
+          <div className="mt-1.5 flex items-center justify-center gap-1.5 text-secondary-foreground md:justify-start">
+            <HiOutlineIdentification
+              className="h-[1.1em] w-[1.1em] shrink-0 text-tertiary"
+              aria-hidden
+            />
+            <span>{visaStatus}</span>
+          </div>
         </motion.div>
         <div className="hidden w-full lg:block">
           <SectionSwitcher

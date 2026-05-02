@@ -4,6 +4,10 @@ export type Translations = {
   hero: {
     tagline: string;
     intro: string;
+    /** Task 45 — visible line below `intro` (city, country). */
+    location: string;
+    /** Task 46 — residence / work permit note below `location`. */
+    visaStatus: string;
     /**
      * Task 22.6 — screen-reader-only context after the plain name in `<h1>` (decorative CLI
      * is `aria-hidden`); avoids `aria-live` spam from per-character typing.
@@ -80,6 +84,9 @@ const en: Translations = {
   hero: {
     tagline: "Real-time web experiences that scale.",
     intro: "Frontend focused full-stack developer",
+    location: "Gothenburg, Sweden",
+    visaStatus:
+      "Dependant visa with residential and work permit (valid till Jan-2028)",
     nameHeadingSrNote:
       " Decorative terminal: the animated name cycles through English, Swedish, Hindi, Assamese, and Bengali once, then stays in English. Hover pauses; moving the pointer away replays. With reduced motion, only a static name is shown.",
   },
@@ -238,6 +245,9 @@ const sv: Translations = {
   hero: {
     tagline: "Realtidswebbupplevelser som skalar.",
     intro: "Frontend-fokuserad fullstackutvecklare",
+    location: "Göteborg, Sverige",
+    visaStatus:
+      "Anhörigvisa med uppehålls- och arbetstillstånd (giltigt till jan-2028)",
     nameHeadingSrNote:
       " Dekorativ terminal: det animerade namnet visas på engelska, svenska, hindi, assamesiska och bengali en gång och stannar sedan på engelska. Hovring pausar; när pekaren lämnar rutan spelas animationen om. Vid nedsatt rörelse visas bara ett statiskt namn.",
   },

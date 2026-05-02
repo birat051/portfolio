@@ -305,6 +305,21 @@ Use this list to track progress. Mark items with `[x]` when done.
   - [x] 44.3 Use **`prefers-reduced-motion`** / existing **`useReducedMotion`** for smooth vs instant scroll.
   - [x] 44.4 Run **`npm run lint`** and **`npm run build`**.
 
+- [x] **Task 45: Hero — location line**
+
+  - [x] 45.1 Show a location pin icon and locale-aware place name (**`Gothenburg, Sweden`**) below the hero role (**`intro`**); EN + SV in **`translations.ts`**, wire from **`home-content.tsx`** / **`hero.tsx`**.
+  - [x] 45.2 Icon decorative (**`aria-hidden`**); run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 46: Hero — visa / permit line**
+
+  - [x] 46.1 Below location, show an ID-style icon and locale-aware visa/permit copy (**dependant visa**, residence + work permit, valid through **Jan-2028**); EN + SV in **`translations.ts`**, wire **`hero.tsx`** / **`home-content.tsx`**.
+  - [x] 46.2 Icon decorative (**`aria-hidden`**); run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 48: Hero — visa expiry month**
+
+  - [x] 48.1 Update **`hero.visaStatus`** EN + SV so the permit expiry reads **Jan-2028** (month + year); keep **`DEFAULT_VISA_STATUS`** in **`hero.tsx`** aligned with English.
+  - [x] 48.2 Run **`npm run lint`** and **`npm run build`**.
+
 ---
 
 ## File and route summary
