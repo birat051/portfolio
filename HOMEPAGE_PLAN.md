@@ -326,6 +326,18 @@ Use this list to track progress. Mark items with `[x]` when done.
   - [x] 53.1 Use **Frontend focused full-stack developer** (space, no hyphen on *focused* in English hero role) in **`translations.ts`**, **`hero.tsx`** default, About lead (**EN + SV** parity), **`site.ts`** title/description/JSON-LD/**keywords**, and **`sections.json`** problems **`content`** where it duplicates copy.
   - [x] 53.2 Run **`npm run lint`** and **`npm run build`**.
 
+- [x] **Task 54: About lead — years of experience**
+  - [x] 54.1 Replace the opening *based in Gothenburg* clause in the first “What problems I solve” paragraph with **6 years of experience** (**`translations.ts`** EN + SV, **`sections.json`** EN parity).
+  - [x] 54.2 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 55: About lead — engineer + real-time positioning**
+  - [x] 55.1 Replace the opening sentences of the first problems/About paragraph with the **Frontend-focused full-stack engineer**, **performant real-time web**, and **beyond the UI / system-level** copy (**`translations.ts`** EN + SV, **`sections.json`** EN).
+  - [x] 55.2 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 56: Projects — Ekko highlights refresh**
+  - [x] 56.1 Update **Ekko** **`projectItems`**.**`highlights`** in **`translations.ts`** (**EN + SV**) to match the latest real-time scale, E2EE, and load-test / Redis caching bullets.
+  - [x] 56.2 Run **`npm run lint`** and **`npm run build`**.
+
 ---
 
 ## File and route summary

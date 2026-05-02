@@ -99,7 +99,7 @@ const en: Translations = {
     ai: "AI",
   },
   problemsContent: [
-    "I'm a frontend focused full-stack developer based in Gothenburg, Sweden, with a habit of going a bit deeper than the UI layer when the problem calls for it. Most of my work has been on products where the frontend isn't just a skin, where performance, reliability, or iteration speed actually affected the people using it. I've helped teams ship faster by reducing engineering dependencies, improved products that were slow to load, and built the kind of component systems that make the next feature easier than the last.",
+    "Frontend-focused full-stack engineer with 6 years of experience, specializing in building performant, real-time web applications. Comfortable working beyond the UI layer when system-level thinking is required. Most of my work has been on products where the frontend isn't just a skin, where performance, reliability, or iteration speed actually affected the people using it. I've helped teams ship faster by reducing engineering dependencies, improved products that were slow to load, and built the kind of component systems that make the next feature easier than the last.",
     "When the product has needed it, I've also worked further down the stack, building backend services in Node.js, Python and Go, wiring up cloud infrastructure on AWS, and setting up the CI/CD pipelines that keep deployments boring and predictable.",
     "I work best in small, collaborative teams where I can take ownership of a problem from idea to production, and leave the codebase a little easier to work with than I found it.",
   ],
@@ -193,9 +193,9 @@ const en: Translations = {
       url: "https://ekko.biratbhattacharjee.com",
       sourceUrl: "https://github.com/birat051/messaging-system",
       highlights: [
-        "Built a horizontally scalable real-time messaging platform handling 10,000 concurrent users with 100% message delivery and p95 end-to-end latency of 45ms, using Socket.IO, RabbitMQ fan-out, and stateless Node.js replicas.",
-        "Implemented E2EE using AES-256-GCM with per-device key pairs; the server stores only ciphertext and never holds plaintext or private keys.",
-        "Load tested on AWS eu-north-1 at 10,000 concurrent users; messages-sent p99 held at 231ms, MongoDB auth was identified as the bottleneck, and a Redis JWT cache fix was documented as the scaling path.",
+        "Scalable real-time system (10k concurrent users, 45ms p95, 100% delivery) using Socket.IO, RabbitMQ, and Node.js.",
+        "E2EE with AES-256-GCM and per-device keys; server stores only ciphertext.",
+        "Load tested at scale; identified MongoDB bottleneck and designed Redis-based auth caching (p99: 231ms).",
       ],
     },
   ],
@@ -260,7 +260,7 @@ const sv: Translations = {
     ai: "AI",
   },
   problemsContent: [
-    "Jag är en frontend-fokuserad fullstackutvecklare baserad i Göteborg, Sverige, med en vana att gå lite djupare än själva UI-lagret när uppgiften kräver det. Mina projekt har oftast handlat om produkter där frontend inte bara är ett skal, utan där prestanda, tillförlitlighet eller iterationstakt verkligen påverkat dem som använder dem. Jag har hjälpt team att leverera snabbare genom att minska beroenden av ingenjörer, förbättrat produkter som laddade långsamt och byggt komponentsystem som gör nästa funktion enklare än den förra.",
+    "Frontend-fokuserad fullstackingenjör med 6 års erfarenhet, specialiserad på att bygga prestandastarka webbapplikationer i realtid. Bekväm med att arbeta bortom UI-lagret när systemtänkande krävs. Mina projekt har oftast handlat om produkter där frontend inte bara är ett skal, utan där prestanda, tillförlitlighet eller iterationstakt verkligen påverkat dem som använder dem. Jag har hjälpt team att leverera snabbare genom att minska beroenden av ingenjörer, förbättrat produkter som laddade långsamt och byggt komponentsystem som gör nästa funktion enklare än den förra.",
     "När produkten har krävt det har jag också arbetat längre ner i stacken, byggt backend-tjänster i Node.js, Python och Go, kopplat upp molninfrastruktur på AWS och satt upp CI/CD-pipelines som gör driftsättningar tråkiga och förutsägbara.",
     "Jag trivs bäst i små, samarbetsinriktade team där jag kan ta ansvar för ett problem från idé till produktion och lämna kodbasen lite enklare att arbeta i än jag fann den.",
   ],
@@ -354,9 +354,9 @@ const sv: Translations = {
       url: "https://ekko.biratbhattacharjee.com",
       sourceUrl: "https://github.com/birat051/messaging-system",
       highlights: [
-        "Byggde en horisontellt skalbar meddelandeplattform i realtid som hanterar 10 000 samtidiga användare med 100 % meddelandeleverans och p95 end-to-end-latens på 45 ms, med Socket.IO, RabbitMQ fan-out och tillståndslösa Node.js-repliker.",
-        "Implementerade E2EE med AES-256-GCM och nyckelpar per enhet; servern lagrar bara chiffertext och har aldrig plaintext eller privata nycklar.",
-        "Lasttestade på AWS eu-north-1 med 10 000 samtidiga användare; messages-sent p99 låg kvar på 231 ms, MongoDB-auth identifierades som flaskhalsen och en Redis JWT-cache dokumenterades som skalningsvägen.",
+        "Skalbart realtidssystem (10k samtidiga användare, 45 ms p95, 100 % leverans) med Socket.IO, RabbitMQ och Node.js.",
+        "E2EE med AES-256-GCM och nycklar per enhet; servern lagrar endast chiffertext.",
+        "Lasttestat i skala; identifierade MongoDB som flaskhals och designade Redis-baserad autentiseringscache (p99: 231 ms).",
       ],
     },
   ],
