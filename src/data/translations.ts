@@ -99,7 +99,7 @@ const en: Translations = {
     ai: "AI",
   },
   problemsContent: [
-    "I'm a frontend-focused full-stack developer with a habit of going a bit deeper than the UI layer when the problem calls for it. Most of my work has been on products where the frontend isn't just a skin, where performance, reliability, or iteration speed actually affected the people using it. I've helped teams ship faster by reducing engineering dependencies, improved products that were slow to load, and built the kind of component systems that make the next feature easier than the last.",
+    "I'm a frontend focused full-stack developer based in Gothenburg, Sweden, with a habit of going a bit deeper than the UI layer when the problem calls for it. Most of my work has been on products where the frontend isn't just a skin, where performance, reliability, or iteration speed actually affected the people using it. I've helped teams ship faster by reducing engineering dependencies, improved products that were slow to load, and built the kind of component systems that make the next feature easier than the last.",
     "When the product has needed it, I've also worked further down the stack, building backend services in Node.js, Python and Go, wiring up cloud infrastructure on AWS, and setting up the CI/CD pipelines that keep deployments boring and predictable.",
     "I work best in small, collaborative teams where I can take ownership of a problem from idea to production, and leave the codebase a little easier to work with than I found it.",
   ],
@@ -146,7 +146,7 @@ const en: Translations = {
       intro:
         "An early-stage fintech building communication infrastructure for trading platforms. The focus was on the real-time experience end-to-end, frontend interfaces handling high-frequency interactions, backend services for conference management and payments. Reliability was the core constraint, and most of the work was about making the system predictable under load.",
       highlights: [
-        "Unblocked onboarding of 3 enterprise clients by architecting a scalable conferencing platform on BigBlueButton, diagnosing core scalability limitations and redesigning the connection layer.",
+        "Unlocked onboarding of 3 enterprise clients by architecting a scalable conferencing platform on BigBlueButton, diagnosing core scalability limitations and redesigning the connection layer.",
         "Kept the real-time experience stable and predictable under peak load by implementing SSE-based event streaming with Web Workers, maintaining 30–80ms average delivery latency.",
         "Reduced call drop rate by 25% by redesigning connection state management and reconnection flows, minimising user-facing disruptions during live trading sessions.",
         "Increased licence conversion by 50% by designing a payment validation microservice and backend APIs for conference management, contributing directly to revenue at a critical product stage.",
@@ -260,7 +260,7 @@ const sv: Translations = {
     ai: "AI",
   },
   problemsContent: [
-    "Jag är en frontend-fokuserad fullstackutvecklare med en vana att gå lite djupare än själva UI-lagret när uppgiften kräver det. Mina projekt har oftast handlat om produkter där frontend inte bara är ett skal, utan där prestanda, tillförlitlighet eller iterationstakt verkligen påverkat dem som använder dem. Jag har hjälpt team att leverera snabbare genom att minska beroenden av ingenjörer, förbättrat produkter som laddade långsamt och byggt komponentsystem som gör nästa funktion enklare än den förra.",
+    "Jag är en frontend-fokuserad fullstackutvecklare baserad i Göteborg, Sverige, med en vana att gå lite djupare än själva UI-lagret när uppgiften kräver det. Mina projekt har oftast handlat om produkter där frontend inte bara är ett skal, utan där prestanda, tillförlitlighet eller iterationstakt verkligen påverkat dem som använder dem. Jag har hjälpt team att leverera snabbare genom att minska beroenden av ingenjörer, förbättrat produkter som laddade långsamt och byggt komponentsystem som gör nästa funktion enklare än den förra.",
     "När produkten har krävt det har jag också arbetat längre ner i stacken, byggt backend-tjänster i Node.js, Python och Go, kopplat upp molninfrastruktur på AWS och satt upp CI/CD-pipelines som gör driftsättningar tråkiga och förutsägbara.",
     "Jag trivs bäst i små, samarbetsinriktade team där jag kan ta ansvar för ett problem från idé till produktion och lämna kodbasen lite enklare att arbeta i än jag fann den.",
   ],
@@ -307,7 +307,7 @@ const sv: Translations = {
       intro:
         "En fintech i tidig fas som bygger kommunikationsinfrastruktur för handelsplattformar. Fokus låg på realtidsupplevelsen från början till slut: gränssnitt som hanterade högfrekventa interaktioner och backend-tjänster för konferenshantering och betalningar. Tillförlitligheten var den avgörande begränsningen, och det mesta av arbetet handlade om att göra systemet förutsägbart under last.",
       highlights: [
-        "Tog bort blockerare för onboarding av tre företagskunder genom att arkitektera en skalbar konferensplattform på BigBlueButton, diagnostisera centrala skalbarhetsproblem och omdesigna anslutningslagret.",
+        "Låste upp onboarding av tre företagskunder genom att arkitektera en skalbar konferensplattform på BigBlueButton, diagnostisera centrala skalbarhetsproblem och omdesigna anslutningslagret.",
         "Höll realtidsupplevelsen stabil och förutsägbar vid topplast med SSE-baserad händelseströmning och Web Workers med i genomsnitt 30–80 ms leveranslatens.",
         "Minskade tappade samtal med 25 % genom omdesign av anslutningsstatus och återanslutningsflöden, vilket minimerade störningar för användarna under livehandel.",
         "Ökade licenskonvertering med 50 % genom att designa en mikrotjänst för betalningsvalidering och backend-API:er för konferenshantering, med direkt bidrag till intäkter i en kritisk produktfas.",

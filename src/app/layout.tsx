@@ -6,7 +6,12 @@ import {
 } from "next/font/google";
 
 import { LayoutWithLocale } from "@/components/layout-with-locale";
-import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "@/data/site";
+import {
+  SITE_DESCRIPTION,
+  SITE_KEYWORDS,
+  SITE_TITLE,
+  SITE_URL,
+} from "@/data/site";
 
 import "./globals.css";
 
@@ -42,12 +47,14 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
+  keywords: [...SITE_KEYWORDS],
   openGraph: {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
     siteName: "Birat Bhattacharjee",
     locale: "en_US",
+    alternateLocale: ["sv_SE"],
     type: "website",
   },
   twitter: {
