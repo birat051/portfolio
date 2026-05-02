@@ -76,6 +76,8 @@ export function HomeContent({ sections }: HomeContentProps) {
               linkedInProfileAriaLabel={t.a11y.linkedInProfile}
               tagline={t.hero.tagline}
               intro={t.hero.intro}
+              location={t.hero.location}
+              visaStatus={t.hero.visaStatus}
               nameHeadingSrNote={t.hero.nameHeadingSrNote}
             />
           </div>
