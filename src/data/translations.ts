@@ -193,9 +193,9 @@ const en: Translations = {
       url: "https://ekko.biratbhattacharjee.com",
       sourceUrl: "https://github.com/birat051/messaging-system",
       highlights: [
-        "Scalable real-time system (10k concurrent users, 45ms p95, 100% delivery) using Socket.IO, RabbitMQ, and Node.js.",
+        "Designed for horizontal scaling using stateless services and message fan-out architecture.",
+        "Load tested at 10k concurrent users on AWS, achieving 45ms p95 latency and 100% message delivery.",
         "E2EE with AES-256-GCM and per-device keys; server stores only ciphertext.",
-        "Load tested at scale; identified MongoDB bottleneck and designed Redis-based auth caching (p99: 231ms).",
       ],
     },
   ],
@@ -354,9 +354,9 @@ const sv: Translations = {
       url: "https://ekko.biratbhattacharjee.com",
       sourceUrl: "https://github.com/birat051/messaging-system",
       highlights: [
-        "Skalbart realtidssystem (10k samtidiga användare, 45 ms p95, 100 % leverans) med Socket.IO, RabbitMQ och Node.js.",
+        "Designad för horisontell skalning med tillståndslösa tjänster och fan-out-arkitektur för meddelanden.",
+        "Lasttestat med 10k samtidiga användare på AWS, med 45 ms p95-latens och 100 % meddelandeleverans.",
         "E2EE med AES-256-GCM och nycklar per enhet; servern lagrar endast chiffertext.",
-        "Lasttestat i skala; identifierade MongoDB som flaskhals och designade Redis-baserad autentiseringscache (p99: 231 ms).",
       ],
     },
   ],
