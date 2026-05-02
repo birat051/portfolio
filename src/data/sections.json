@@ -4,7 +4,7 @@
     "headingId": "problems-heading",
     "title": "What problems I solve",
     "content": [
-      "I'm a frontend focused full-stack developer based in Gothenburg, Sweden, with a habit of going a bit deeper than the UI layer when the problem calls for it. Most of my work has been on products where the frontend isn't just a skin, where performance, reliability, or iteration speed actually affected the people using it. I've helped teams ship faster by reducing engineering dependencies, improved products that were slow to load, and built the kind of component systems that make the next feature easier than the last.",
+      "Frontend-focused full-stack engineer with 6 years of experience, specializing in building performant, real-time web applications. Comfortable working beyond the UI layer when system-level thinking is required. Most of my work has been on products where the frontend isn't just a skin, where performance, reliability, or iteration speed actually affected the people using it. I've helped teams ship faster by reducing engineering dependencies, improved products that were slow to load, and built the kind of component systems that make the next feature easier than the last.",
       "When the product has needed it, I've also worked further down the stack, building backend services in Node.js, Python and Go, wiring up cloud infrastructure on AWS, and setting up the CI/CD pipelines that keep deployments boring and predictable.",
       "I work best in small, collaborative teams where I can take ownership of a problem from idea to production, and leave the codebase a little easier to work with than I found it."
     ]
