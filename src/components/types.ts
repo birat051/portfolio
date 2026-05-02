@@ -37,5 +37,7 @@ export type ProjectItem = Readonly<{
   url: string;
   sourceUrl?: string;
   highlights: readonly string[];
+  /** Optional tech chips with icons (same labels as experience **`skills`** / **`TECH_CHIP_ICONS`**). */
+  skills?: readonly string[];
 }>;
 
