@@ -12,6 +12,8 @@ import {
   SiGithubactions,
   SiGo,
   SiJenkins,
+  SiJavascript,
+  SiKubernetes,
   SiMongodb,
   SiMysql,
   SiNextdotjs,
@@ -42,6 +44,8 @@ import type { IconType } from "react-icons";
  */
 const TECH_CHIP_ICONS: Record<string, IconType> = {
   React: SiReact,
+  JavaScript: SiJavascript,
+  Javascript: SiJavascript,
   TypeScript: SiTypescript,
   Typescript: SiTypescript,
   Zustand: TbPuzzle,
@@ -59,6 +63,7 @@ const TECH_CHIP_ICONS: Record<string, IconType> = {
   RabbitMQ: SiRabbitmq,
   Kafka: SiApachekafka,
   Redux: SiRedux,
+  Kubernetes: SiKubernetes,
   BigBlueButton: SiBigbluebutton,
   SSE: SiSocketdotio,
   Auth0: SiAuth0,
