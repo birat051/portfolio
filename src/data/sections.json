@@ -4,9 +4,9 @@
     "headingId": "problems-heading",
     "title": "What problems I solve",
     "content": [
-      "Frontend-focused full-stack engineer with 6 years of experience, specializing in building performant, real-time web applications. Comfortable working beyond the UI layer when system-level thinking is required. Most of my work has been on products where the frontend isn't just a skin, where performance, reliability, or iteration speed actually affected the people using it. I've helped teams ship faster by reducing engineering dependencies, improved products that were slow to load, and built the kind of component systems that make the next feature easier than the last.",
-      "When the product has needed it, I've also worked further down the stack, building backend services in Node.js, Python and Go, wiring up cloud infrastructure on AWS, and setting up the CI/CD pipelines that keep deployments boring and predictable.",
-      "I work best in small, collaborative teams where I can take ownership of a problem from idea to production, and leave the codebase a little easier to work with than I found it."
+      "Frontend engineer with 6 years of experience building products where the UI carries real weight: real-time pipelines, AI interfaces, high-frequency trading tools. I've shipped an AI clinical assistant used daily by 14,000+ doctors, cut transcription latency by 80% through browser-side audio streaming, and helped a fintech maintain sub-100ms event delivery under peak load.",
+      "Most of my work sits at the intersection of performance and product velocity, making things faster for users and making the next feature easier to ship. I've gone further down the stack, building microservices in Go and Node.js and shipping cloud-native infrastructure that holds up under real load.",
+      "I collaborate closely with product and design to get from idea to production, and leave codebases a little easier to work with than I found them."
     ]
   },
   {
@@ -28,21 +28,13 @@
           "Cut summary processing time by 60% by leveraging SSE to stream non-critical data progressively including medicine suggestions, lab reports, and conversation highlights, with a regenerate fallback.",
           "Improved usability for doctors on low-bandwidth connections by optimising asset delivery and rendering, raising Lighthouse score from 80 → 93.",
           "Enabled the product team to ship new clinical templates independently by designing a JSON-driven template system, reducing time-to-market from ~3 days to zero.",
-          "Reduced UI bugs reaching production by building a shared component library with 85% test coverage across the product surface using Storybook.",
-          "Unlocked onboarding of security-compliant hospitals and drove new customer acquisition by engineering a secure attachment microservice in Go handling 2,000+ RPM on AWS with MySQL and Kafka.",
-          "Eliminated manual release steps across environments by configuring automated frontend deployments through AWS CloudFront and Jenkins CI/CD pipelines.",
-          "Enabled doctors to manage patient relationships and drive engagement by building a CRM module with URL-based state and reusable table components, using a BFF pattern leveraging existing PHP sessions for authentication.",
-          "Improved deployment confidence and reduced release risk by setting up a blue-green deployment pipeline enabling controlled A/B testing of new features with real users before full rollout.",
-          "Improved transcription accuracy visibility by building a Python tool that simulates live conversations over WebSocket and scores output against manual transcripts using an LLM.",
-          "Enabled real-time AI audio processing in the backend by building a streaming transcription architecture in Flask using bounded queues to handle concurrent audio streams."
+          "Unlocked onboarding of security-compliant hospitals and drove new customer acquisition by engineering a secure attachment microservice in Go handling 2,000+ RPM on AWS with MySQL and Kafka."
         ],
         "skills": [
           "React",
           "TypeScript",
           "Zustand",
           "WebSockets",
-          "Python",
-          "Flask",
           "Node.js",
           "Go",
           "AWS",
@@ -57,6 +49,10 @@
           {
             "label": "hplx-react-elements (npm)",
             "url": "https://www.npmjs.com/package/hplx-react-elements-dev"
+          },
+          {
+            "label": "hplx-feature-library (npm)",
+            "url": "https://www.npmjs.com/package/hplx-feature-library"
           }
         ]
       },
@@ -68,22 +64,21 @@
         "companyDescription": "Early-stage fintech building low-latency communication infrastructure for trading platforms",
         "intro": "An early-stage fintech building communication infrastructure for trading platforms. The focus was on the real-time experience end-to-end, frontend interfaces handling high-frequency interactions, backend services for conference management and payments. Reliability was the core constraint, and most of the work was about making the system predictable under load.",
         "highlights": [
-          "Unlocked onboarding of 3 enterprise clients by architecting a scalable conferencing platform on BigBlueButton, diagnosing core scalability limitations and redesigning the connection layer.",
+          "Unlocked onboarding of 3 enterprise clients by orchestrating scalable conferencing infrastructure on Kubernetes and SIP nodes over auto scaling groups.",
           "Kept the real-time experience stable and predictable under peak load by implementing SSE-based event streaming with Web Workers, maintaining 30–80ms average delivery latency.",
           "Reduced call drop rate by 25% by redesigning connection state management and reconnection flows, minimising user-facing disruptions during live trading sessions.",
-          "Increased licence conversion by 50% by designing a payment validation microservice and backend APIs for conference management, contributing directly to revenue at a critical product stage.",
-          "Secured the conferencing platform for machine-to-machine and client-facing flows by integrating Auth0 across both authentication paths.",
+          "Secured frontend-to-backend authentication flows for both machine-to-machine and client-facing paths by integrating Auth0 with OAuth 2.0 / OIDC.",
+          "Increased licence conversion by 50% by building out frontend payment flows and integrating with backend conference management APIs.",
           "Improved developer onboarding experience by creating Hoot.MX, a documentation tool exposing an OpenAPI Spec to promote a developer-first platform."
         ],
         "skills": [
           "React",
           "TypeScript",
           "Redux",
-          "BigBlueButton",
+          "Kubernetes",
           "SSE",
           "Auth0",
           "Node.js",
-          "OpenAPI",
           "AWS"
         ],
         "companyUrl": "https://mpsc.io/",
@@ -108,6 +103,7 @@
         ],
         "skills": [
           "React",
+          "JavaScript",
           "Redux",
           "Java",
           "SQL",

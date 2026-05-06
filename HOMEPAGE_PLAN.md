@@ -356,6 +356,44 @@ Use this list to track progress. Mark items with `[x]` when done.
   - [x] 60.3 Render a **Core skills** chip row in **`projects-section.tsx`** (same icon + pill pattern as **`experience-timeline`**); add **`projectsUi.coreSkillsHeading`** (**EN + SV**).
   - [x] 60.4 Run **`npm run lint`** and **`npm run build`**.
 
+- [x] **Task 61: Experience — Healthplix highlights trim**
+  - [x] 61.1 Remove **CloudFront/Jenkins**, **CRM/BFF**, **Python WebSocket simulation**, and **Flask streaming transcription** bullets (**`translations.ts`** EN + SV, **`sections.json`**).
+  - [x] 61.2 Drop **Python** and **Flask** from **Healthplix** skills where no bullet backs them.
+  - [x] 61.3 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 62: Experience — Healthplix further trim**
+  - [x] 62.1 Remove **Storybook / component library** and **blue-green deployment** bullets (**`translations.ts`** EN + SV, **`sections.json`**).
+  - [x] 62.2 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 63: Experience — Healthplix related work (hplx-feature-library)**
+  - [x] 63.1 Add **hplx-feature-library** on npm to **Healthplix** **`relatedWorks`** in **`sections.json`** (canonical **https** package URL).
+  - [x] 63.2 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 64: Experience — MPSC Auth0 + licence copy**
+  - [x] 64.1 Replace the **Auth0** and **licence conversion** highlight pair with **OAuth 2.0 / OIDC** auth flow copy and **frontend payment flows + conference APIs** copy (**`translations.ts`** EN + SV, **`sections.json`** EN).
+  - [x] 64.2 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 65: Experience — MPSC enterprise onboarding bullet**
+  - [x] 65.1 Replace the **BigBlueButton / connection layer** lead bullet with **Kubernetes + SIP + auto scaling groups** copy (**`translations.ts`** EN + SV, **`sections.json`** EN); align **MPSC** **`skills`** (**Kubernetes** replaces **BigBlueButton**) and add **`Kubernetes`** to **`TECH_CHIP_ICONS`**.
+  - [x] 65.2 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 66: Copy — MPSC Kubernetes phrasing**
+  - [x] 66.1 Use **on Kubernetes** instead of **over Kubernetes** in the MPSC enterprise-onboarding highlight (**`translations.ts`**, **`sections.json`**).
+  - [x] 66.2 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 67: Experience — MPSC skills (no OpenAPI chip)**
+  - [x] 67.1 Remove **OpenAPI** from **MPSC** **`skills`** (**`translations.ts`** EN + SV, **`sections.json`**).
+  - [x] 67.2 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 68: Experience — Hitachi JavaScript chip**
+  - [x] 68.1 Add **JavaScript** to **Hitachi Vantara** **`skills`** (**`translations.ts`**, **`sections.json`**); map **`JavaScript`** / **`Javascript`** in **`TECH_CHIP_ICONS`**.
+  - [x] 68.2 Run **`npm run lint`** and **`npm run build`**.
+
+- [x] **Task 69: Problems — “What problems I solve” body copy**
+  - [x] 69.1 Replace **`problemsContent`** (EN + SV) in **`translations.ts`** with the new three-paragraph positioning (real-time / AI / fintech examples; performance × velocity + deeper stack; collaborative teams).
+  - [x] 69.2 Mirror EN **`content`** in **`sections.json`** **`problems`**.
+  - [x] 69.3 Run **`npm run lint`** and **`npm run build`**.
+
 ---
 
 ## File and route summary
